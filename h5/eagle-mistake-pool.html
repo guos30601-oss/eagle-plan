@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>雏鹰计划｜错题池</title>
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --paper:#fff;
+      --ink:#172033;
+      --muted:#66738b;
+      --line:#dfe7f2;
+      --blue:#246bfe;
+      --green:#12a075;
+      --orange:#f59e0b;
+      --purple:#7257e8;
+      --red:#e54b4b;
+      --deep:#13223f;
+      --soft:#f8fbff;
+      --shadow:0 16px 38px rgba(25,45,80,.10);
+      --radius:10px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,rgba(36,107,254,.08),transparent 310px),var(--bg);
+      color:var(--ink);
+      font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;
+      line-height:1.62;
+    }
+    a{text-decoration:none;color:inherit}
+    button,input,select,textarea{font:inherit}
+    .wrap{width:min(1240px,calc(100% - 32px));margin:0 auto;padding:24px 0 52px}
+    header{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:16px}
+    h1{margin:0 0 6px;font-size:40px;line-height:1.08}
+    h2{margin:0 0 10px;font-size:24px;line-height:1.25}
+    h3{margin:0 0 8px;font-size:20px}
+    p{margin:0;color:var(--muted)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{
+      min-height:40px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#fff;
+      color:var(--ink);
+      padding:0 14px;
+      font-weight:900;
+      cursor:pointer;
+    }
+    .btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+    .btn.soft{background:#eef4ff;border-color:#d7e4ff;color:var(--blue)}
+    .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:14px;margin-bottom:16px}
+    .hero-main{
+      overflow:hidden;
+      position:relative;
+      min-height:260px;
+      padding:26px;
+      border-radius:var(--radius);
+      background:linear-gradient(135deg,#101827,#20335f 64%,#246bfe);
+      color:#fff;
+      box-shadow:var(--shadow);
+    }
+    .hero-main:after{
+      content:"";
+      position:absolute;
+      right:-80px;
+      bottom:-120px;
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      background:rgba(255,255,255,.12);
+    }
+    .eyebrow{
+      display:inline-flex;
+      padding:6px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.13);
+      border:1px solid rgba(255,255,255,.18);
+      color:#eaf1ff;
+      font-weight:900;
+      margin-bottom:12px;
+    }
+    .hero-main p{color:#dbe7ff;max-width:780px}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+    .stat{border:1px solid rgba(255,255,255,.18);border-radius:9px;background:rgba(255,255,255,.10);padding:12px}
+    .stat b{display:block;font-size:28px;line-height:1.05}
+    .stat span{display:block;margin-top:6px;color:#dbe7ff;font-size:13px}
+    .hero-side,.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    .hero-side{display:flex;flex-direction:column;gap:14px}
+    .radar-wrap{height:210px;border:1px solid #edf2fb;background:linear-gradient(180deg,#fbfdff,#f6f9ff);border-radius:10px;padding:8px}
+    .radar-wrap svg{width:100%;height:100%;display:block}
+    .layout{display:grid;grid-template-columns:280px 1fr;gap:14px;align-items:start}
+    .filters{position:sticky;top:14px}
+    .field{margin-bottom:12px}
+    .field label{display:block;margin-bottom:6px;color:#26344f;font-weight:900;font-size:13px}
+    .field input,.field select,.field textarea{
+      width:100%;
+      min-height:40px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#fbfdff;
+      color:var(--ink);
+      padding:0 10px;
+    }
+    .field textarea{min-height:78px;padding:9px 10px;resize:vertical}
+    .hint{border-radius:10px;background:linear-gradient(135deg,#fff7ed,#f4f0ff);border:1px solid #f1d9ff;padding:12px;color:#5d5077;font-size:14px;margin-top:12px}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:12px}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-weight:900;color:#52627c;cursor:pointer}
+    .tab.active{background:#eaf2ff;color:var(--blue);border-color:#cfe0ff}
+    .mistake-list{display:grid;gap:10px}
+    .mistake{
+      border:1px solid var(--line);
+      border-left:5px solid var(--blue);
+      background:linear-gradient(180deg,#fff,#fbfdff);
+      border-radius:10px;
+      padding:14px;
+      transition:.16s ease;
+    }
+    .mistake:hover{transform:translateY(-2px);box-shadow:0 14px 26px rgba(36,107,254,.08)}
+    .mistake.is-fixed{border-left-color:var(--green);opacity:.86}
+    .mistake.is-retest{border-left-color:var(--orange)}
+    .m-top{display:flex;justify-content:space-between;gap:12px;margin-bottom:10px}
+    .tag-row{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{display:inline-flex;align-items:center;min-height:26px;border-radius:999px;background:#eef4ff;color:var(--blue);padding:0 9px;font-size:12px;font-weight:900}
+    .tag.green{background:#e8fbf4;color:#0f8f6d}
+    .tag.orange{background:#fff7e8;color:#a15c00}
+    .tag.purple{background:#f1edff;color:#7257e8}
+    .tag.red{background:#fff0f0;color:#c23b3b}
+    .question{font-size:17px;font-weight:900;color:#111827;margin-bottom:10px}
+    .m-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}
+    .mini{background:#f6f9ff;border:1px solid #edf2fb;border-radius:8px;padding:9px}
+    .mini b{display:block;color:#26344f;font-size:13px;margin-bottom:3px}
+    .mini span{display:block;color:#5d6980;font-size:13px}
+    .remedy{border-top:1px dashed var(--line);padding-top:10px;margin-top:10px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+    .remedy b{color:var(--deep)}
+    .empty{display:none;text-align:center;padding:38px;border:1px dashed #cfdaf0;border-radius:10px;background:#fbfdff;color:var(--muted)}
+    .print-title{display:none}
+    @media(max-width:980px){.hero,.layout{grid-template-columns:1fr}.filters{position:static}.stats,.m-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:620px){header,.section-head,.m-top,.remedy{display:block}.actions{margin-top:12px}.stats,.m-grid{grid-template-columns:1fr}.btn{width:100%;margin-top:8px}}
+    @media print{
+      body{background:#fff}
+      header,.hero,.filters,.tabs,.actions,.btn,.hero-side{display:none!important}
+      .wrap{width:100%;padding:0}
+      .layout{display:block}
+      .panel{box-shadow:none;border:0;padding:0}
+      .print-title{display:block;margin:0 0 14px;font-size:22px}
+      .mistake{break-inside:avoid;box-shadow:none;border-color:#ccd6e8;margin-bottom:10px}
+      .mistake:hover{transform:none}
+    }
+  </style>
+<link rel="stylesheet" href="eagle-brand.css" /></head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>错题池</h1>
+        <p>不是把错题堆起来，而是把“不会”变成下一次会做。这里连接每日习题、每日一测和成长轨迹。</p>
+      </div>
+      <div class="actions">
+        <button class="btn soft" type="button" id="printBtn">打印错题池</button>
+        <a class="btn" href="eagle-growth-track.html">返回成长轨迹</a>
+        <a class="btn" href="雏鹰计划-45天学习日历精简版.html">返回首页</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-main">
+        <span class="eyebrow">知识漏洞雷达 · 自动补救</span>
+        <h2>错题不是黑历史，是下一次提分的线索。</h2>
+        <p>每一道错题都记录来源、日期、知识点、错因和补救任务。学生只看“今天补哪一道”，老师能看到“哪类知识点最薄弱”，打印时也能直接形成一份线下订正清单。</p>
+        <div class="stats">
+          <div class="stat"><b id="statTotal">0</b><span>错题总数</span></div>
+          <div class="stat"><b id="statOpen">0</b><span>待补救</span></div>
+          <div class="stat"><b id="statRetest">0</b><span>待复测</span></div>
+          <div class="stat"><b id="statFixed">0</b><span>已攻克</span></div>
+        </div>
+      </div>
+      <aside class="hero-side">
+        <div>
+          <h3>知识漏洞雷达图</h3>
+          <p>分值越高，说明这类题越需要回看讲义和重新训练。</p>
+        </div>
+        <div class="radar-wrap">
+          <svg id="radar" viewBox="0 0 360 220" role="img" aria-label="知识漏洞雷达图"></svg>
+        </div>
+      </aside>
+    </section>
+
+    <main class="layout">
+      <aside class="panel filters">
+        <h2>先筛一下</h2>
+        <div class="field">
+          <label for="keyword">搜索题干/知识点</label>
+          <input id="keyword" placeholder="如：冠词、主谓一致、Day 5" />
+        </div>
+        <div class="field">
+          <label for="sourceFilter">来源</label>
+          <select id="sourceFilter">
+            <option value="all">全部来源</option>
+            <option value="每日习题">每日习题</option>
+            <option value="每日一测">每日一测</option>
+            <option value="阶段测">阶段测</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="statusFilter">状态</label>
+          <select id="statusFilter">
+            <option value="all">全部状态</option>
+            <option value="待补救">待补救</option>
+            <option value="待复测">待复测</option>
+            <option value="已攻克">已攻克</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="reasonFilter">错因</label>
+          <select id="reasonFilter">
+            <option value="all">全部错因</option>
+            <option value="概念不清">概念不清</option>
+            <option value="审题遗漏">审题遗漏</option>
+            <option value="固定搭配不熟">固定搭配不熟</option>
+            <option value="句子结构没看清">句子结构没看清</option>
+          </select>
+        </div>
+        <button class="btn primary" id="addDemoBtn" type="button">补几道演示错题</button>
+        <button class="btn" id="clearDemoBtn" type="button">清空演示数据</button>
+        <div class="hint">给学生看的文案要轻一点：不是“你错了”，而是“这里值得再看一眼”。</div>
+      </aside>
+
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <h2 class="print-title">雏鹰计划错题池｜打印订正清单</h2>
+            <h2>我的错题清单</h2>
+            <p>建议每天只补 3-5 道，补完再复测。稳稳来，比一口气刷很多题更有用。</p>
+          </div>
+          <div class="actions">
+            <button class="btn soft" id="exportBtn" type="button">复制错题摘要</button>
+          </div>
+        </div>
+        <div class="tabs" id="tabs">
+          <button class="tab active" data-status="all">全部</button>
+          <button class="tab" data-status="待补救">待补救</button>
+          <button class="tab" data-status="待复测">待复测</button>
+          <button class="tab" data-status="已攻克">已攻克</button>
+        </div>
+        <div class="mistake-list" id="mistakeList"></div>
+        <div class="empty" id="emptyState">现在还没有错题。等每日习题或日测提交后，这里会自动长出你的第一批“提分线索”。</div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "eagleMistakePool";
+    const demoMistakes = [
+      {
+        id:"demo-d05-article-01",
+        day:5,
+        date:"Day 5",
+        source:"每日一测",
+        qtype:"冠词填空",
+        knowledge:"冠词：定冠词与零冠词",
+        question:"We usually have ______ breakfast at seven.",
+        yourAnswer:"the",
+        answer:"/",
+        reason:"概念不清",
+        remedy:"回看 Day5 讲义中“零冠词使用场景”，再做 3 道三餐/球类/学科类零冠词题。",
+        status:"待补救",
+        retest:"test-days/day-05.html"
+      },
+      {
+        id:"demo-d12-compare-01",
+        day:12,
+        date:"Day 12",
+        source:"每日习题",
+        qtype:"语法填空",
+        knowledge:"形容词副词：比较等级",
+        question:"The ______ you read, the better you write. (much)",
+        yourAnswer:"most",
+        answer:"more",
+        reason:"固定搭配不熟",
+        remedy:"整理 the + 比较级, the + 比较级 结构，默写 2 个例句。",
+        status:"待复测",
+        retest:"workbook-days/day-12.html"
+      },
+      {
+        id:"demo-d20-conj-01",
+        day:20,
+        date:"Day 20",
+        source:"每日一测",
+        qtype:"连词辨析",
+        knowledge:"连词：并列与转折",
+        question:"He was tired, ______ he kept studying.",
+        yourAnswer:"and",
+        answer:"but",
+        reason:"句子关系没看清",
+        remedy:"先判断前后句关系：顺承、转折、因果、选择。补做 5 道 but/so/and/or 辨析。",
+        status:"已攻克",
+        retest:"test-days/day-20.html"
+      },
+      {
+        id:"demo-d29-nonfinite-01",
+        day:29,
+        date:"Day 29",
+        source:"阶段测",
+        qtype:"非谓语选择",
+        knowledge:"非谓语：doing/done 主被动",
+        question:"The boy ______ at the door is my classmate.",
+        yourAnswer:"stood",
+        answer:"standing",
+        reason:"句子结构没看清",
+        remedy:"先找谓语，再看空格是否需要非谓语；补做 3 道现在分词作定语。",
+        status:"待补救",
+        retest:"test-stage-02.html"
+      }
+    ];
+
+    function getMistakes(){
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveMistakes(list){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    }
+
+    function statusClass(status){
+      if(status === "已攻克") return "is-fixed";
+      if(status === "待复测") return "is-retest";
+      return "";
+    }
+
+    function filtered(list){
+      const keyword = document.getElementById("keyword").value.trim().toLowerCase();
+      const source = document.getElementById("sourceFilter").value;
+      const status = document.getElementById("statusFilter").value;
+      const reason = document.getElementById("reasonFilter").value;
+      const activeTab = document.querySelector(".tab.active")?.dataset.status || "all";
+      return list.filter(item => {
+        const hay = `${item.date} ${item.source} ${item.qtype} ${item.knowledge} ${item.question} ${item.reason}`.toLowerCase();
+        return (!keyword || hay.includes(keyword))
+          && (source === "all" || item.source === source)
+          && (status === "all" || item.status === status)
+          && (reason === "all" || item.reason === reason)
+          && (activeTab === "all" || item.status === activeTab);
+      });
+    }
+
+    function renderStats(list){
+      document.getElementById("statTotal").textContent = list.length;
+      document.getElementById("statOpen").textContent = list.filter(x => x.status === "待补救").length;
+      document.getElementById("statRetest").textContent = list.filter(x => x.status === "待复测").length;
+      document.getElementById("statFixed").textContent = list.filter(x => x.status === "已攻克").length;
+    }
+
+    function renderRadar(list){
+      const svg = document.getElementById("radar");
+      const buckets = ["词汇短语","名词冠词","代词数词","动词时态","非谓语","从句句式"];
+      const counts = Object.fromEntries(buckets.map(x => [x, 0]));
+      list.forEach(item => {
+        const k = item.knowledge || "";
+        if(/词|短语/.test(k)) counts["词汇短语"]++;
+        else if(/名词|冠词/.test(k)) counts["名词冠词"]++;
+        else if(/代词|数词/.test(k)) counts["代词数词"]++;
+        else if(/动词|时态|语态/.test(k)) counts["动词时态"]++;
+        else if(/非谓语/.test(k)) counts["非谓语"]++;
+        else if(/从句|句式|连词|主谓/.test(k)) counts["从句句式"]++;
+      });
+      const max = Math.max(3, ...Object.values(counts));
+      const cx = 180, cy = 106, radius = 72;
+      const points = buckets.map((label, i) => {
+        const angle = -Math.PI / 2 + i * Math.PI * 2 / buckets.length;
+        const r = radius * (counts[label] / max);
+        return [cx + Math.cos(angle) * r, cy + Math.sin(angle) * r];
+      });
+      const grid = [0.33,0.66,1].map(scale => {
+        const pts = buckets.map((_, i) => {
+          const angle = -Math.PI / 2 + i * Math.PI * 2 / buckets.length;
+          return `${cx + Math.cos(angle) * radius * scale},${cy + Math.sin(angle) * radius * scale}`;
+        }).join(" ");
+        return `<polygon points="${pts}" fill="none" stroke="#dfe7f2" stroke-width="1"/>`;
+      }).join("");
+      const axes = buckets.map((label, i) => {
+        const angle = -Math.PI / 2 + i * Math.PI * 2 / buckets.length;
+        const x = cx + Math.cos(angle) * radius;
+        const y = cy + Math.sin(angle) * radius;
+        const tx = cx + Math.cos(angle) * (radius + 32);
+        const ty = cy + Math.sin(angle) * (radius + 20);
+        return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#edf2fb"/><text x="${tx}" y="${ty}" text-anchor="middle" font-size="11" fill="#52627c">${label}</text>`;
+      }).join("");
+      const poly = points.map(p => p.join(",")).join(" ");
+      svg.innerHTML = `${grid}${axes}<polygon points="${poly}" fill="rgba(36,107,254,.22)" stroke="#246bfe" stroke-width="3"/><circle cx="${cx}" cy="${cy}" r="3" fill="#246bfe"/>`;
+    }
+
+    function render(){
+      const list = getMistakes();
+      const view = filtered(list);
+      renderStats(list);
+      renderRadar(list);
+      const box = document.getElementById("mistakeList");
+      const empty = document.getElementById("emptyState");
+      empty.style.display = view.length ? "none" : "block";
+      box.innerHTML = view.map(item => `
+        <article class="mistake ${statusClass(item.status)}">
+          <div class="m-top">
+            <div class="tag-row">
+              <span class="tag">${item.date || "未标日期"}</span>
+              <span class="tag green">${item.source || "未标来源"}</span>
+              <span class="tag purple">${item.knowledge || "未标知识点"}</span>
+              <span class="tag ${item.status === "待补救" ? "red" : item.status === "待复测" ? "orange" : "green"}">${item.status || "待补救"}</span>
+            </div>
+            <div class="tag-row"><span class="tag orange">${item.reason || "待写错因"}</span></div>
+          </div>
+          <div class="question">${item.question || "题干待补充"}</div>
+          <div class="m-grid">
+            <div class="mini"><b>我的答案</b><span>${item.yourAnswer || "未记录"}</span></div>
+            <div class="mini"><b>参考答案</b><span>${item.answer || "略"}</span></div>
+            <div class="mini"><b>题型</b><span>${item.qtype || "未标题型"}</span></div>
+            <div class="mini"><b>做题时间</b><span>${item.date || "未记录"}</span></div>
+          </div>
+          <div class="remedy">
+            <div><b>补救任务：</b><span>${item.remedy || "回看对应讲义，补做同类题 3 道。"}</span></div>
+            <div class="actions">
+              <a class="btn soft" href="${item.retest || "#"}">去复测</a>
+              <button class="btn" type="button" data-mark="${item.id}">${item.status === "已攻克" ? "已攻克" : "标记已攻克"}</button>
+            </div>
+          </div>
+        </article>
+      `).join("");
+      box.querySelectorAll("[data-mark]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.dataset.mark;
+          const next = getMistakes().map(item => item.id === id ? {...item, status:"已攻克"} : item);
+          saveMistakes(next);
+          render();
+        });
+      });
+    }
+
+    document.querySelectorAll("#keyword,#sourceFilter,#statusFilter,#reasonFilter").forEach(el => {
+      el.addEventListener("input", render);
+      el.addEventListener("change", render);
+    });
+    document.querySelectorAll(".tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+        tab.classList.add("active");
+        render();
+      });
+    });
+    document.getElementById("addDemoBtn").addEventListener("click", () => {
+      const current = getMistakes();
+      const ids = new Set(current.map(x => x.id));
+      saveMistakes([...current, ...demoMistakes.filter(x => !ids.has(x.id))]);
+      render();
+    });
+    document.getElementById("clearDemoBtn").addEventListener("click", () => {
+      saveMistakes(getMistakes().filter(x => !String(x.id || "").startsWith("demo-")));
+      render();
+    });
+    document.getElementById("printBtn").addEventListener("click", () => window.print());
+    document.getElementById("exportBtn").addEventListener("click", async () => {
+      const text = filtered(getMistakes()).map((item, idx) => `${idx + 1}. ${item.date}｜${item.knowledge}\n题目：${item.question}\n错因：${item.reason}\n补救：${item.remedy}`).join("\n\n");
+      try {
+        await navigator.clipboard.writeText(text || "暂无错题");
+        alert("已复制当前错题摘要，可以粘贴到文档里继续整理。");
+      } catch (error) {
+        alert(text || "暂无错题");
+      }
+    });
+
+    if(!localStorage.getItem(STORAGE_KEY)){
+      saveMistakes(demoMistakes);
+    }
+    render();
+  </script>
+  <script src="./eagle-access-control.js"></script>
+</body>
+</html>

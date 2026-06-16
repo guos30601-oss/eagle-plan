@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>雏鹰计划｜湖北专升本院校简章</title>
+  <style>
+    :root{--bg:#f5f7fb;--paper:#fff;--ink:#172033;--muted:#657189;--line:#dfe7f2;--blue:#246bfe;--green:#12a075;--orange:#f59e0b;--shadow:0 14px 34px rgba(25,45,80,.1);--radius:8px}
+    *{box-sizing:border-box}body{margin:0;font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}.wrap{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:28px 0 48px}a{color:var(--blue);font-weight:900;text-decoration:none}
+    header{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:18px}h1{margin:0 0 8px;font-size:38px;line-height:1.1}p{margin:0;color:var(--muted)}.back{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink)}
+    .toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;margin-bottom:14px}.count{font-weight:900;color:var(--blue)}.search{min-height:38px;width:min(360px,100%);border:1px solid var(--line);border-radius:7px;padding:0 12px;font:inherit}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.school{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 10px 24px rgba(25,45,80,.07);padding:15px;min-height:210px;display:flex;flex-direction:column}.school h2{margin:0 0 8px;font-size:20px}.meta{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}.metric{border:1px solid var(--line);border-radius:7px;background:#fbfdff;padding:8px}.metric b{display:block;color:var(--blue);font-size:18px;line-height:1.1}.metric span{font-size:12px;color:var(--muted)}.tags{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0}.tag{display:inline-flex;border-radius:999px;background:#eef4ff;color:var(--blue);padding:2px 8px;font-size:12px;font-weight:900}.tag.green{background:#eafaf4;color:var(--green)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:0 11px;border-radius:7px;background:var(--blue);color:#fff}.btn.secondary{background:#fff;color:var(--ink);border:1px solid var(--line)}
+    .note{margin-top:14px;color:var(--muted);font-size:13px}@media(max-width:980px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){header,.toolbar{display:block}.search{margin-top:10px}.grid{grid-template-columns:1fr}}
+  </style>
+<link rel="stylesheet" href="eagle-brand.css" /></head>
+<body>
+  <div class="wrap">
+    <header>
+      <div><h1>湖北专升本院校简章</h1><p>48所招生学校一屏排布，已补入专业数、计划、报名、学费范围。</p></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a class="back" href="eagle-school-planner.html">择校规划</a>
+        <a class="back" href="雏鹰计划-45天学习日历精简版.html">返回首页</a>
+      </div>
+    </header>
+    <section class="toolbar">
+      <div><span class="count" id="count">0</span> 所院校简章已接入</div>
+      <input class="search" id="search" type="search" placeholder="搜索学校名称或专业..." />
+    </section>
+    <main class="grid" id="school-grid" aria-label="招生学校列表"></main>
+    <p class="note">数据来源：2026年院校招生对比表。报录比采用“计划/报名人数”，数值越低代表竞争越激烈；最终报考以官方简章为准。</p>
+  </div>
+  <script src="eagle-school-data.js"></script>
+  <script>
+    const schools = window.eagleSchoolData || [];
+    const grid = document.getElementById("school-grid");
+    const count = document.getElementById("count");
+    const search = document.getElementById("search");
+    const fmt = v => v === "" || v === 0 ? "-" : v;
+    const pct = v => v === "" ? "-" : `${Math.round(v * 100)}%`;
+    count.textContent = schools.length;
+    function render(q=""){
+      const keyword = q.trim();
+      const filtered = schools.filter(s => !keyword || s.name.includes(keyword) || s.majors.some(m => m.major.includes(keyword)));
+      grid.innerHTML = filtered.map(s => `
+        <article class="school">
+          <h2>${s.name}</h2>
+          <div class="meta">
+            <div class="metric"><b>${s.summary.majorCount}</b><span>招生专业</span></div>
+            <div class="metric"><b>${fmt(s.summary.plan26)}</b><span>普通计划</span></div>
+            <div class="metric"><b>${fmt(s.summary.applicants26)}</b><span>普通报名</span></div>
+            <div class="metric"><b>${pct(s.summary.ratio26)}</b><span>综合报录比</span></div>
+          </div>
+          <div class="tags">
+            <span class="tag">${s.status}</span>
+            <span class="tag green">学费${s.summary.feeMin ? `${s.summary.feeMin}-${s.summary.feeMax}` : "待补"}</span>
+            ${s.summary.supplementCount ? `<span class="tag">补录${s.summary.supplementCount}项</span>` : ""}
+          </div>
+          <div class="actions">
+            <a class="btn" href="${s.url}">官方简章</a>
+          </div>
+        </article>
+      `).join("");
+    }
+    search.addEventListener("input", e => render(e.target.value));
+    render();
+  </script>
+  <script src="./eagle-access-control.js"></script>
+</body>
+</html>

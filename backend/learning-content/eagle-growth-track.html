@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>雏鹰计划｜学习成长轨迹</title>
+  <style>
+    :root{
+      --bg:#f4f7fc;
+      --ink:#101827;
+      --muted:#61708b;
+      --line:#dfe7f2;
+      --blue:#246bfe;
+      --deep:#13223f;
+      --green:#12a075;
+      --soft:#f8fbff;
+      --shadow:0 18px 42px rgba(24,44,80,.10);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at 18% 0,#eaf1ff 0,#f4f7fc 36%,#f7f9fc 100%);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;line-height:1.62}
+    a{text-decoration:none;color:inherit}
+    .wrap{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:22px 0 44px}
+    header{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:14px}
+    h1{margin:0;font-size:34px;line-height:1.12;letter-spacing:0}
+    h2{margin:0 0 10px;font-size:24px;line-height:1.25}
+    h3{margin:0 0 8px;font-size:20px}
+    p{margin:0;color:var(--muted)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:8px;background:#fff;font-weight:900;color:var(--ink);cursor:pointer}
+    .btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+    .btn.soft{background:#eef4ff;color:var(--blue);border-color:#d7e4ff}
+    .hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#101827,#1f3464 66%,#246bfe);color:#fff;border-radius:10px;padding:22px 24px;box-shadow:var(--shadow);margin-bottom:16px}
+    .hero:after{content:"";position:absolute;right:-82px;bottom:-138px;width:245px;height:245px;border-radius:50%;background:rgba(255,255,255,.10)}
+    .hero-main{position:relative;z-index:1}
+    .hero-top{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+    .hero h2{font-size:28px;margin-bottom:4px}
+    .hero p{color:#dbe7ff;max-width:720px}
+    .warm{margin-top:8px;color:#eef5ff;font-weight:700}
+    .stats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:18px}
+    .stat{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:10px}
+    .stat b{display:block;font-size:22px;line-height:1.15}
+    .stat span{display:block;color:#dbe7ff;margin-top:6px;font-size:13px}
+    .panel{background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);padding:18px;margin-bottom:16px}
+    .panel-head{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:12px}
+    .checkin-board{display:grid;grid-template-columns:1.45fr 1fr;gap:14px;align-items:stretch}
+    .checkin-left{position:relative;overflow:hidden;border-radius:10px;padding:16px;background:linear-gradient(135deg,#101827,#1f3464 62%,#246bfe);color:#fff;box-shadow:var(--shadow);height:auto}
+    .checkin-left:after{content:"";position:absolute;right:-80px;bottom:-110px;width:210px;height:210px;border-radius:50%;background:rgba(255,255,255,.08)}
+    .checkin-inner{position:relative;z-index:1}
+    .checkin-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+    .checkin-pill{display:inline-flex;align-items:center;border-radius:999px;padding:5px 12px;background:rgba(255,255,255,.12);font-weight:900;color:#eef5ff}
+    .checkin-progress{color:#dbe7ff;font-weight:900}
+    .today-mini-card{border:1px solid rgba(255,255,255,.25);border-left:4px solid #fff;border-radius:10px;background:rgba(255,255,255,.10);padding:14px;margin-bottom:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.10)}
+    .today-mini-card h3{font-size:26px;margin-bottom:4px}
+    .today-mini-card p{color:#edf5ff}
+    .checkin-inner>p{max-width:560px;margin-bottom:10px}
+    .mini-track{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+    .mini-day{position:relative;min-height:54px;border:1px solid rgba(255,255,255,.16);border-radius:8px;background:rgba(255,255,255,.09);padding:7px 8px;color:#eaf1ff;font-size:12px;transition:.16s ease;cursor:pointer}
+    .mini-day:hover{transform:translateY(-2px);background:rgba(255,255,255,.15)}
+    .mini-day b{display:block;color:#fff;font-size:15px;line-height:1.1}
+    .mini-day strong{display:block;margin-top:1px;color:inherit;font-size:12px}
+    .mini-day.done{background:rgba(255,255,255,.16)}
+    .mini-day.now{background:#fff;color:#24324c;box-shadow:0 0 0 3px rgba(255,255,255,.20),0 12px 28px rgba(0,0,0,.12)}
+    .mini-day.now b{color:var(--blue)}
+    .mini-day.now:after{content:"NOW";position:absolute;right:8px;top:8px;border-radius:999px;background:var(--blue);color:#fff;font-size:10px;font-weight:900;padding:1px 6px}
+    .mini-day.locked{opacity:.45}
+    .mini-day.locked:after{content:"LOCK";position:absolute;right:8px;top:8px;color:#c6d6ff;font-size:10px;font-weight:900}
+    .mini-actions{display:flex;gap:10px;margin-top:12px}
+    .mini-actions .btn{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);color:#fff;min-width:170px}
+    .mini-actions .btn.primary{background:#fff;color:#1744a0;border-color:#fff}
+    .upload-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .file-input{position:absolute;opacity:0;pointer-events:none}
+    .steps{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,minmax(0,1fr));gap:10px;height:100%}
+    .step{display:block;width:100%;height:100%;text-align:left;font:inherit;color:inherit;border:1px solid var(--line);border-radius:10px;background:var(--soft);padding:9px 12px;min-height:0;cursor:pointer;transition:.16s ease}
+    .step:hover{transform:translateY(-2px);border-color:#bcd0ff;box-shadow:0 12px 24px rgba(36,107,254,.10)}
+    .step.action{background:#fff}
+    .step.action.primary{background:linear-gradient(135deg,#112044,#246bfe);color:#fff;border-color:#246bfe}
+    .step.action.primary p{color:#dbe7ff}
+    .step i{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:#eef4ff;color:var(--blue);font-style:normal;font-weight:900;margin-right:8px;vertical-align:middle}
+    .step.action.primary i{background:rgba(255,255,255,.16);color:#fff}
+    .step b{display:inline;font-size:17px;vertical-align:middle}
+    .step p{margin-top:5px;font-size:13px;line-height:1.42}
+    .progress{display:grid;grid-template-columns:1.25fr .75fr;gap:14px}
+    .chart-card,.recent-card{border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg,#fff,#f8fbff);padding:16px}
+    .chart-wrap{position:relative;height:220px;margin-top:8px;border-radius:10px;background:linear-gradient(180deg,#fbfdff,#f5f8ff);border:1px solid #edf2fb;overflow:hidden}
+    .chart-wrap svg{width:100%;height:100%;display:block}
+    .chart-empty{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:var(--muted);padding:20px}
+    .chart-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;color:var(--muted);font-size:13px}
+    .chart-legend span{display:inline-flex;align-items:center;gap:6px}
+    .chart-legend i{width:10px;height:10px;border-radius:999px;display:inline-block}
+    .chart-note{margin:0 0 12px;border:1px solid #e3ebf7;border-radius:10px;background:#fff;padding:12px;color:#43536f}
+    .chart-note b{display:block;color:var(--ink);margin-bottom:4px}
+    .recent-list{display:grid;gap:9px;margin-top:10px;max-height:348px;overflow:auto;padding-right:4px}
+    .recent-item{border:1px solid var(--line);border-radius:9px;background:#fbfdff;padding:10px}
+    .recent-item b{display:block;color:var(--blue);font-size:20px}
+    .recent-item span{display:block;color:var(--muted);font-size:12px}
+    .archive{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .archive a{display:block;border:1px solid var(--line);border-radius:10px;background:#fbfdff;padding:14px;transition:.16s ease}
+    .archive a:hover{transform:translateY(-2px);border-color:#bcd0ff;box-shadow:0 12px 24px rgba(36,107,254,.10)}
+    .archive b{display:block;font-size:18px;margin-bottom:4px}
+    .archive span{display:block;color:var(--muted);font-size:13px}
+    .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .tag-cloud{display:flex;flex-wrap:wrap;gap:8px}
+    .tag{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:#eef4ff;color:#1852cf;font-weight:900;font-size:13px}
+    .tag.warn{background:#fff7ed;color:#b45309}
+    .tag.good{background:#ecfdf5;color:#08785c}
+    .recovery-list{display:grid;gap:8px}
+    .recovery-item{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:10px;background:#fbfdff;padding:10px}
+    .recovery-item b{font-size:18px;color:var(--ink)}
+    .recovery-item span{color:var(--muted);font-size:13px}
+    .stage-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+    .stage-node{position:relative;border:1px solid var(--line);border-radius:10px;background:#fbfdff;padding:13px;min-height:156px;overflow:hidden}
+    .stage-node:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:#cbd8ee}
+    .stage-node.done{box-shadow:0 12px 24px rgba(24,44,80,.08)}
+    .stage-node.blue:before{background:#246bfe}.stage-node.green:before{background:#12a075}.stage-node.orange:before{background:#f59e0b}.stage-node.gold:before{background:#1d4ed8}
+    .stage-node b{display:block;font-size:17px;margin-bottom:5px}
+    .stage-node span{display:block;color:var(--muted);font-size:13px}
+    .stage-node strong{display:block;color:var(--blue);margin-top:10px}
+    .stage-node a{display:inline-flex;margin-top:10px;color:var(--blue);font-weight:900}
+    .stage-node.locked{opacity:.68}
+    .stage-node.locked a{pointer-events:none;color:#8a96ad}
+    .archive-final{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+    .archive-final a{display:block;border:1px solid var(--line);border-radius:10px;background:#fbfdff;padding:14px;transition:.16s ease}
+    .archive-final a:hover{transform:translateY(-2px);border-color:#bcd0ff;box-shadow:0 12px 24px rgba(36,107,254,.10)}
+    .archive-final a.locked{opacity:.58;pointer-events:none}
+    .archive-final b{display:block;font-size:20px;margin-bottom:5px}
+    .archive-final span{display:block;color:var(--muted);font-size:13px}
+    .report-box{display:none;margin-bottom:14px;border:1px solid #dbe7ff;border-radius:10px;background:linear-gradient(180deg,#fff,#f8fbff);padding:16px}
+    .report-box.show{display:block}
+    .report-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .report-title h3{font-size:24px;margin:0}
+    .report-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+    .report-stat{border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px}
+    .report-stat b{display:block;font-size:22px;color:var(--blue)}
+    .report-section{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+    .report-section h4{margin:0 0 8px;font-size:18px}
+    .report-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+    .report-list span{background:#f3f6fb;border-radius:8px;padding:8px 10px;color:#43536f}
+    .archive-table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px;background:#fff}
+    .archive-table{width:100%;min-width:980px;border-collapse:collapse;font-size:14px}
+    .archive-table th{position:sticky;top:0;background:#eef4ff;color:#0e1b35;text-align:left;font-weight:900;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+    .archive-table td{padding:12px 14px;border-bottom:1px solid #e8eef8;color:#43536f;vertical-align:top}
+    .archive-table tr:last-child td{border-bottom:0}
+    .archive-table b{color:#0e1b35}
+    .archive-table .score{font-size:18px;color:var(--blue);font-weight:900}
+    .archive-table .muted{color:#8b9ab3}
+    .archive-table .shot{display:inline-flex;align-items:center;gap:6px;padding:5px 8px;border-radius:999px;background:#f3f6fb;color:#43536f;font-size:12px;font-weight:800}
+    .archive-table .shot.done{background:#ecfdf5;color:#08785c}
+    .empty{color:var(--muted)}
+    @media(max-width:980px){.stats{grid-template-columns:repeat(3,1fr)}.checkin-board,.progress,.submit-card,.insight-grid{grid-template-columns:1fr}.archive,.records,.stage-row{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:620px){header,.hero-top,.panel-head{display:block}.actions{margin-top:12px}.stats,.steps,.archive,.records,.mini-track,.stage-row{grid-template-columns:1fr}.checkin-board{grid-template-columns:1fr}h1{font-size:30px}.hero{padding:20px}}
+  </style>
+<link rel="stylesheet" href="eagle-brand.css" />
+<style>
+  body.growth-page .hero,
+  body.growth-page .checkin-left {
+    background:
+      radial-gradient(circle at 86% 18%, rgba(255,255,255,.13), transparent 28%),
+      radial-gradient(ellipse at 14% 96%, rgba(184,134,43,.16), transparent 34%),
+      linear-gradient(135deg,#081a3d 0%,#12356f 58%,#1d5ec4 100%) !important;
+    color:#fff !important;
+    border-color:rgba(218,185,113,.36) !important;
+  }
+  body.growth-page .hero h2,
+  body.growth-page .hero p,
+  body.growth-page .hero .warm,
+  body.growth-page .checkin-left h3,
+  body.growth-page .checkin-left p {
+    color:#fff !important;
+  }
+  body.growth-page .hero p,
+  body.growth-page .checkin-left p {
+    opacity:.88;
+  }
+  body.growth-page .hero .stat {
+    background:rgba(255,255,255,.12) !important;
+    border-color:rgba(255,255,255,.24) !important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.12) !important;
+  }
+  body.growth-page .hero .stat b {
+    color:#fff !important;
+  }
+  body.growth-page .hero .stat span {
+    color:#dbe7ff !important;
+  }
+  body.growth-page .checkin-left .mini-day {
+    background:rgba(255,255,255,.14) !important;
+    border-color:rgba(255,255,255,.22) !important;
+    color:#eef5ff !important;
+    box-shadow:none !important;
+  }
+  body.growth-page .checkin-left .mini-day b,
+  body.growth-page .checkin-left .mini-day strong {
+    color:#fff !important;
+  }
+  body.growth-page .checkin-left .mini-day.done {
+    background:rgba(255,255,255,.20) !important;
+  }
+  body.growth-page .checkin-left .mini-day.now {
+    background:#fff !important;
+    color:#102653 !important;
+    border-color:rgba(218,185,113,.72) !important;
+    box-shadow:0 0 0 3px rgba(218,185,113,.20),0 12px 26px rgba(0,0,0,.16) !important;
+  }
+  body.growth-page .checkin-left .mini-day.now b,
+  body.growth-page .checkin-left .mini-day.now strong {
+    color:#102653 !important;
+  }
+  body.growth-page .checkin-left .mini-day.locked {
+    opacity:.42;
+    background:rgba(255,255,255,.08) !important;
+  }
+  body.growth-page .checkin-left .mini-day.locked::after {
+    content:"待解锁";
+    color:#dbe7ff;
+    opacity:.85;
+  }
+  body.growth-page .steps .step {
+    background:rgba(255,253,248,.96) !important;
+  }
+  body.growth-page .steps .step.primary {
+    background:linear-gradient(135deg,#0b3a78,#246bfe) !important;
+    color:#fff !important;
+  }
+  body.growth-page .steps .step.primary p {
+    color:#eaf1ff !important;
+  }
+</style></head>
+<body class="growth-page">
+  <div class="wrap">
+    <header>
+      <h1>学习成长轨迹</h1>
+      <div class="actions">
+        <a class="btn soft" href="eagle-mistake-pool.html">错题池</a>
+        <a class="btn" href="eagle-test-pack.html">返回测试日历</a>
+        <a class="btn" href="雏鹰计划-45天学习日历精简版.html">返回首页</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-main">
+        <div class="hero-top">
+          <div>
+            <h2 id="studentName">今天也算数。</h2>
+            <p id="coachStateText">先完成今天的四步任务，再上传截图点亮今天。</p>
+            <div class="warm" id="warmLine">慢慢来，今天完成一点点，也是在靠近上岸。</div>
+          </div>
+          <a class="btn primary" href="#checkin">上传今日打卡</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b id="completedDays">0 / 45</b><span>完成天数</span></div>
+          <div class="stat"><b id="streakDays">0天</b><span>连续打卡</span></div>
+          <div class="stat"><b id="avgScore">0%</b><span>日测均分</span></div>
+          <div class="stat"><b id="recoveredMistakes">0题</b><span>错题回收</span></div>
+          <div class="stat"><b id="vocabMastery">0%</b><span>词汇掌握</span></div>
+          <div class="stat"><b id="currentLevel">破壳期小雏鹰</b><span>当前等级</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="checkin">
+      <div class="panel-head">
+        <div>
+          <h2>今日打卡提交区</h2>
+          <p>完成今天的四步任务后，把小红书打卡截图放进来。系统会点亮当天轨迹，也会同步到连续打卡榜。</p>
+        </div>
+      </div>
+      <div class="checkin-board">
+        <div class="checkin-left">
+          <div class="checkin-inner">
+            <h3>最近 10 天学习轨迹</h3>
+            <p style="color:#dbe7ff;margin-bottom:12px">已经走过的路会变亮，今天会停在中间，后面的日子先替你收好。</p>
+            <div class="mini-track" id="checkinTrack"></div>
+          </div>
+        </div>
+        <div class="steps">
+          <a class="step action" id="todayTaskAction" href="daily-tasks/day-01.html"><i>01</i><b>先做今日任务</b><p>背词、看课、刷题、日测，一格一格来。</p></a>
+          <label class="step action" for="checkinFile"><i>02</i><b>上传打卡图</b><p>拍学习资料就行，真实感比精修更香。</p></label>
+          <button class="step action primary" id="dailyPosterBtn" type="button"><i>03</i><b>生成今日战报</b><p>自动做成一张小红书风打卡海报。</p></button>
+          <button class="step action" id="demoUpload" type="button"><i>04</i><b>点亮今天</b><p>今日变亮，连续打卡也一起更新。</p></button>
+        </div>
+        <input class="file-input" id="checkinFile" type="file" accept="image/*" />
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>成长曲线</h2>
+          <p>不是为了证明你跑得多快，而是让你看见：每天的认真，真的没有白费。</p>
+        </div>
+        <a class="btn soft" href="eagle-mistake-pool.html">去错题池补漏洞</a>
+      </div>
+      <div class="progress">
+        <div class="chart-card">
+          <div class="chart-note" id="chartInsight"><b>成长小结</b><span>先完成一次日测，系统会帮你看见分数、错题和完成率的变化。</span></div>
+          <div class="chart-wrap">
+            <svg id="progressChart" viewBox="0 0 720 220" preserveAspectRatio="none"></svg>
+            <div class="chart-empty" id="chartEmpty"><b>还没有曲线</b><span>完成一次日测并保存分数后，这里会长出你的第一条进步线。</span></div>
+          </div>
+          <div class="chart-legend">
+            <span><i style="background:#246bfe"></i>日测得分</span>
+            <span><i style="background:#f59e0b"></i>错题压力</span>
+            <span><i style="background:#12a075"></i>完成率</span>
+          </div>
+        </div>
+        <div class="recent-card">
+          <h3>最近记录</h3>
+          <div class="recent-list" id="recentList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>薄弱标签</h2>
+          <p>这里不贴“差生标签”，只帮你定位下一步先补哪里。</p>
+        </div>
+      </div>
+      <div class="insight-grid">
+        <div>
+          <h3>当前画像</h3>
+          <div class="tag-cloud" id="weakTags"></div>
+        </div>
+        <div>
+          <h3>明日建议</h3>
+          <p id="nextAdvice">先完成一次日测和错题订正，系统会给你更准的建议。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>错题回收</h2>
+          <p>错题不是丢脸记录，是你下一次提分的藏宝图。</p>
+        </div>
+        <a class="btn soft" href="eagle-mistake-pool.html">进入错题池</a>
+      </div>
+      <div class="recovery-list" id="recoverySummary"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>阶段证书墙</h2>
+          <p>阶段墙记录每一次闯关；完整学习报告和结营证书，统一收进成长档案。</p>
+        </div>
+      </div>
+      <div class="stage-row" id="stageNodes"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>成长档案</h2>
+          <p>这里收着你的每日记录、阶段成绩和最终学习报告。慢慢走，也会留下很清楚的脚印。</p>
+        </div>
+        <button class="btn" id="clearBtn" type="button">清空记录</button>
+      </div>
+      <div class="archive-final">
+        <a href="#" id="reportBtn"><b>生成45天学习报告</b><span>Day45 后，把每日记录整理成正式档案。</span></a>
+        <a href="雏鹰计划-实物打印资料/雏鹰计划日历打印汇总/结营证书/结营证书5.png" target="_blank" id="finalCertLink"><b>完整结营证书</b><span>完成45天后打开留念。</span></a>
+      </div>
+      <div class="report-box" id="learningReport"></div>
+      <div class="records" id="recordsList"></div>
+      <p class="empty" id="emptyText">还没有保存成绩。先完成一次日测，成长轨迹就会开始记录你。</p>
+    </section>
+  </div>
+
+  <script>
+    (function(){
+      const profile = JSON.parse(localStorage.getItem("eagleStudentProfile") || "null");
+      const nickname = (profile && profile.nickname) || localStorage.getItem("eagleStudentNickname") || "同学";
+      const scoreList = JSON.parse(localStorage.getItem("eagleTestScores") || "[]")
+        .sort((a,b)=>new Date(a.savedAt || 0)-new Date(b.savedAt || 0));
+      const checkins = JSON.parse(localStorage.getItem("eagleXhsCheckins") || "[]");
+      const mistakes = JSON.parse(localStorage.getItem("eagleMistakePool") || "[]");
+      const percents = scoreList.map(item => Number(item.percent || 0)).filter(n => !Number.isNaN(n));
+      const todayKey = new Date().toISOString().slice(0,10);
+      const startDate = profile && profile.startDate ? new Date(profile.startDate) : null;
+      const todayDate = new Date(todayKey);
+      const rawDay = startDate && !Number.isNaN(startDate.getTime()) ? Math.floor((todayDate - startDate) / 86400000) + 1 : Math.max(1, checkins.length || 1);
+      const currentDay = Math.min(45, Math.max(1, rawDay));
+      const completedDays = Math.min(45, Math.max(checkins.length, scoreList.filter(item => /^Day\s*\d+/i.test(item.dayLabel || "")).length));
+      const stageIds = new Set(["entry","stage-01","stage-02","stage-03","final"]);
+      const stageDone = scoreList.filter(item => stageIds.has(item.id)).length;
+      const recovered = mistakes.filter(item => item.status === "done" || item.status === "mastered").length;
+      const avg = percents.length ? Math.round(percents.reduce((a,b)=>a+b,0)/percents.length) : 0;
+      const vocabMastery = Math.min(100, Math.round((currentDay / 45) * 100));
+      const level = currentDay <= 13 ? "破壳期小雏鹰" : currentDay <= 28 ? "成长期小雏鹰" : currentDay <= 38 ? "展翅期小雏鹰" : "翱翔期小雏鹰";
+      const hasTodayCheckin = checkins.some(item => item.date === todayKey && item.status !== "rejected");
+      const latestScore = scoreList[scoreList.length - 1];
+      const latestLow = latestScore && Number(latestScore.percent || 0) < 60;
+
+      document.getElementById("studentName").textContent = `${nickname}，今天也算数。`;
+      document.getElementById("completedDays").textContent = `${completedDays} / 45`;
+      document.getElementById("avgScore").textContent = `${avg}%`;
+      document.getElementById("recoveredMistakes").textContent = `${recovered}题`;
+      document.getElementById("vocabMastery").textContent = `${vocabMastery}%`;
+      document.getElementById("currentLevel").textContent = level;
+      document.getElementById("streakDays").textContent = `${checkins.length}天`;
+      document.getElementById("todayTaskAction").href = `daily-tasks/day-${String(currentDay).padStart(2, "0")}.html`;
+
+      const coachText = document.getElementById("coachStateText");
+      const warmLine = document.getElementById("warmLine");
+      if(latestLow){
+        coachText.textContent = "分数低不是坏事，说明系统帮你找到了漏洞。今天先回看错题，再继续下一天。";
+        warmLine.textContent = "别急，发现问题就是变强的开始。";
+      } else if(hasTodayCheckin){
+        coachText.textContent = "今天已经点亮啦。明天继续，连续打卡会让你的成长曲线更好看。";
+        warmLine.textContent = "你看，坚持这件事，真的会留下痕迹。";
+      } else {
+        coachText.textContent = `先完成 Day ${currentDay} 的四步任务，再上传截图点亮今天。`;
+        warmLine.textContent = "慢慢来，今天完成一点点，也是在靠近上岸。";
+      }
+
+      const topics = [
+        "入营摸底","名词 1","名词 2","冠词 1","冠词 2","代词 1","代词 2","代词 3","数词","形容词",
+        "副词","比较等级","形副易混","介词 1","介词 2","介词 3","介词 4","介词 5","介词 6","连词",
+        "动词 1","动词 2","时态 1","时态 2","时态 3","语态","非谓语 1","非谓语 2","非谓语 3","句子成分 1",
+        "句子成分 2","定语从句 1","定语从句 2","名词性从句 1","名词性从句 2","状语从句 1","状语从句 2","状语从句 3",
+        "特殊句式 1","特殊句式 2","特殊句式 3","主谓一致 1","主谓一致 2","综合收束","结课测试"
+      ];
+      function pad(n){ return String(n).padStart(2, "0"); }
+      function addDays(date, days){
+        const next = new Date(date);
+        next.setDate(next.getDate() + days);
+        return next;
+      }
+      function formatShortDate(date){
+        return `${pad(date.getMonth() + 1)}/${pad(date.getDate())}`;
+      }
+      function renderCheckinTrack(){
+        const wrap = document.getElementById("checkinTrack");
+        const base = startDate && !Number.isNaN(startDate.getTime()) ? startDate : todayDate;
+        const from = Math.max(1, Math.min(36, currentDay - 4));
+        const days = Array.from({length:10}, (_,i)=>from + i).filter(day => day <= 45);
+        wrap.innerHTML = days.map(day => {
+          const dayDate = addDays(base, day - 1);
+          const status = day < currentDay ? "done" : day === currentDay ? "now" : "locked";
+          return `<button class="mini-day ${status}" type="button" data-day="${day}">
+            <b>D${day}</b>
+            <span>${topics[day - 1] || "今日任务"}</span>
+            <strong>${formatShortDate(dayDate)}</strong>
+          </button>`;
+        }).join("");
+        wrap.querySelectorAll(".mini-day").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const day = Number(btn.dataset.day);
+            if(day > currentDay){
+              alert("后面的任务先替你锁住。今天只管今天这一格。");
+              return;
+            }
+            location.href = `daily-tasks/day-${pad(day)}.html`;
+          });
+        });
+      }
+      renderCheckinTrack();
+
+      function renderChart(){
+        const chart = document.getElementById("progressChart");
+        const chartEmpty = document.getElementById("chartEmpty");
+        const recentList = document.getElementById("recentList");
+        const chartInsight = document.getElementById("chartInsight");
+        if(!scoreList.length){
+          recentList.innerHTML = '<div class="recent-item"><span>还没有测试记录</span><b>先完成一次日测</b><span>保存成绩后，这里会出现你的第一条成长记录。</span></div>';
+          return;
+        }
+        chartEmpty.style.display = "none";
+        const width = 720, height = 220, pad = 32;
+        const recent = scoreList.slice(-8);
+        const doneDays = new Set(checkins.map(item => Number(item.day || 0)).filter(Boolean));
+        const maxDay = Math.max(currentDay, 1);
+        const maxMistakes = Math.max(5, ...recent.map(item => Number(item.wrong || item.wrongCount || 0)));
+        const pointsFor = (getter) => recent.map((item,index) => {
+          const x = recent.length === 1 ? width / 2 : pad + index * ((width - pad * 2) / (recent.length - 1));
+          const value = Math.max(0, Math.min(100, getter(item, index)));
+          const y = height - pad - (value / 100) * (height - pad * 2);
+          return {x,y,item,value};
+        });
+        const scorePoints = pointsFor(item => Number(item.percent || 0));
+        const mistakePoints = pointsFor(item => {
+          const wrong = Number(item.wrong || item.wrongCount || 0);
+          return maxMistakes ? (wrong / maxMistakes) * 100 : 0;
+        });
+        const completionPoints = pointsFor(() => Math.round((doneDays.size / maxDay) * 100));
+        const grid = [25,50,75,100].map(v => {
+          const y = height - pad - (v / 100) * (height - pad * 2);
+          return `<line x1="${pad}" y1="${y}" x2="${width-pad}" y2="${y}" stroke="#e8eef8" stroke-width="1"/><text x="8" y="${y+4}" fill="#8a96ad" font-size="12">${v}%</text>`;
+        }).join("");
+        const linePath = points => points.map((p,i)=>`${i?'L':'M'}${p.x},${p.y}`).join(" ");
+        const drawLine = (points,color,width=4) => `<path d="${linePath(points)}" fill="none" stroke="${color}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round"/>`;
+        const dots = scorePoints.map(p => `<g><circle cx="${p.x}" cy="${p.y}" r="5" fill="#246bfe"/><text x="${p.x}" y="${height-10}" text-anchor="middle" fill="#657189" font-size="12">${p.item.dayLabel || p.item.label || ""}</text></g>`).join("");
+        const area = `${linePath(scorePoints)} L${scorePoints[scorePoints.length-1].x},${height-pad} L${scorePoints[0].x},${height-pad} Z`;
+        chart.innerHTML = `<defs><linearGradient id="growthArea" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#246bfe" stop-opacity=".16"/><stop offset="1" stop-color="#246bfe" stop-opacity=".02"/></linearGradient></defs>${grid}<path d="${area}" fill="url(#growthArea)"/>${drawLine(scorePoints,"#246bfe",4)}${drawLine(mistakePoints,"#f59e0b",3)}${drawLine(completionPoints,"#12a075",3)}${dots}`;
+        const lastThree = recent.slice(-3).map(item => Number(item.percent || 0));
+        const scoreUp = lastThree.length >= 2 && lastThree[lastThree.length - 1] >= lastThree[0];
+        const latestWrong = Number(recent[recent.length - 1].wrong || recent[recent.length - 1].wrongCount || 0);
+        const weak = mistakes.find(item => item.status !== "done" && item.status !== "mastered");
+        const weakText = weak ? (weak.knowledge || weak.qtype || "易错点") : "固定搭配";
+        const reviewDay = weak && weak.day ? `Day${weak.day}` : `Day${Math.max(1,currentDay - 1)}`;
+        chartInsight.innerHTML = `<b>成长小结</b><span>${scoreUp ? "最近几次日测得分在往上走，说明基础正在变稳。" : "分数有波动也正常，先看完成率和错题回收，别只盯着一条分数线。"}${latestWrong ? ` 目前错题压力还有 ${latestWrong} 题，` : " "}建议明天先回看 ${reviewDay} 的「${weakText}」，再继续下一格。</span>`;
+        recentList.innerHTML = scoreList.slice().reverse().slice(0,4).map(item => `
+          <div class="recent-item">
+            <span>${item.label || "测试"} · ${item.dayLabel || ""}</span>
+            <b>${item.percent || 0}%</b>
+            <span>${item.note || "这一小步已经被记录。继续往前一点点就好。"}</span>
+          </div>
+        `).join("");
+      }
+
+      const DAY_TASKS = [
+            ["破壳期", "入营摸底 + 湖北考纲分析", "新001-040｜复习无旧词", "湖北蓝皮书 p1-p5", "词形变化 + 词汇辨析 + 句子成分｜习题册 p1-p6"],
+            ["破壳期", "名词 1｜种类与复数", "新041-080｜复习D1", "讲义 p2-p7", "选择 + 翻译填空｜习题册 p7-p8"],
+            ["破壳期", "名词 2｜量、格与功能", "新081-120｜复习D2+D1", "讲义 p8-p14", "选择 + 词形补全｜习题册 p9-p10"],
+            ["破壳期", "冠词 1｜不定冠词", "新121-160｜复习D3+D2", "讲义 p15-p22", "冠词填空｜习题册 p11-p12"],
+            ["破壳期", "冠词 2｜定冠词与零冠词", "新161-200｜复习D4+D3+D1", "讲义 p23-p30", "选择 + 固定搭配｜习题册 p13-p14"],
+            ["破壳期", "代词 1｜人称/物主/反身", "新201-240｜复习D5+D4+D2", "讲义 p31-p36", "代词辨析｜习题册 p19"],
+            ["破壳期", "代词 2｜指示与替代", "新241-280｜复习D6+D5+D3", "讲义 p37-p42", "替代词判断｜习题册 p20"],
+            ["破壳期", "代词 3｜不定代词", "新281-320｜复习D7+D6+D4+D1", "讲义 p43-p47", "不定代词 + 翻译填空｜习题册 p21-p22"],
+            ["破壳期", "数词", "新321-360｜复习D8+D7+D5+D2", "讲义 p48-p56", "连词成句 + 翻译填空｜习题册 p15-p18"],
+            ["破壳期", "形容词", "新361-400｜复习D9+D8+D6+D3", "讲义 p57-p63", "词法选择｜习题册 p27-p28"],
+            ["破壳期", "副词", "新401-440｜复习D10+D9+D7+D4", "讲义 p64-p70", "副词辨析｜习题册 p29-p30"],
+            ["破壳期", "比较等级", "新441-480｜复习D11+D10+D8+D5", "讲义 p71-p77", "比较结构｜习题册 p27-p30"],
+            ["破壳期", "形副固定搭配与易混词", "新481-520｜复习D12+D11+D9+D6", "讲义 p78-p84", "词法综合｜习题册 p43-p46"],
+            ["成长期", "介词 1｜基础框架", "新521-560｜复习D13+D12+D10+D7", "讲义 p85-p93", "介词选择｜习题册 p23"],
+            ["成长期", "介词 2｜about 到 after", "新561-600｜复习D14+D13+D11+D8", "讲义 p94-p102", "介词辨析｜习题册 p24"],
+            ["成长期", "介词 3｜against 到 from", "新601-640｜复习D15+D14+D12+D9+D1", "讲义 p103-p111", "介词填空｜习题册 p25"],
+            ["成长期", "介词 4｜in 到 on", "新641-680｜复习D16+D15+D13+D10+D2", "讲义 p112-p119", "介词固定搭配｜习题册 p26"],
+            ["成长期", "介词 5｜over 到 with", "新681-720｜复习D17+D16+D14+D11+D3", "讲义 p120-p127", "介词复盘｜习题册 p23-p26"],
+            ["成长期", "介词 6｜综合辨析", "新721-760｜复习D18+D17+D15+D12+D4", "讲义 p128-p135", "词法综合｜习题册 p43-p46"],
+            ["成长期", "连词", "新761-800｜复习D19+D18+D16+D13+D5", "讲义 p136-p141", "连词成句｜习题册 p39-p42"],
+            ["成长期", "动词分类 1｜实义与系动词", "新801-840｜复习D20+D19+D17+D14+D6", "讲义 p142-p149", "动词辨析｜习题册 p31"],
+            ["成长期", "动词分类 2｜助动词与情态动词", "新841-880｜复习D21+D20+D18+D15+D7", "讲义 p150-p157", "情态动词｜习题册 p32"],
+            ["成长期", "时态 1｜一般体", "新881-920｜复习D22+D21+D19+D16+D8", "讲义 p158-p163", "时态判断｜习题册 p33"],
+            ["成长期", "时态 2｜进行体与完成体", "新921-960｜复习D23+D22+D20+D17+D9", "讲义 p164-p169", "时态综合｜习题册 p34"],
+            ["成长期", "时态 3｜综合辨析", "新961-1000｜复习D24+D23+D21+D18+D10", "讲义 p170-p174", "动词综合｜习题册 p31-p34"],
+            ["成长期", "语态｜被动语态", "新1001-1040｜复习D25+D24+D22+D19+D11", "讲义 p175-p178", "语态转换｜习题册 p43-p46"],
+            ["成长期", "非谓语 1｜不定式", "新1041-1080｜复习D26+D25+D23+D20+D12", "讲义 p179-p184", "非谓语选择｜习题册 p35-p36"],
+            ["成长期", "非谓语 2｜动名词", "新1081-1120｜复习D27+D26+D24+D21+D13", "讲义 p185-p189", "非谓语辨析｜习题册 p37"],
+            ["成长期", "非谓语 3｜分词综合", "新1121-1160｜复习D28+D27+D25+D22+D14", "讲义 p190-p194", "阶段测｜习题册 p38-p46"],
+            ["展翅期", "句子成分 1", "新1161-1200｜复习D29+D28+D26+D23+D15", "讲义 p195-p203", "句子成分｜习题册 p5"],
+            ["展翅期", "句子成分 2｜句子类型", "新1201-1240｜复习D30+D29+D27+D24+D16", "讲义 p204-p211", "句型判断｜习题册 p5-p6"],
+            ["展翅期", "定语从句 1｜概述与关系词", "新1241-1280｜复习D31+D30+D28+D25+D17", "讲义 p212-p219", "从句判断｜习题册 p55-p56"],
+            ["展翅期", "定语从句 2｜综合补充", "新1281-1320｜复习D32+D31+D29+D26+D18", "讲义 p220-p227", "定从综合｜习题册 p57-p58"],
+            ["展翅期", "名词性从句 1｜连接词", "新1321-1360｜复习D33+D32+D30+D27+D19", "讲义 p228-p233", "名从连接词｜习题册 p51-p52"],
+            ["展翅期", "名词性从句 2｜四类从句", "新1361-1400｜复习D34+D33+D31+D28+D20", "讲义 p234-p239", "名从分类｜习题册 p53-p54"],
+            ["展翅期", "状语从句 1｜时间/条件", "新1401-1440｜复习D35+D34+D32+D29+D21", "讲义 p240-p246", "状从基础｜习题册 p59-p60"],
+            ["展翅期", "状语从句 2｜条件/原因/结果", "新1441-1480｜复习D36+D35+D33+D30+D22", "讲义 p247-p252", "状从辨析｜习题册 p61"],
+            ["展翅期", "状语从句 3｜地点/让步/方式/比较", "新1481-1520｜复习D37+D36+D34+D31+D23", "讲义 p253-p258", "状从综合｜习题册 p62"],
+            ["翱翔期", "特殊句式 1｜强调句", "新1521-1560｜复习D38+D37+D35+D32+D24", "讲义 p259-p266", "强调句｜习题册 p71-p74"],
+            ["翱翔期", "特殊句式 2｜倒装句", "新1561-1600｜复习D39+D38+D36+D33+D25", "讲义 p267-p273", "倒装｜习题册 p67-p70"],
+            ["翱翔期", "特殊句式 3｜感叹句/反义疑问句", "新1601-1640｜复习D40+D39+D37+D34+D26", "讲义 p274-p278", "特殊句式｜习题册 p6, p75"],
+            ["翱翔期", "主谓一致 1", "新1641-1680｜复习D41+D40+D38+D35+D27", "讲义 p279-p286", "主谓一致｜习题册 p47-p48"],
+            ["翱翔期", "主谓一致 2", "新1681-1720｜复习D42+D41+D39+D36+D28", "讲义 p287-p293", "一致综合｜习题册 p49-p50"],
+            ["翱翔期", "虚拟语气 1｜if 非真实条件句", "新1721-1760｜复习D43+D42+D40+D37+D29", "讲义 p294-p300", "虚拟语气｜习题册 p63-p66"],
+            ["翱翔期", "虚拟语气 2｜从句虚拟 + 结营复盘", "新1761-1800｜复习D44+D43+D41+D38+D30", "讲义 p301-p307", "综合训练｜习题册 p76-p90"]
+          ];
+
+      function dayNumberFromRecord(item){
+        const text = `${item.dayLabel || ""} ${item.label || ""}`;
+        const match = text.match(/Day\s*(\d+)/i);
+        return match ? Number(match[1]) : null;
+      }
+
+      function findScore(day){
+        return scoreList.slice().reverse().find(item => dayNumberFromRecord(item) === day);
+      }
+
+      function findMistakes(day){
+        return mistakes.filter(item => Number(item.day || item.dayNumber || item.sourceDay || 0) === day);
+      }
+
+      function findCheckin(day){
+        return checkins.find(item => Number(item.day || item.dayNumber || 0) === day);
+      }
+
+      function renderRecords(){
+        const records = document.getElementById("recordsList");
+        const empty = document.getElementById("emptyText");
+        empty.style.display = "none";
+        const rows = DAY_TASKS.map((task, index) => {
+          const day = index + 1;
+          const score = findScore(day);
+          const dayMistakes = findMistakes(day);
+          const checkin = findCheckin(day);
+          const dateText = score && score.savedAt ? new Date(score.savedAt).toLocaleDateString() : checkin && checkin.savedAt ? new Date(checkin.savedAt).toLocaleDateString() : "待记录";
+          const scoreText = score ? `<span class="score">${score.percent || 0}%</span>` : `<span class="muted">待日测</span>`;
+          const wrongText = dayMistakes.length ? dayMistakes.slice(0,2).map(item => item.reason || item.knowledge || item.qtype || "待复盘").join(" / ") : (score && Number(score.wrong || score.wrongCount || 0) ? `${score.wrong || score.wrongCount}题待复盘` : "略");
+          const shotText = checkin ? `<span class="shot done">已上传</span>` : `<span class="shot">待上传</span>`;
+          return `<tr>
+            <td>${dateText}</td>
+            <td><b>Day ${day}</b></td>
+            <td>${task[2]}</td>
+            <td>${task[3].replace(/^.{2}\s*/, "")}</td>
+            <td>${task[4].split("｜")[0]}</td>
+            <td>${score ? (score.label || "日测") : "待完成"}</td>
+            <td>${scoreText}</td>
+            <td>${wrongText}</td>
+            <td>${shotText}</td>
+          </tr>`;
+        }).join("");
+        records.innerHTML = `<div class="archive-table-wrap"><table class="archive-table">
+          <thead><tr><th>日期</th><th>Day</th><th>单词</th><th>讲义</th><th>习题</th><th>日测</th><th>得分</th><th>错因</th><th>打卡截图</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table></div>`;
+      }
+
+      function renderWeakTags(){
+        const tags = document.getElementById("weakTags");
+        const advice = document.getElementById("nextAdvice");
+        const pending = mistakes.filter(item => item.status !== "done" && item.status !== "mastered");
+        const counts = new Map();
+        pending.forEach(item => {
+          const key = item.knowledge || item.qtype || item.reason || "待复盘";
+          counts.set(key, (counts.get(key) || 0) + 1);
+        });
+        const top = Array.from(counts.entries()).sort((a,b)=>b[1]-a[1]).slice(0,5);
+        const labels = top.length ? top : [["词汇复习",0],["语法基础",0],["固定搭配",0]];
+        tags.innerHTML = labels.map(([name,count], index) => `<span class="tag ${count ? "warn" : "good"}">${name}${count ? ` · ${count}题` : ""}</span>`).join("");
+        const first = top[0];
+        if(first){
+          advice.textContent = `明天先回看「${first[0]}」，再做 5 题复测。别急，漏洞被看见，就已经开始变小了。`;
+        } else if(avg >= 80 && checkins.length){
+          advice.textContent = "状态不错，明天继续按节奏走；先保持完成率，再慢慢提速度。";
+        } else {
+          advice.textContent = `先完成 Day ${currentDay} 的四步任务，再保存一次日测分数，系统会继续帮你定位薄弱点。`;
+        }
+      }
+
+      function renderRecovery(){
+        const box = document.getElementById("recoverySummary");
+        const pending = mistakes.filter(item => item.status !== "done" && item.status !== "mastered").length;
+        const retest = mistakes.filter(item => item.status === "retest" || item.status === "review").length;
+        const types = new Map();
+        mistakes.forEach(item => {
+          const key = item.qtype || item.knowledge || "综合错题";
+          types.set(key, (types.get(key) || 0) + 1);
+        });
+        const topType = Array.from(types.entries()).sort((a,b)=>b[1]-a[1])[0];
+        box.innerHTML = `
+          <div class="recovery-item"><div><b>${mistakes.length}题</b><span>错题总量</span></div><a class="btn soft" href="eagle-mistake-pool.html">查看</a></div>
+          <div class="recovery-item"><div><b>${pending}题</b><span>待补救</span></div><span>先处理最常错的那一类</span></div>
+          <div class="recovery-item"><div><b>${recovered}题</b><span>已攻克</span></div><span>这些都是你的隐藏进步</span></div>
+          <div class="recovery-item"><div><b>${topType ? topType[0] : "暂无"}</b><span>高频错题类型</span></div><span>${topType ? `${topType[1]}题` : "等你来点亮"}</span></div>
+        `;
+      }
+
+      function renderStages(){
+        const box = document.getElementById("stageNodes");
+        const stageList = [
+          {id:"entry", name:"入营诊断", desc:"建立学习档案", color:"blue", day:1, cert:""},
+          {id:"stage-01", name:"破壳一测", desc:"打基础 · 第一关", color:"blue", day:13, cert:"雏鹰计划-实物打印资料/雏鹰计划日历打印汇总/雏鹰计划：破壳期日历/破壳证书.png"},
+          {id:"stage-02", name:"成长二测", desc:"做辨析 · 第二关", color:"green", day:29, cert:"雏鹰计划-实物打印资料/雏鹰计划日历打印汇总/雏鹰计划：成长期日历/成长期成功图.png"},
+          {id:"stage-03", name:"展翅三测", desc:"攻从句 · 第三关", color:"orange", day:38, cert:"雏鹰计划-实物打印资料/雏鹰计划日历打印汇总/雏鹰计划：展翅期日历/展翅胜利图.png"},
+          {id:"final", name:"翱翔终测", desc:"冲综合 · 最后一关", color:"gold", day:45, cert:"雏鹰计划-实物打印资料/雏鹰计划日历打印汇总/雏鹰计划：翱翔期日历/45.png"}
+        ];
+        box.innerHTML = stageList.map(stage => {
+          const record = scoreList.find(item => item.id === stage.id);
+          const done = Boolean(record) || currentDay >= stage.day;
+          const passed = record ? Number(record.percent || 0) >= 60 : false;
+          const status = record ? `${record.percent || 0}% · ${passed ? "已通过" : "再补一次"}` : done ? "已点亮" : "等待点亮";
+          const link = stage.cert ? `<a href="${stage.cert}" target="_blank">${done ? "打开证书" : "证书待解锁"}</a>` : `<a href="#checkin">查看诊断</a>`;
+          return `<div class="stage-node ${stage.color} ${done ? "done" : "locked"}">
+            <b>${stage.name}</b>
+            <span>${stage.desc}</span>
+            <strong>${status}</strong>
+            ${link}
+          </div>`;
+        }).join("");
+      }
+
+      function average(list){
+        return list.length ? Math.round(list.reduce((a,b)=>a + Number(b || 0),0) / list.length) : 0;
+      }
+      function scoreDay(item){
+        const text = item.dayLabel || item.label || "";
+        const match = text.match(/Day\s*(\d+)/i);
+        return match ? Number(match[1]) : 0;
+      }
+      function buildLearningReport(){
+        const dailyScores = scoreList.filter(item => /^Day\s*\d+/i.test(item.dayLabel || ""));
+        const stageScores = scoreList.filter(item => ["entry","stage-01","stage-02","stage-03","final"].includes(item.id));
+        const early = dailyScores.filter(item => scoreDay(item) <= 13).map(item => Number(item.percent || 0));
+        const middle = dailyScores.filter(item => scoreDay(item) > 13 && scoreDay(item) <= 29).map(item => Number(item.percent || 0));
+        const late = dailyScores.filter(item => scoreDay(item) > 29).map(item => Number(item.percent || 0));
+        const earlyAvg = average(early);
+        const middleAvg = average(middle);
+        const lateAvg = average(late);
+        const boost = lateAvg && earlyAvg ? `${lateAvg - earlyAvg >= 0 ? "+" : ""}${lateAvg - earlyAvg}%` : "待生成";
+        const modules = ["名词","冠词","代词","介词","从句","非谓语"];
+        const moduleHtml = modules.map(name => {
+          const count = mistakes.filter(item => `${item.knowledge || ""}${item.qtype || ""}${item.question || ""}`.includes(name)).length;
+          return `<span>${name}：${count ? `${count}题待回收` : "暂稳"}</span>`;
+        }).join("");
+        const reasonKeys = ["概念不清","固定搭配不会","题干没读懂","句子结构没划出来","粗心"];
+        const reasonHtml = reasonKeys.map(name => {
+          const count = mistakes.filter(item => `${item.reason || ""}${item.note || ""}`.includes(name)).length;
+          return `<span>${name}：${count || "待记录"}</span>`;
+        }).join("");
+        const advice = [
+          "继续背词：按艾宾浩斯节奏回看旧批次。",
+          "进入阅读专项：先从长句拆分开始。",
+          "进入翻译专项：每天保留2句精翻。",
+          "开始真题训练：阶段测稳定后再加量。"
+        ];
+        return `
+          <div class="report-title">
+            <div>
+              <h3>雏鹰计划45天学习报告</h3>
+              <p>${nickname}，这不是一张冷冰冰的成绩单，而是你一路走来的证据。</p>
+            </div>
+            <button class="btn" type="button" onclick="window.print()">打印报告</button>
+          </div>
+          <div class="report-grid">
+            <div class="report-stat"><b>${completedDays}</b><span>完成天数</span></div>
+            <div class="report-stat"><b>${checkins.length}</b><span>总打卡数</span></div>
+            <div class="report-stat"><b>${dailyScores.length}</b><span>日测次数</span></div>
+            <div class="report-stat"><b>${stageScores.length}</b><span>阶段测次数</span></div>
+          </div>
+          <div class="report-section"><h4>1. 分数变化</h4><div class="report-list">
+            <span>初期均分：${earlyAvg || "待生成"}%</span><span>中期均分：${middleAvg || "待生成"}%</span><span>后期均分：${lateAvg || "待生成"}%</span><span>提升幅度：${boost}</span>
+          </div></div>
+          <div class="report-section"><h4>2. 薄弱模块</h4><div class="report-list">${moduleHtml}</div></div>
+          <div class="report-section"><h4>3. 错因分析</h4><div class="report-list">${reasonHtml}</div></div>
+          <div class="report-section"><h4>4. 下一阶段建议</h4><div class="report-list">${advice.map(item => `<span>${item}</span>`).join("")}</div></div>
+        `;
+      }
+
+      renderChart();
+      renderRecords();
+      renderWeakTags();
+      renderRecovery();
+      renderStages();
+
+      function saveTodayCheckin(source){
+        const next = checkins.filter(item => item.date !== todayKey);
+        next.push({date: todayKey, day: currentDay, status: "approved", source, savedAt: new Date().toISOString()});
+        localStorage.setItem("eagleXhsCheckins", JSON.stringify(next));
+        alert("今天已经点亮啦。明天继续，连续打卡会让你的成长曲线更好看。");
+        location.reload();
+      }
+      document.getElementById("demoUpload").addEventListener("click", () => {
+        saveTodayCheckin("demo-upload");
+      });
+      document.getElementById("checkinFile").addEventListener("change", (event) => {
+        const file = event.target.files && event.target.files[0];
+        if(file){
+          saveTodayCheckin("image-upload");
+        }
+      });
+      document.getElementById("dailyPosterBtn").addEventListener("click", () => {
+        alert(`Day ${currentDay} 战报已生成思路：今日任务、打卡状态和日测结果会汇成一张小红书打卡海报。正式上架时可接入你的每日历海报模板。`);
+      });
+
+      document.getElementById("reportBtn").addEventListener("click", (event) => {
+        event.preventDefault();
+        const report = document.getElementById("learningReport");
+        report.innerHTML = buildLearningReport();
+        report.classList.add("show");
+        report.scrollIntoView({behavior:"smooth", block:"start"});
+      });
+      document.getElementById("clearBtn").addEventListener("click", () => {
+        if(confirm("确认清空成长轨迹里的测试成绩和打卡演示记录吗？")){
+          localStorage.removeItem("eagleTestScores");
+          localStorage.removeItem("eagleXhsCheckins");
+          location.reload();
+        }
+      });
+    })();
+  </script>
+  <script src="./eagle-access-control.js"></script>
+</body>
+</html>

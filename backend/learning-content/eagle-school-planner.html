@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>雏鹰计划｜你身边的备考管家-择校系统</title>
+  <style>
+    :root{--bg:#f5f7fb;--paper:#fff;--ink:#172033;--muted:#657189;--line:#dfe7f2;--blue:#246bfe;--green:#12a075;--orange:#f59e0b;--red:#e54b4b;--lav:#f4f0ff;--shadow:0 14px 34px rgba(25,45,80,.1);--radius:8px}
+    *{box-sizing:border-box}body{margin:0;font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}.wrap{width:min(1240px,calc(100% - 32px));margin:0 auto;padding:24px 0 48px}a{color:var(--blue);font-weight:900;text-decoration:none}
+    header{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:14px}h1{margin:0 0 8px;font-size:38px;line-height:1.1}p{margin:0;color:var(--muted)}.back{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink)}
+    .hero{display:grid;grid-template-columns:.9fr 1.1fr;gap:14px;margin-bottom:16px}.intro{background:linear-gradient(135deg,#101827,#1e315e 70%,#246bfe);color:#fff;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);position:relative;overflow:hidden}.intro:after{content:"";position:absolute;right:-70px;bottom:-100px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.10)}.intro h2{margin:0 0 8px;font-size:26px}.intro p{color:#d8e4f8}.soft-label{display:inline-flex;margin-bottom:10px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);font-size:13px;font-weight:900;color:#edf5ff}.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px;position:relative;z-index:1}.quick div{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);border-radius:7px;padding:10px}.quick b{display:block;font-size:20px}.quick span{font-size:12px;color:#d8e4f8}
+    .search-panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.field label{display:block;font-size:13px;color:#34425c;font-weight:900;margin-bottom:5px}.field input,.field select{width:100%;min-height:40px;border:1px solid var(--line);border-radius:7px;padding:0 11px;font:inherit;background:#fbfdff}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:0 14px;border-radius:7px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:900;cursor:pointer}.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}.btn.library{min-height:42px;padding:0 18px;background:#eef4ff;border-color:#bcd0ff;color:var(--blue);box-shadow:0 8px 18px rgba(36,107,254,.12)}
+    .summary{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:16px 0}.stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 10px 24px rgba(25,45,80,.07);padding:13px}.stat b{display:block;color:var(--blue);font-size:22px;line-height:1.1}.stat span{font-size:12px;color:var(--muted)}
+    .student-tip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:-4px 0 10px}.tip{border:1px solid var(--line);border-radius:8px;background:linear-gradient(180deg,#fff,#f9fbff);padding:12px}.tip b{display:block;margin-bottom:4px;color:#26344f}.tip span{display:block;color:var(--muted);font-size:13px}.student-quote{margin:0 0 16px;border:1px solid #eadcff;background:linear-gradient(135deg,#fff7ed,#f4f0ff);border-radius:8px;padding:12px;color:#5d5077;font-weight:900}
+    .layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:14px}.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;min-height:240px}.panel h2{margin:0 0 10px;font-size:22px}.panel-sub{margin:-6px 0 12px;color:var(--muted);font-size:13px}.result-list{display:grid;gap:9px;max-height:650px;overflow:auto;padding-right:4px}.result{border:1px solid var(--line);border-radius:7px;padding:12px;background:#fbfdff;cursor:pointer;transition:.16s ease}.result:hover{transform:translateY(-1px);border-color:#bcd0ff;box-shadow:0 10px 22px rgba(36,107,254,.08)}.result.active{border-color:var(--blue);box-shadow:0 0 0 3px rgba(36,107,254,.08)}.result h3{margin:0 0 6px;font-size:17px}.mini{display:flex;gap:7px;flex-wrap:wrap}.tag{display:inline-flex;border-radius:999px;background:#eef4ff;color:var(--blue);padding:2px 8px;font-size:12px;font-weight:900}.tag.green{background:#eafaf4;color:var(--green)}.tag.orange{background:#fff5df;color:#a26300}.tag.red{background:#fff0f0;color:var(--red)}
+    table{width:100%;border-collapse:collapse;min-width:680px}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:13px}th{background:#eef4ff;color:#26344f}.scroll{overflow:auto}.advice{display:grid;gap:8px}.advice div{border:1px solid var(--line);border-radius:7px;background:#fbfdff;padding:10px}.advice b{display:block;margin-bottom:3px}.books{white-space:pre-line;color:#34425c;font-size:13px}.empty{border:1px dashed var(--line);border-radius:7px;padding:18px;color:var(--muted);text-align:center}
+    @media(max-width:980px){header,.hero,.layout{display:block}.search-panel,.panel{margin-top:12px}.summary,.student-tip{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){.form-grid,.quick,.summary,.student-tip{grid-template-columns:1fr}}
+  </style>
+<link rel="stylesheet" href="eagle-brand.css" /></head>
+<body>
+  <div class="wrap">
+    <header>
+      <div><h1>你身边的备考管家-择校系统</h1><p>输入学校或专业，先确认能不能报，再判断值不值得冲，最后拿到下一步备考建议。</p></div>
+      <a class="back" href="雏鹰计划-45天学习日历精简版.html">返回首页</a>
+    </header>
+    <section class="hero">
+      <div class="intro">
+        <span class="soft-label">先别慌，择校可以一步一步来</span>
+        <h2>少走弯路，才有更多力气冲分。</h2>
+        <p>不用先翻一堆招生简章。输入目标学校或专业，我帮你把可报范围、近三年热度、参考书和备考提醒整理出来。</p>
+        <div class="quick">
+          <div><b>48</b><span>所院校已整理</span></div>
+          <div><b>709</b><span>个专业可筛选</span></div>
+          <div><b>3年</b><span>数据辅助判断</span></div>
+        </div>
+      </div>
+      <div class="search-panel">
+        <div class="form-grid">
+          <div class="field"><label for="school-input">想看的学校</label><input id="school-input" list="school-options" placeholder="如：武汉、湖北师范、长江大学" /></div>
+          <div class="field"><label for="major-input">想报的专业</label><input id="major-input" list="major-options" placeholder="如：英语、护理、计算机、会计" /></div>
+          <div class="field"><label for="cross-select">我能不能报</label><select id="cross-select"><option value="all">先都看看</option><option value="open">可跨专业/限制少</option><option value="limited">需要对口或相近专业</option></select></div>
+          <div class="field"><label for="subject-select">专业课压力</label><select id="subject-select"><option value="all">都可以</option><option value="one">一门专业课</option><option value="two">两门专业课</option></select></div>
+        </div>
+        <div class="actions"><button class="btn primary" id="search-btn" type="button">帮我看看</button><button class="btn" id="reset-btn" type="button">重新选择</button><a class="btn library" href="eagle-school-list.html">本科院校简章库</a></div>
+        <datalist id="school-options"></datalist>
+        <datalist id="major-options"></datalist>
+      </div>
+    </section>
+    <section class="summary">
+      <div class="stat"><b id="match-count">0</b><span>可参考专业</span></div>
+      <div class="stat"><b id="school-count">0</b><span>可参考院校</span></div>
+      <div class="stat"><b id="avg-ratio">-</b><span>整体热度</span></div>
+      <div class="stat"><b id="low-ratio">-</b><span>偏难方向</span></div>
+      <div class="stat"><b id="high-ratio">-</b><span>机会方向</span></div>
+    </section>
+    <section class="student-tip">
+      <div class="tip"><b>先看能不能报</b><span>别先被名字吸引，第一步确认专业限制。</span></div>
+      <div class="tip"><b>再看值不值得冲</b><span>用近三年计划和报名热度做参考，不只盯一年。</span></div>
+      <div class="tip"><b>最后看怎么准备</b><span>参考书、专业课数量和英语基础一起安排。</span></div>
+    </section>
+    <div class="student-quote">不用一次选到完美答案，先把能走的路看清楚，你就已经比昨天更稳了。</div>
+    <section class="layout">
+      <div class="panel">
+        <h2>适合你的方向</h2>
+        <p class="panel-sub">点开任意一项，看清楚限制、热度和备考建议。</p>
+        <div class="result-list" id="result-list"></div>
+      </div>
+      <div class="panel">
+        <h2 id="detail-title">先选一个方向</h2>
+        <div id="detail-body" class="empty">输入学校或专业关键词，我会帮你把可报信息、近三年热度和备考提醒整理到这里。</div>
+      </div>
+    </section>
+  </div>
+  <script src="eagle-school-data.js"></script>
+  <script>
+    const data = window.eagleSchoolData || [];
+    const allMajors = data.flatMap(s => s.majors.map(m => ({ school: s, ...m })));
+    const schoolInput = document.getElementById("school-input");
+    const majorInput = document.getElementById("major-input");
+    const crossSelect = document.getElementById("cross-select");
+    const subjectSelect = document.getElementById("subject-select");
+    const resultList = document.getElementById("result-list");
+    const detailTitle = document.getElementById("detail-title");
+    const detailBody = document.getElementById("detail-body");
+    const fmt = v => v === "" || v === 0 ? "待补充" : v;
+    const pct = v => v === "" ? "待补充" : `${Math.round(Number(v) * 100)}%`;
+    const subjectCount = m => [m.subject1, m.subject2].filter(Boolean).length || 1;
+    const isOpen = condition => /不限|不受|均可|可以不受|跨专业/.test(condition || "");
+    const ratioTone = r => r === "" ? "orange" : Number(r) < 0.25 ? "red" : Number(r) < 0.5 ? "orange" : "green";
+    const conditionText = m => isOpen(m.condition) ? "可跨/不限" : "有限制";
+    const adviceFor = m => {
+      const r = m.year26?.ratio;
+      const count = subjectCount(m);
+      const hard = r !== "" && Number(r) < 0.25;
+      return [
+        ["适合度提醒", r === "" ? "这一项目前缺少2026报名数据，先别急着下结论，可以结合25/24年和同类专业一起看。" : hard ? "这个方向热度偏高，更适合作为冲刺目标；如果很喜欢，就要早点开始专业课。" : "这个方向相对更友好，可以放进重点备选，但仍要看专业课和报考限制。"],
+        ["备考节奏", count >= 2 ? "两门专业课需要更早启动。英语每天不断线，专业课按章节推进，边学边做题会更稳。" : "一门专业课适合集中突破，但不要只背不练。每周留一次小测和错题复盘，会更安心。"],
+        ["报考提醒", isOpen(m.condition) ? "报考限制相对宽，跨专业同学也可以重点关注；最终仍以官方简章最新表述为准。" : "这里有专科专业限制，先核对自己的专科专业是否在允许范围内，别把力气用错方向。"]
+      ];
+    };
+    document.getElementById("school-options").innerHTML = data.map(s => `<option value="${s.name}"></option>`).join("");
+    document.getElementById("major-options").innerHTML = [...new Set(allMajors.map(m => m.major))].sort().map(m => `<option value="${m}"></option>`).join("");
+    function getMatches(){
+      const sKey = schoolInput.value.trim();
+      const mKey = majorInput.value.trim();
+      return allMajors.filter(m => {
+        const schoolOk = !sKey || m.school.name.includes(sKey);
+        const majorOk = !mKey || m.major.includes(mKey);
+        const crossOk = crossSelect.value === "all" || (crossSelect.value === "open" ? isOpen(m.condition) : !isOpen(m.condition));
+        const subjectOk = subjectSelect.value === "all" || (subjectSelect.value === "one" ? subjectCount(m) === 1 : subjectCount(m) >= 2);
+        return schoolOk && majorOk && crossOk && subjectOk;
+      }).sort((a,b) => {
+        const ar = a.year26?.ratio === "" ? 99 : Number(a.year26.ratio);
+        const br = b.year26?.ratio === "" ? 99 : Number(b.year26.ratio);
+        return ar - br;
+      });
+    }
+    function render(){
+      const matches = getMatches();
+      const ratios = matches.map(m => m.year26?.ratio).filter(v => v !== "").map(Number);
+      document.getElementById("match-count").textContent = matches.length;
+      document.getElementById("school-count").textContent = new Set(matches.map(m => m.school.name)).size;
+      document.getElementById("avg-ratio").textContent = ratios.length ? `${Math.round((ratios.reduce((a,b)=>a+b,0)/ratios.length)*100)}%` : "-";
+      document.getElementById("low-ratio").textContent = ratios.length ? `${Math.round(Math.min(...ratios)*100)}%` : "-";
+      document.getElementById("high-ratio").textContent = ratios.length ? `${Math.round(Math.max(...ratios)*100)}%` : "-";
+      resultList.innerHTML = matches.slice(0, 120).map((m,i) => `
+        <article class="result ${i===0 ? "active" : ""}" data-index="${i}">
+          <h3>${m.school.name}｜${m.major}</h3>
+          <div class="mini">
+            <span class="tag ${ratioTone(m.year26?.ratio)}">26参考热度 ${pct(m.year26?.ratio)}</span>
+            <span class="tag">计划 ${fmt(m.year26?.plan)}</span>
+            <span class="tag">报名 ${fmt(m.year26?.applicants)}</span>
+            <span class="tag green">${conditionText(m)}</span>
+          </div>
+        </article>
+      `).join("") || '<div class="empty">暂时没有找到合适结果。可以先少选一个条件，或者只输入专业关键词试试。</div>';
+      [...resultList.querySelectorAll(".result")].forEach(el => el.addEventListener("click", () => {
+        resultList.querySelectorAll(".result").forEach(item => item.classList.remove("active"));
+        el.classList.add("active");
+        renderDetail(matches[Number(el.dataset.index)]);
+      }));
+      if (matches[0]) renderDetail(matches[0]); else {
+        detailTitle.textContent = "先选一个方向";
+        detailBody.className = "empty";
+        detailBody.textContent = "暂时没有匹配结果。别慌，减少一个筛选条件再试试。";
+      }
+    }
+    function renderDetail(m){
+      detailTitle.textContent = `${m.school.name}｜${m.major}`;
+      detailBody.className = "";
+      const years = [["2026",m.year26],["2025",m.year25],["2024",m.year24]];
+      detailBody.innerHTML = `
+        <div class="scroll"><table><thead><tr><th>年份</th><th>普通计划</th><th>报名人数</th><th>参考热度</th><th>专项计划</th><th>退役士兵计划</th></tr></thead><tbody>
+          ${years.map(([y,d]) => `<tr><td>${y}</td><td>${fmt(d.plan)}</td><td>${fmt(d.applicants)}</td><td>${pct(d.ratio)}</td><td>${fmt(d.specialPlan)}</td><td>${fmt(d.soldierPlan)}</td></tr>`).join("")}
+        </tbody></table></div>
+        <div class="advice" style="margin-top:12px">
+          <div><b>要准备的专业课</b>${[m.subject1,m.subject2].filter(Boolean).join(" / ") || "暂未整理"}（${subjectCount(m)}门）</div>
+          <div><b>我能不能报</b>${m.condition || "暂未整理"}</div>
+          <div><b>学费参考</b>${fmt(m.fee)} 元/年</div>
+          <div><b>参考书先看这里</b><div class="books">${m.books || "暂未提供"}</div></div>
+          ${adviceFor(m).map(([k,v]) => `<div><b>${k}</b>${v}</div>`).join("")}
+          <div><b>官方简章入口</b><a href="${m.school.url}">打开${m.school.name}招生简章，再核对一遍</a></div>
+        </div>
+      `;
+    }
+    document.getElementById("search-btn").addEventListener("click", render);
+    document.getElementById("reset-btn").addEventListener("click", () => { schoolInput.value=""; majorInput.value=""; crossSelect.value="all"; subjectSelect.value="all"; render(); });
+    [schoolInput, majorInput, crossSelect, subjectSelect].forEach(el => el.addEventListener("input", render));
+    render();
+  </script>
+  <script src="./eagle-access-control.js"></script>
+</body>
+</html>

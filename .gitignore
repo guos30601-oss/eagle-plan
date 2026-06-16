@@ -1,0 +1,40 @@
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dependencies and caches
+node_modules/
+vendor/
+__pycache__/
+.cache/
+.temp/
+tmp/
+temp/
+
+# Runtime files
+backend/storage/logs/
+backend/storage/uploads/
+backend/storage/sessions/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+backend/app/config.local.php
+
+# Archives and generated packages
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
+# Office temporary files
+~$*
+*.tmp
+
+# IDE
+.idea/
+.vscode/
+

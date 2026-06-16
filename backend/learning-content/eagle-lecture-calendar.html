@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>雏鹰计划｜45天讲义日历</title>
+  <style>:root{--cream:#f7f1e6;--paper:#fffdf8;--ink:#082452;--muted:#6c665c;--line:#e4d3b4;--blue:#0a2b63;--blue2:#2367d8;--gold:#b8862d;--green:#167a5b;--orange:#b76519;--purple:#6c4aa8;--shadow:0 18px 42px rgba(38,31,18,.12);--radius:10px}*{box-sizing:border-box}body{margin:0;font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;color:var(--ink);line-height:1.6;background:radial-gradient(circle at 12% 8%,rgba(194,155,83,.18),transparent 28%),radial-gradient(circle at 86% 18%,rgba(9,48,110,.12),transparent 24%),linear-gradient(180deg,#fbf7ee,#f3eadc 58%,#efe3d1)}body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.72),transparent 36%),radial-gradient(circle at 92% 28%,rgba(184,134,45,.12),transparent 18%);opacity:.9}.wrap{position:relative;width:min(1180px,calc(100% - 34px));margin:0 auto;padding:24px 0 52px}a{text-decoration:none;color:inherit}header{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:20px}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-weight:900;letter-spacing:.06em}.eyebrow:before{content:"";width:28px;height:1px;background:var(--gold)}h1{margin:6px 0 4px;font-size:42px;line-height:1.08;letter-spacing:-.02em}p{margin:0;color:var(--muted)}.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}.back{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 17px;border:1px solid var(--line);border-radius:9px;background:rgba(255,253,248,.88);font-weight:900;box-shadow:0 10px 26px rgba(60,42,16,.08)}.back.primary{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border-color:rgba(255,255,255,.22)}.hero{position:relative;overflow:hidden;margin-bottom:18px;border-radius:12px;padding:26px 30px;background:linear-gradient(135deg,#071b3e,#103c82 72%,#286ce2);color:#fff;box-shadow:var(--shadow)}.hero:after{content:"";position:absolute;right:44px;top:34px;width:150px;height:76px;border:2px solid rgba(255,255,255,.16);border-left:0;border-bottom:0;transform:skewX(-22deg);border-radius:50%;opacity:.7}.hero h2{margin:0 0 8px;font-size:30px}.hero p{color:#eef4ff;font-size:16px}.legend{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 18px}.legend span{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border:1px solid var(--line);border-radius:999px;background:rgba(255,253,248,.88);font-weight:900;color:#34425f}.legend i{width:9px;height:9px;border-radius:50%;background:#2367d8}.legend .grow i{background:#169b77}.legend .fly i{background:#d88925}.legend .sprint i{background:#7257e8}.stage{margin:18px 0 26px;padding:18px;border:1px solid var(--line);border-radius:12px;background:rgba(255,253,248,.82);box-shadow:0 16px 36px rgba(55,42,20,.08)}.stage-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px;border-bottom:1px solid rgba(184,134,45,.24);padding-bottom:12px}.stage h2{margin:0;font-size:24px}.stage small{color:var(--muted);font-weight:700}.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.day{position:relative;display:flex;flex-direction:column;min-height:170px;padding:14px;border:1px solid #e0caa5;border-radius:9px;background:linear-gradient(180deg,#fffef9,#fbf5e9);box-shadow:0 12px 28px rgba(55,42,20,.06);transition:.16s ease}.day:before{content:"";position:absolute;inset:0 0 auto;height:4px;border-radius:9px 9px 0 0;background:#2367d8}.day[data-phase="grow"]:before{background:#169b77}.day[data-phase="fly"]:before{background:#d88925}.day[data-phase="sprint"]:before{background:#7257e8}.day:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(55,42,20,.13);border-color:var(--gold)}.day-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.num{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:36px;border-radius:8px;background:#edf4ff;color:#2367d8;font-weight:1000;font-size:18px}.phase{font-size:12px;color:#0f5d91;background:#edf4ff;border-radius:999px;padding:4px 9px;font-weight:900}.day[data-phase="grow"] .num,.day[data-phase="grow"] .phase{color:#08795d;background:#e9f8f1}.day[data-phase="fly"] .num,.day[data-phase="fly"] .phase{color:#b76519;background:#fff2dd}.day[data-phase="sprint"] .num,.day[data-phase="sprint"] .phase{color:#6c4aa8;background:#f1ecff}.day strong{font-size:17px;line-height:1.35;margin-bottom:8px}.meta{color:#6c665c;font-size:13px;margin-top:3px}.card-foot{margin-top:auto;border-top:1px dashed rgba(184,134,45,.28);padding-top:9px;color:#2367d8;font-weight:900;font-size:13px}.is-locked{opacity:.48;filter:saturate(.5)}.is-today{outline:2px solid var(--gold);box-shadow:0 0 0 4px rgba(184,134,45,.13),0 18px 34px rgba(55,42,20,.13)}.is-today:after{content:"NOW";position:absolute;right:10px;top:10px;background:linear-gradient(135deg,#26384c,#b8862d);color:#fff;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:1000}.continue-progress{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:rgba(255,253,248,.86);box-shadow:0 12px 28px rgba(55,42,20,.06)}.continue-progress b{color:var(--ink)}.continue-progress span{color:var(--muted)}.continue-progress a{padding:10px 16px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-weight:900}@media(max-width:980px){.grid{grid-template-columns:repeat(3,1fr)}header{align-items:flex-start}}@media(max-width:640px){.wrap{width:min(100% - 22px,1180px)}header{display:block}.actions{margin-top:12px;justify-content:flex-start}.grid{grid-template-columns:1fr}.hero{padding:22px}.continue-progress{display:block}.continue-progress a{display:inline-flex;margin-top:10px}}</style>
+
+<style id="eagle-calendar-polish">
+/* + */
+body{
+  background:
+    radial-gradient(circle at 10% 8%, rgba(194,155,83,.16), transparent 28%),
+    radial-gradient(circle at 86% 18%, rgba(9,48,110,.10), transparent 24%),
+    linear-gradient(180deg,#fbf6ec 0%,#f4ead9 54%,#efe2cf 100%) !important;
+}
+.stage{
+  background:rgba(255,252,245,.72) !important;
+  border-color:rgba(184,134,45,.28) !important;
+}
+.day{
+  background:#fff !important;
+  border-color:#ead8b9 !important;
+  box-shadow:0 14px 30px rgba(48,35,16,.08) !important;
+}
+.day:hover{
+  background:#fff !important;
+  border-color:var(--gold) !important;
+}
+.day.is-locked{
+  opacity:.46 !important;
+  filter:saturate(.45) !important;
+  cursor:not-allowed !important;
+}
+.day.is-locked:hover{
+  transform:none !important;
+  box-shadow:0 14px 30px rgba(48,35,16,.08) !important;
+}
+.day.is-locked .card-foot{
+  color:#6f7d91 !important;
+  font-weight:900 !important;
+}
+.day.is-today{
+  opacity:1 !important;
+  filter:none !important;
+  background:#fff !important;
+  border-color:var(--gold) !important;
+  outline:2px solid var(--gold) !important;
+  box-shadow:0 0 0 4px rgba(184,134,45,.14),0 18px 36px rgba(54,38,12,.16) !important;
+}
+.continue-progress{
+  position:sticky !important;
+  top:10px !important;
+  z-index:20 !important;
+  background:rgba(255,253,248,.96) !important;
+  backdrop-filter:blur(14px);
+  border-color:rgba(184,134,45,.32) !important;
+  box-shadow:0 16px 36px rgba(38,31,18,.12) !important;
+}
+.continue-progress a{
+  white-space:nowrap;
+  background:linear-gradient(135deg,var(--blue),var(--blue2)) !important;
+}
+@media(max-width:640px){.continue-progress{top:6px !important}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div><span class="eyebrow">EAGLE PLAN</span><h1>45天讲义日历</h1><p>讲义按老师上课逻辑切好：今天看哪里、圈哪里、最后会什么。</p></div>
+      <div class="actions"><a class="back primary" href="雏鹰计划-45天学习日历精简版.html">返回首页</a></div>
+    </header>
+    <section class="hero"><h2>今天只吃透这一小块，就已经很棒。</h2><p>讲义已经按45天拆好，不用翻完整本书。打开当天页，先看重点，再把例句和易错点圈出来。</p></section>
+    <div class="legend"><span><i></i>破壳期：打基础</span><span class="grow"><i></i>成长期：做辨析</span><span class="fly"><i></i>展翅期：攻从句</span><span class="sprint"><i></i>翱翔期：冲综合</span></div>
+    
+<section class="stage"><div class="stage-head"><div><h2>破壳期｜打基础</h2><small>Day 1-14 · 破壳期</small></div></div><div class="grid">
+<a class="day" data-phase="base" href="lecture-days/day-01.html"><div class="day-head"><span class="num">D1</span><span class="phase">破壳期</span></div><strong>入营摸底 + 湖北考纲分析</strong><span class="meta">湖北蓝皮书 p1-p5</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="base" href="lecture-days/day-02.html"><div class="day-head"><span class="num">D2</span><span class="phase">破壳期</span></div><strong>名词 1｜种类与复数</strong><span class="meta">讲义 p2-p7</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="base" href="lecture-days/day-03.html"><div class="day-head"><span class="num">D3</span><span class="phase">破壳期</span></div><strong>名词 2｜量、格与功能</strong><span class="meta">讲义 p8-p14</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="base" href="lecture-days/day-04.html"><div class="day-head"><span class="num">D4</span><span class="phase">破壳期</span></div><strong>冠词 1｜不定冠词</strong><span class="meta">讲义 p15-p22</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="base" href="lecture-days/day-05.html"><div class="day-head"><span class="num">D5</span><span class="phase">破壳期</span></div><strong>冠词 2｜定冠词与零冠词</strong><span class="meta">讲义 p23-p30</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="base" href="lecture-days/day-06.html"><div class="day-head"><span class="num">D6</span><span class="phase">破壳期</span></div><strong>代词 1｜人称/物主/反身</strong><span class="meta">讲义 p31-p36</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="base" href="lecture-days/day-07.html"><div class="day-head"><span class="num">D7</span><span class="phase">破壳期</span></div><strong>代词 2｜指示与替代</strong><span class="meta">讲义 p37-p42</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="base" href="lecture-days/day-08.html"><div class="day-head"><span class="num">D8</span><span class="phase">破壳期</span></div><strong>代词 3｜不定代词</strong><span class="meta">讲义 p43-p47</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="base" href="lecture-days/day-09.html"><div class="day-head"><span class="num">D9</span><span class="phase">破壳期</span></div><strong>数词</strong><span class="meta">讲义 p48-p56</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="base" href="lecture-days/day-10.html"><div class="day-head"><span class="num">D10</span><span class="phase">破壳期</span></div><strong>形容词</strong><span class="meta">讲义 p57-p63</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="base" href="lecture-days/day-11.html"><div class="day-head"><span class="num">D11</span><span class="phase">破壳期</span></div><strong>副词</strong><span class="meta">讲义 p64-p70</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="base" href="lecture-days/day-12.html"><div class="day-head"><span class="num">D12</span><span class="phase">破壳期</span></div><strong>比较等级</strong><span class="meta">讲义 p71-p77</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="base" href="lecture-days/day-13.html"><div class="day-head"><span class="num">D13</span><span class="phase">破壳期</span></div><strong>形副固定搭配与易混词</strong><span class="meta">讲义 p78-p84</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="base" href="lecture-days/day-14.html"><div class="day-head"><span class="num">D14</span><span class="phase">破壳期</span></div><strong>介词 1｜基础框架</strong><span class="meta">讲义 p85-p93</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+</div></section>
+<section class="stage"><div class="stage-head"><div><h2>成长期｜做辨析</h2><small>Day 15-29 · 成长期</small></div></div><div class="grid">
+<a class="day" data-phase="grow" href="lecture-days/day-15.html"><div class="day-head"><span class="num">D15</span><span class="phase">成长期</span></div><strong>介词 2｜about 到 after</strong><span class="meta">讲义 p94-p102</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="grow" href="lecture-days/day-16.html"><div class="day-head"><span class="num">D16</span><span class="phase">成长期</span></div><strong>介词 3｜against 到 from</strong><span class="meta">讲义 p103-p111</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="grow" href="lecture-days/day-17.html"><div class="day-head"><span class="num">D17</span><span class="phase">成长期</span></div><strong>介词 4｜in 到 on</strong><span class="meta">讲义 p112-p119</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="grow" href="lecture-days/day-18.html"><div class="day-head"><span class="num">D18</span><span class="phase">成长期</span></div><strong>介词 5｜over 到 with</strong><span class="meta">讲义 p120-p127</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="grow" href="lecture-days/day-19.html"><div class="day-head"><span class="num">D19</span><span class="phase">成长期</span></div><strong>介词 6｜综合辨析</strong><span class="meta">讲义 p128-p135</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="grow" href="lecture-days/day-20.html"><div class="day-head"><span class="num">D20</span><span class="phase">成长期</span></div><strong>连词</strong><span class="meta">讲义 p136-p141</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="grow" href="lecture-days/day-21.html"><div class="day-head"><span class="num">D21</span><span class="phase">成长期</span></div><strong>动词分类 1｜实义与系动词</strong><span class="meta">讲义 p142-p149</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="grow" href="lecture-days/day-22.html"><div class="day-head"><span class="num">D22</span><span class="phase">成长期</span></div><strong>动词分类 2｜助动词与情态动词</strong><span class="meta">讲义 p150-p157</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="grow" href="lecture-days/day-23.html"><div class="day-head"><span class="num">D23</span><span class="phase">成长期</span></div><strong>时态 1｜一般体</strong><span class="meta">讲义 p158-p163</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="grow" href="lecture-days/day-24.html"><div class="day-head"><span class="num">D24</span><span class="phase">成长期</span></div><strong>时态 2｜进行体与完成体</strong><span class="meta">讲义 p164-p169</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="grow" href="lecture-days/day-25.html"><div class="day-head"><span class="num">D25</span><span class="phase">成长期</span></div><strong>时态 3｜综合辨析</strong><span class="meta">讲义 p170-p174</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="grow" href="lecture-days/day-26.html"><div class="day-head"><span class="num">D26</span><span class="phase">成长期</span></div><strong>语态｜被动语态</strong><span class="meta">讲义 p175-p178</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="grow" href="lecture-days/day-27.html"><div class="day-head"><span class="num">D27</span><span class="phase">成长期</span></div><strong>非谓语 1｜不定式</strong><span class="meta">讲义 p179-p184</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="grow" href="lecture-days/day-28.html"><div class="day-head"><span class="num">D28</span><span class="phase">成长期</span></div><strong>非谓语 2｜动名词</strong><span class="meta">讲义 p185-p189</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="grow" href="lecture-days/day-29.html"><div class="day-head"><span class="num">D29</span><span class="phase">成长期</span></div><strong>非谓语 3｜分词综合</strong><span class="meta">讲义 p190-p194</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+</div></section>
+<section class="stage"><div class="stage-head"><div><h2>展翅期｜攻从句</h2><small>Day 30-38 · 展翅期</small></div></div><div class="grid">
+<a class="day" data-phase="fly" href="lecture-days/day-30.html"><div class="day-head"><span class="num">D30</span><span class="phase">展翅期</span></div><strong>句子成分 1</strong><span class="meta">讲义 p195-p203</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="fly" href="lecture-days/day-31.html"><div class="day-head"><span class="num">D31</span><span class="phase">展翅期</span></div><strong>句子成分 2｜句子类型</strong><span class="meta">讲义 p204-p211</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="fly" href="lecture-days/day-32.html"><div class="day-head"><span class="num">D32</span><span class="phase">展翅期</span></div><strong>定语从句 1｜概述与关系词</strong><span class="meta">讲义 p212-p219</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="fly" href="lecture-days/day-33.html"><div class="day-head"><span class="num">D33</span><span class="phase">展翅期</span></div><strong>定语从句 2｜综合补充</strong><span class="meta">讲义 p220-p227</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="fly" href="lecture-days/day-34.html"><div class="day-head"><span class="num">D34</span><span class="phase">展翅期</span></div><strong>名词性从句 1｜连接词</strong><span class="meta">讲义 p228-p233</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="fly" href="lecture-days/day-35.html"><div class="day-head"><span class="num">D35</span><span class="phase">展翅期</span></div><strong>名词性从句 2｜四类从句</strong><span class="meta">讲义 p234-p239</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="fly" href="lecture-days/day-36.html"><div class="day-head"><span class="num">D36</span><span class="phase">展翅期</span></div><strong>状语从句 1｜时间/条件</strong><span class="meta">讲义 p240-p246</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="fly" href="lecture-days/day-37.html"><div class="day-head"><span class="num">D37</span><span class="phase">展翅期</span></div><strong>状语从句 2｜条件/原因/结果</strong><span class="meta">讲义 p247-p252</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="fly" href="lecture-days/day-38.html"><div class="day-head"><span class="num">D38</span><span class="phase">展翅期</span></div><strong>状语从句 3｜地点/让步/方式/比较</strong><span class="meta">讲义 p253-p258</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+</div></section>
+<section class="stage"><div class="stage-head"><div><h2>翱翔期｜冲综合</h2><small>Day 39-45 · 翱翔期</small></div></div><div class="grid">
+<a class="day" data-phase="sprint" href="lecture-days/day-39.html"><div class="day-head"><span class="num">D39</span><span class="phase">翱翔期</span></div><strong>特殊句式 1｜强调句</strong><span class="meta">讲义 p259-p266</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="sprint" href="lecture-days/day-40.html"><div class="day-head"><span class="num">D40</span><span class="phase">翱翔期</span></div><strong>特殊句式 2｜倒装句</strong><span class="meta">讲义 p267-p273</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="sprint" href="lecture-days/day-41.html"><div class="day-head"><span class="num">D41</span><span class="phase">翱翔期</span></div><strong>特殊句式 3｜感叹句/反义疑问句</strong><span class="meta">讲义 p274-p278</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="sprint" href="lecture-days/day-42.html"><div class="day-head"><span class="num">D42</span><span class="phase">翱翔期</span></div><strong>主谓一致 1</strong><span class="meta">讲义 p279-p286</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="sprint" href="lecture-days/day-43.html"><div class="day-head"><span class="num">D43</span><span class="phase">翱翔期</span></div><strong>主谓一致 2</strong><span class="meta">讲义 p287-p293</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="sprint" href="lecture-days/day-44.html"><div class="day-head"><span class="num">D44</span><span class="phase">翱翔期</span></div><strong>虚拟语气 1｜if 非真实条件句</strong><span class="meta">讲义 p294-p300</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+<a class="day" data-phase="sprint" href="lecture-days/day-45.html"><div class="day-head"><span class="num">D45</span><span class="phase">翱翔期</span></div><strong>虚拟语气 2｜从句虚拟 + 结营复盘</strong><span class="meta">讲义 p301-p307</span><span class="meta">今天只看这一块</span><span class="card-foot">进入当天讲义</span></a>
+</div></section>
+  </div>
+  <script src="eagle-progress-helper.js"></script>
+  <script src="./eagle-access-control.js"></script>
+</body>
+</html>

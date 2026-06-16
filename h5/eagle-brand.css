@@ -1,0 +1,247 @@
+/* 雏鹰计划统一品牌皮肤：米白纸感 + 深蓝骨架 + 金色点缀 + 淡山水云纹 */
+:root {
+  --eagle-rice: #f6f0e3;
+  --eagle-paper: #fffaf0;
+  --eagle-paper-2: #fffdf6;
+  --eagle-ink: #102653;
+  --eagle-muted: #716a5f;
+  --eagle-line: #dfd2bb;
+  --eagle-blue: #0b3a78;
+  --eagle-blue-2: #1d5ec4;
+  --eagle-gold: #b8862b;
+  --eagle-green: #1b7b5f;
+  --eagle-orange: #b96b1c;
+  --eagle-violet: #60449a;
+  --eagle-shadow: 0 16px 34px rgba(78, 54, 22, 0.12);
+}
+
+body {
+  color: var(--eagle-ink) !important;
+  background:
+    radial-gradient(circle at 12% 7%, rgba(184, 134, 43, .14), transparent 240px),
+    radial-gradient(circle at 88% 4%, rgba(11, 58, 120, .12), transparent 280px),
+    linear-gradient(180deg, rgba(255,250,240,.96), rgba(246,240,227,.98) 360px),
+    repeating-linear-gradient(45deg, rgba(125,96,48,.035) 0 1px, transparent 1px 9px),
+    var(--eagle-rice) !important;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: .30;
+  background:
+    radial-gradient(ellipse at 6% 17%, rgba(16,38,83,.18), transparent 18%),
+    radial-gradient(ellipse at 94% 16%, rgba(16,38,83,.15), transparent 18%),
+    radial-gradient(ellipse at 48% 106%, rgba(16,38,83,.17), transparent 28%);
+  mask-image: linear-gradient(to bottom, transparent 0, black 68px, black calc(100% - 70px), transparent 100%);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  right: clamp(18px, 5vw, 70px);
+  top: clamp(76px, 12vw, 150px);
+  z-index: -1;
+  pointer-events: none;
+  width: clamp(150px, 18vw, 260px);
+  height: clamp(110px, 14vw, 190px);
+  opacity: .16;
+  background:
+    url("data:image/svg+xml,%3Csvg width='260' height='180' viewBox='0 0 260 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230b3a78' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M34 94c36-40 72-56 108-48 28 6 48 25 84 18-28 28-63 39-101 26-25-9-54-6-91 4Z'/%3E%3Cpath d='M82 78c-16-17-34-27-55-30 17 24 34 39 55 45'/%3E%3Cpath d='M132 82c28-22 55-31 82-27-22 19-47 31-76 34'/%3E%3Cpath d='M116 94c8 16 17 27 28 34'/%3E%3C/g%3E%3Cg fill='none' stroke='%23b8862b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M28 126h42c12 0 12 13 0 13H42'/%3E%3Cpath d='M154 133h58c14 0 14 15 0 15h-34'/%3E%3Cpath d='M178 36h42c11 0 11 12 0 12h-24'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  transform: rotate(-4deg);
+}
+
+.wrap,
+.container {
+  position: relative;
+}
+
+h1,
+h2,
+h3,
+.topic,
+.day strong {
+  color: var(--eagle-ink);
+}
+
+p,
+.muted,
+.note,
+.subtitle,
+.mini,
+.day span {
+  color: var(--eagle-muted) !important;
+}
+
+.back,
+.btn,
+button,
+input,
+select,
+textarea {
+  border-color: var(--eagle-line) !important;
+}
+
+.back,
+.btn,
+button {
+  border-radius: 10px !important;
+}
+
+.back,
+.btn:not(.primary):not(.soft),
+button:not(.primary) {
+  background: rgba(255,250,240,.92) !important;
+  color: var(--eagle-ink) !important;
+  box-shadow: 0 8px 20px rgba(78,54,22,.06);
+}
+
+.btn.primary,
+.back.primary,
+button.primary,
+.continue-progress a {
+  background: linear-gradient(135deg, #081a3d, var(--eagle-blue) 62%, var(--eagle-gold)) !important;
+  border-color: rgba(184,134,43,.38) !important;
+  color: #fff !important;
+}
+
+.btn.soft,
+.back.soft {
+  background: #f3ead6 !important;
+  color: var(--eagle-blue) !important;
+  border-color: rgba(184,134,43,.28) !important;
+}
+
+.panel,
+.card,
+.stat,
+.test-card,
+.chart-card,
+.recent-card,
+.report-box,
+.report-stat,
+.archive-table-wrap,
+.hero-side,
+.step {
+  border-color: var(--eagle-line) !important;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(184,134,43,.045), transparent 86px),
+    linear-gradient(180deg, rgba(255,255,255,.99), rgba(255,253,248,.98)) !important;
+  box-shadow: 0 10px 24px rgba(78,54,22,.07) !important;
+}
+
+.day-card,
+.day {
+  border-color: rgba(223,210,187,.92) !important;
+  background:
+    radial-gradient(circle at 92% 10%, rgba(184,134,43,.045), transparent 86px),
+    linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,253,247,.98)) !important;
+  box-shadow: 0 10px 24px rgba(78,54,22,.07) !important;
+}
+
+.hero,
+.dark,
+.hero-main,
+.start-card {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 84% 18%, rgba(255,250,240,.14), transparent 28%),
+    radial-gradient(ellipse at 16% 96%, rgba(184,134,43,.18), transparent 34%),
+    linear-gradient(135deg, #081a3d 0%, #0f326a 58%, #1d5ec4 100%) !important;
+  border: 1px solid rgba(218,185,113,.34) !important;
+  box-shadow: var(--eagle-shadow) !important;
+}
+
+.hero::after,
+.dark::after,
+.hero-main::after,
+.start-card::after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  bottom: 12px;
+  width: 150px;
+  height: 84px;
+  opacity: .14;
+  background:
+    url("data:image/svg+xml,%3Csvg width='180' height='100' viewBox='0 0 180 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23fffaf0' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 57c27-27 54-37 80-30 20 5 34 18 61 13-22 22-48 30-76 20-19-7-40-4-65-3Z'/%3E%3Cpath d='M53 47c-12-11-24-18-39-20 12 16 24 26 39 30'/%3E%3Cpath d='M91 50c18-15 38-21 59-18-17 13-35 22-55 24'/%3E%3C/g%3E%3Cg fill='none' stroke='%23dab971' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M20 78h30c8 0 8 9 0 9H31'/%3E%3Cpath d='M103 82h40c9 0 9 10 0 10h-22'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  pointer-events: none;
+}
+
+.hero h2,
+.dark h2,
+.hero-main h2,
+.hero h1,
+.dark h1,
+.hero-main h1,
+.hero p,
+.dark p,
+.hero-main p {
+  color: #fff !important;
+}
+
+.phase-section,
+.calendar-section {
+  background:
+    radial-gradient(circle at 94% 6%, rgba(184,134,43,.035), transparent 130px),
+    linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,253,248,.94)) !important;
+  border-color: rgba(223,210,187,.92) !important;
+  box-shadow: 0 14px 34px rgba(78,54,22,.08) !important;
+}
+
+.phase-head {
+  border-color: rgba(184,134,43,.30) !important;
+}
+
+.toolbar {
+  background: rgba(255,250,240,.84) !important;
+  border-color: rgba(223,210,187,.82) !important;
+}
+
+.stat b,
+.test-card b,
+.day-no,
+.day b,
+.tag,
+a {
+  color: var(--eagle-blue);
+}
+
+.tag,
+.day-no,
+.day b {
+  background: #edf3fb !important;
+}
+
+.tag.orange {
+  background: #fff3df !important;
+  color: var(--eagle-orange) !important;
+}
+
+.tag.warn {
+  background: #fff3df !important;
+  color: var(--eagle-orange) !important;
+}
+
+.tag.green,
+.phase.grow {
+  background: #edf8f2 !important;
+  color: var(--eagle-green) !important;
+}
+
+.archive-table th,
+thead th {
+  background: #f3ead6 !important;
+  color: var(--eagle-ink) !important;
+  border-color: var(--eagle-line) !important;
+}
+
+hr,
+.day .card-foot,
+.day-card .foot {
+  border-color: var(--eagle-line) !important;
+}

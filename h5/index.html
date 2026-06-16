@@ -1,0 +1,2556 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>雏鹰计划｜专升本英语45天逆袭日历</title>
+  <style>
+    :root {
+      --bg: #f6f0e3;
+      --paper: #fffaf0;
+      --ink: #102653;
+      --muted: #6f6a5f;
+      --line: #dfd2bb;
+      --blue: #0b3a78;
+      --blue-bright: #1d5ec4;
+      --gold: #b8862b;
+      --green: #1b7b5f;
+      --orange: #b96b1c;
+      --red: #e54b4b;
+      --violet: #60449a;
+      --shadow: 0 16px 34px rgba(78, 54, 22, 0.12);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 14% 8%, rgba(184, 134, 43, .13), transparent 220px),
+        radial-gradient(circle at 88% 4%, rgba(11, 58, 120, .11), transparent 260px),
+        linear-gradient(180deg, rgba(255,250,240,.92), rgba(246,240,227,.96) 360px),
+        repeating-linear-gradient(45deg, rgba(125,96,48,.035) 0 1px, transparent 1px 9px),
+        var(--bg);
+      line-height: 1.55;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .26;
+      background:
+        radial-gradient(ellipse at 8% 18%, rgba(16,38,83,.16), transparent 18%),
+        radial-gradient(ellipse at 94% 18%, rgba(16,38,83,.14), transparent 18%),
+        radial-gradient(ellipse at 50% 104%, rgba(16,38,83,.18), transparent 26%);
+      mask-image: linear-gradient(to bottom, transparent 0, black 70px, black calc(100% - 80px), transparent 100%);
+    }
+
+    .wrap {
+      width: min(1240px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 18px 0 48px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(28px, 3.1vw, 42px);
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 860px;
+    }
+
+    .student-note {
+      display: none;
+      margin-top: 8px;
+      color: #5c6472;
+      font-size: 14px;
+    }
+
+    .student-note.show {
+      display: block;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .top-planner {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 0 28px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fffaf0 0%, #f5ead5 100%);
+      border: 1px solid rgba(184,134,43,.45);
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 18px;
+      box-shadow: 0 16px 34px rgba(78,54,22,.12);
+      transition: .16s ease;
+    }
+
+    .top-planner:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 42px rgba(36,107,254,.20);
+    }
+
+    .onboarding-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(245,247,251,.84);
+      backdrop-filter: blur(16px);
+    }
+
+    .onboarding-gate.show {
+      display: grid;
+    }
+
+    .gate-card {
+      width: min(760px, 100%);
+      max-height: calc(100vh - 40px);
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 24px 70px rgba(25,45,80,.18);
+    }
+
+    .gate-hero {
+      padding: 22px;
+      background: linear-gradient(135deg, #101827, #1d305c 62%, #246bfe);
+      color: white;
+    }
+
+    .gate-hero h2 {
+      margin: 0 0 8px;
+      font-size: 26px;
+    }
+
+    .gate-hero p {
+      margin: 0;
+      color: #d8e4f8;
+      font-size: 14px;
+    }
+
+    .gate-body {
+      padding: 18px;
+    }
+
+    .gate-stepper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .gate-stepper span {
+      min-height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: #f3f6fb;
+      color: #68758f;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .gate-stepper span.active {
+      background: #eaf2ff;
+      color: var(--blue);
+      box-shadow: inset 0 0 0 1px #cfe0ff;
+    }
+
+    .gate-name {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .gate-name label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 900;
+    }
+
+    .gate-name input {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0 12px;
+      font: inherit;
+      background: #fbfdff;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .gate-field label {
+      display: block;
+      margin-bottom: 7px;
+      color: #283650;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .gate-field input,
+    .gate-field select {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0 12px;
+      background: #fbfdff;
+      color: var(--ink);
+      font: inherit;
+    }
+
+    .gate-help {
+      margin: 10px 0 0;
+      color: #68758f;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .gate-error {
+      display: none;
+      margin: 10px 0 0;
+      color: #b42318;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .gate-error.show { display: block; }
+
+    .gate-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .gate-btn {
+      display: inline-flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--blue);
+      border-radius: 8px;
+      padding: 0 16px;
+      background: var(--blue);
+      color: #fff;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .gate-btn.secondary {
+      background: #fff;
+      border-color: var(--line);
+      color: var(--ink);
+    }
+
+    .gate-btn:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    .gate-progress {
+      height: 8px;
+      background: #edf2fb;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .gate-progress i {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      border-radius: 999px;
+      transition: width .2s ease;
+    }
+
+    .gate-question {
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 13px;
+      margin-top: 10px;
+      background: #fbfdff;
+    }
+
+    .gate-question-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 9px;
+      font-weight: 900;
+    }
+
+    .gate-tag {
+      border-radius: 999px;
+      padding: 3px 9px;
+      background: #eef4ff;
+      color: var(--blue);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .gate-options {
+      display: grid;
+      gap: 7px;
+    }
+
+    .gate-option {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 9px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .gate-option input {
+      margin-top: 5px;
+    }
+
+    .gate-option:has(input:checked) {
+      border-color: #bcd0ff;
+      background: #f4f8ff;
+    }
+
+    .gate-result {
+      display: none;
+      border-radius: 10px;
+      padding: 16px;
+      background: #f7fbff;
+      border: 1px solid #cfe0ff;
+    }
+
+    .gate-result.show {
+      display: block;
+    }
+
+    .gate-result h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+    }
+
+    .gate-result-intro {
+      margin: 0 0 12px;
+      color: #44506a;
+    }
+
+    .gate-plan {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid #dbe7ff;
+      border-radius: 9px;
+      background: #fff;
+    }
+
+    .gate-plan b {
+      color: var(--ink);
+    }
+
+    .gate-plan span {
+      color: #52627f;
+      font-size: 14px;
+    }
+
+    .gate-report {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .gate-report-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: white;
+    }
+
+    .gate-report-card b {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ink);
+      font-size: 15px;
+    }
+
+    .gate-report-card span {
+      display: inline-flex;
+      min-height: 26px;
+      align-items: center;
+      margin: 3px 4px 0 0;
+      padding: 0 9px;
+      border-radius: 999px;
+      background: #eef4ff;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .gate-diagnosis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .gate-diagnosis div {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      background: white;
+    }
+
+    .gate-diagnosis b {
+      display: block;
+      color: var(--blue);
+      font-size: 20px;
+    }
+
+    @media (max-width: 760px) {
+      .profile-grid,
+      .gate-report {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .version-mark {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      margin-bottom: 10px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: #eafaf4;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(86px, 1fr));
+      gap: 8px;
+      min-width: 480px;
+    }
+
+    .metric {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(25, 45, 80, 0.07);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1.1;
+      color: var(--blue);
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .metric.progress-metric strong {
+      color: var(--green);
+    }
+
+    .guide {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 22px 0;
+    }
+
+    .guide-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 15px;
+      box-shadow: 0 8px 20px rgba(25, 45, 80, 0.07);
+    }
+
+    .guide-card b { display: block; margin-bottom: 4px; }
+    .guide-card span { color: var(--muted); font-size: 13px; }
+
+    .hero-panel {
+      background:
+        linear-gradient(180deg, rgba(255,250,240,.94), rgba(255,252,246,.92));
+      border: 1px solid rgba(184,134,43,.26);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      margin: 12px 0 18px;
+    }
+
+    .hero-panel-head {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .start-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: 372px;
+      border-radius: var(--radius);
+      padding: 18px;
+      background:
+        radial-gradient(circle at 84% 18%, rgba(255,255,255,0.13), transparent 28%),
+        radial-gradient(ellipse at 15% 96%, rgba(184,134,43,.18), transparent 34%),
+        linear-gradient(135deg, #081a3d 0%, #0f326a 58%, #1d5ec4 100%);
+      color: white;
+      border: 1px solid rgba(218,185,113,.32);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.14);
+    }
+
+    .start-card h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+
+    .start-card p {
+      margin: 0;
+      color: #d8e4f8;
+      font-size: 14px;
+    }
+
+    .start-actions {
+      display: none;
+    }
+
+    .action-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      min-width: 190px;
+      padding: 0 18px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 15px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    }
+
+    .action-link.primary {
+      min-width: 310px;
+      min-height: 54px;
+      justify-content: flex-start;
+      background: linear-gradient(135deg, #081428 0%, #17336b 62%, #246bfe 100%);
+      color: white;
+      border-color: rgba(255,255,255,0.28);
+      border-radius: 10px;
+      box-shadow: 0 18px 34px rgba(0,0,0,0.24), 0 0 0 1px rgba(255,255,255,0.08) inset;
+    }
+
+    .action-link.detail-calendar {
+      min-width: 310px;
+      min-height: 50px;
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.32);
+      color: white;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .nav-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 108px;
+      padding: 12px 13px;
+      border: 1px solid rgba(184,134,43,.24);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255,250,240,.98) 0%, rgba(255,252,246,.96) 100%);
+      text-decoration: none;
+      overflow: hidden;
+      box-shadow: 0 8px 18px rgba(78,54,22,0.06);
+      opacity: .92;
+    }
+
+    .nav-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--gold));
+    }
+
+    .nav-card:nth-child(2)::before { background: linear-gradient(90deg, var(--green), var(--gold)); }
+    .nav-card:nth-child(3)::before { background: linear-gradient(90deg, var(--violet), var(--gold)); }
+
+    .nav-index {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 7px;
+      background: #f3ead6;
+      color: var(--blue);
+      font-weight: 900;
+      margin-bottom: 7px;
+    }
+
+    .nav-card h3 {
+      margin: 0 0 7px;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .nav-card p {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+
+    .nav-list {
+      margin: auto 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 3px;
+      color: #44506a;
+      font-size: 12px;
+    }
+
+    .nav-list li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-list li::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #b7a47c;
+      flex: 0 0 auto;
+    }
+
+    .nav-list a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav-list a:hover {
+      color: var(--blue);
+    }
+
+    .growth-card {
+      background: linear-gradient(180deg, rgba(255,250,240,.98) 0%, rgba(248,241,228,.96) 100%);
+    }
+
+    .growth-card p {
+      margin-bottom: 8px;
+      line-height: 1.45;
+    }
+
+    .growth-cta {
+      margin-top: auto;
+      display: inline-flex;
+      width: fit-content;
+      min-height: 30px;
+      align-items: center;
+      border-radius: 999px;
+      padding: 0 12px;
+      background: #f3ead6;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .toolbar,
+    .calendar-legend,
+    #calendar,
+    #day-detail,
+    .note {
+      display: none !important;
+    }
+
+    .today-status {
+      display: grid;
+      gap: 8px;
+    }
+
+    .today-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .today-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #e8f0ff;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .mini-detail-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(255,250,240,.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.26);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+    }
+
+    .today-task {
+      position: relative;
+      display: block;
+      padding: 16px 18px 17px;
+      border-radius: 12px;
+      background:
+        radial-gradient(circle at 82% 20%, rgba(184,134,43,.22), transparent 30%),
+        linear-gradient(135deg, rgba(5,22,54,0.98), rgba(13,48,104,0.98) 72%, rgba(29,94,196,0.95));
+      border: 1px solid rgba(218,185,113, 0.34);
+      box-shadow: 0 18px 38px rgba(0,0,0,0.22), inset 4px 0 0 rgba(255,255,255,0.88);
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+
+    .today-task strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 24px;
+      color: white;
+    }
+
+    .today-task span {
+      display: block;
+      color: #d8e4f8;
+      font-size: 13px;
+    }
+
+    .task-progress {
+      margin-top: 12px;
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.16);
+      overflow: hidden;
+    }
+
+    .task-progress i {
+      display: block;
+      width: var(--progress, 2%);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #fffaf0, #d7a94d);
+      box-shadow: 0 0 18px rgba(215,169,77,.42);
+    }
+
+    .task-progress-text {
+      margin-top: 6px;
+      color: #dbe7ff !important;
+      font-size: 12px !important;
+      font-weight: 800;
+    }
+
+    .today-task::after {
+      content: "开始";
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      min-height: 30px;
+      min-width: 132px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,250,240,.28), rgba(184,134,43,.30));
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 8px 18px rgba(0,0,0,.14);
+    }
+
+    .mini-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+    }
+
+    .mini-day {
+      min-height: 46px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.07);
+      color: #d8e4f8;
+      font-size: 11px;
+    }
+
+    .mini-day b {
+      color: white;
+      font-size: 13px;
+      line-height: 1.1;
+    }
+
+    .mini-day.active {
+      background: white;
+      color: #1d305c;
+      border-color: white;
+    }
+
+    .mini-day.active b { color: var(--blue); }
+
+    .flow-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .flow-step {
+      padding: 10px;
+      border-radius: 6px;
+      background: #f5f8ff;
+      color: #34425c;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .flow-step span {
+      display: block;
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .study-hub {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 12px;
+      margin: 18px 0 22px;
+    }
+
+    .focus-panel,
+    .hub-panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 24px rgba(25, 45, 80, 0.08);
+    }
+
+    .focus-panel {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      overflow: hidden;
+    }
+
+    .focus-left {
+      padding: 20px;
+      background: linear-gradient(135deg, #246bfe, #12a075);
+      color: white;
+    }
+
+    .focus-left h2 {
+      margin: 0 0 8px;
+      font-size: 25px;
+      line-height: 1.18;
+    }
+
+    .focus-left p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 14px;
+    }
+
+    .focus-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .focus-stat {
+      min-height: 60px;
+      padding: 9px;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .focus-stat b {
+      display: block;
+      font-size: 20px;
+      line-height: 1.1;
+    }
+
+    .focus-stat span {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .focus-right {
+      padding: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .task-tile {
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #f8fbff;
+    }
+
+    .task-tile strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #182033;
+    }
+
+    .task-tile span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .hub-panel {
+      padding: 15px;
+      min-height: 174px;
+    }
+
+    .hub-panel h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .hub-panel p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 0 8px;
+      border-radius: 999px;
+      background: #eef4ff;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .pill.green { background: #eafaf4; color: var(--green); }
+    .pill.orange { background: #fff7e8; color: #a46300; }
+    .pill.violet { background: #f1eeff; color: var(--violet); }
+
+    .mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #44506a;
+    }
+
+    .mini-table td {
+      border-top: 1px solid var(--line);
+      padding: 7px 0;
+    }
+
+    .mini-table td:last-child {
+      text-align: right;
+      font-weight: 800;
+      color: #26344f;
+    }
+
+    .core-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .preview-calendar {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 5px;
+      margin-top: 8px;
+    }
+
+    .preview-day {
+      position: relative;
+      min-height: 50px;
+      padding: 6px 7px;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #d8e4f8;
+      font-size: 10px;
+      line-height: 1.18;
+      cursor: pointer;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease, box-shadow .16s ease;
+    }
+
+    .preview-day:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.34);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.14);
+    }
+
+    .preview-day b {
+      display: block;
+      margin-bottom: 2px;
+      color: white;
+      font-size: 12px;
+    }
+
+    .preview-day span {
+      display: block;
+      margin-top: 2px;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 900;
+      opacity: .96;
+    }
+
+    .preview-day.active {
+      background: white;
+      color: #33415c;
+      border-color: white;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.55), 0 0 22px rgba(100,178,255,0.7), 0 12px 24px rgba(0,0,0,0.2);
+    }
+
+    .preview-day.active::after {
+      content: "NOW";
+      position: absolute;
+      right: 6px;
+      top: 6px;
+      padding: 1px 5px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: white;
+      font-size: 9px;
+      font-weight: 900;
+    }
+
+    .preview-day.active b { color: var(--blue); }
+
+    .preview-day.active span { color: #68758f; }
+
+    .preview-day.done {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .preview-day.future {
+      opacity: .48;
+      cursor: not-allowed;
+      filter: saturate(.72);
+    }
+
+    .preview-day.future::after {
+      content: "待解锁";
+      position: absolute;
+      right: 6px;
+      top: 6px;
+      color: rgba(255,255,255,.72);
+      font-size: 8px;
+      font-weight: 900;
+    }
+
+    .core-item {
+      position: relative;
+      display: block;
+      min-height: 72px;
+      padding: 11px 12px 10px 42px;
+      border-radius: 7px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.07));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e8f0ff;
+      font-size: 14px;
+      font-weight: 900;
+      line-height: 1.25;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease, box-shadow .16s ease;
+    }
+
+    .core-item::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 11px;
+      top: 11px;
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.16);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .core-item:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.10));
+      border-color: rgba(255, 255, 255, 0.36);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.14);
+    }
+
+    .core-item span {
+      display: block;
+      margin-top: 6px;
+      color: #bcd0f3;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .core-item[data-step="1"] {
+      border-color: rgba(90, 170, 255, 0.42);
+      background: linear-gradient(180deg, rgba(29,94,196,0.28), rgba(255,250,240,0.06));
+    }
+
+    .core-item[data-step="2"] {
+      border-color: rgba(38, 202, 143, 0.42);
+      background: linear-gradient(180deg, rgba(27,123,95,0.28), rgba(255,250,240,0.06));
+    }
+
+    .core-item[data-step="3"] {
+      border-color: rgba(184,134,43, 0.50);
+      background: linear-gradient(180deg, rgba(184,134,43,0.28), rgba(255,250,240,0.06));
+    }
+
+    .core-item[data-step="4"] {
+      border-color: rgba(135, 108, 255, 0.44);
+      background: linear-gradient(180deg, rgba(96,68,154,0.28), rgba(255,250,240,0.06));
+    }
+
+    .resource-gateway {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 12px;
+      margin: 18px 0 0;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 12px 28px rgba(25, 45, 80, 0.08);
+    }
+
+    .resource-gateway h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .resource-gateway p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .resource-actions {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .resource-actions a {
+      min-height: 74px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #f8fbff;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    .resource-actions span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .toolbar,
+    .calendar-legend,
+    #calendar,
+    #day-detail,
+    .note {
+      display: none;
+    }
+
+    .resource-board {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 12px;
+      margin: 0 0 22px;
+    }
+
+    .board-panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 24px rgba(25, 45, 80, 0.08);
+      padding: 18px;
+    }
+
+    .board-panel h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .board-panel > p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .guide-list,
+    .download-list {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .guide-item,
+    .download-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 11px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fbfdff;
+    }
+
+    .guide-no {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 7px;
+      background: #eef4ff;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .guide-item strong,
+    .download-item strong {
+      display: block;
+      color: #1e2a42;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .guide-item span,
+    .download-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .status {
+      min-width: 58px;
+      text-align: center;
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: #eafaf4;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .status.pending {
+      background: #fff7e8;
+      color: #a46300;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      background: rgba(245, 247, 251, 0.9);
+      backdrop-filter: blur(12px);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(223, 231, 242, 0.9);
+      margin-bottom: 16px;
+    }
+
+    .tabs, .tools { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    button {
+      min-height: 36px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 6px;
+      padding: 0 12px;
+      color: #33415c;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    button.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: white;
+    }
+
+    .search {
+      min-height: 36px;
+      width: 260px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 0 12px;
+      font: inherit;
+      background: var(--paper);
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .weekday {
+      color: #44506a;
+      font-weight: 800;
+      text-align: center;
+      padding: 8px 0;
+      font-size: 13px;
+    }
+
+    .day-card {
+      min-height: 190px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px;
+      box-shadow: 0 8px 20px rgba(25, 45, 80, 0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: pointer;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .day-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(36, 107, 254, 0.38);
+      box-shadow: 0 14px 28px rgba(25, 45, 80, 0.12);
+    }
+
+    .day-card.today {
+      border-color: rgba(36, 107, 254, 0.7);
+      box-shadow: 0 16px 34px rgba(36, 107, 254, 0.16);
+    }
+
+    .day-card.locked {
+      cursor: default;
+    }
+
+    .day-card.locked:hover {
+      transform: none;
+      border-color: var(--line);
+      box-shadow: 0 8px 20px rgba(25, 45, 80, 0.07);
+    }
+
+    .day-card.hidden { display: none; }
+
+    .day-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 8px;
+    }
+
+    .day-no {
+      display: inline-flex;
+      width: 34px;
+      height: 34px;
+      border-radius: 7px;
+      align-items: center;
+      justify-content: center;
+      background: #eef4ff;
+      color: var(--blue);
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+
+    .phase {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 12px;
+      font-weight: 800;
+      background: #eef4ff;
+      color: var(--blue);
+      white-space: nowrap;
+    }
+
+    .phase.grow { background: #eafaf4; color: var(--green); }
+    .phase.fly { background: #fff7e8; color: #a46300; }
+    .phase.sprint { background: #fff0f0; color: var(--red); }
+
+    .topic {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.35;
+      font-weight: 900;
+    }
+
+    .mini {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .mini b { color: #35425a; }
+
+    .foot {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border-top: 1px dashed var(--line);
+      padding-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .score { font-weight: 900; color: var(--green); }
+
+    .detail {
+      margin-top: 22px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .detail-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 16px;
+      padding: 20px;
+      background: linear-gradient(135deg, #101827, #1d305c);
+      color: white;
+    }
+
+    .detail-head h2 {
+      margin: 0 0 6px;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    .detail-head p {
+      margin: 0;
+      color: #d8e4f8;
+      font-size: 14px;
+    }
+
+    .detail-back {
+      flex: 0 0 auto;
+      min-height: 36px;
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+    }
+
+    .detail-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .detail-block {
+      padding: 18px 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .detail-block:nth-child(odd) {
+      border-right: 1px solid var(--line);
+    }
+
+    .detail-block h3 {
+      margin: 0 0 10px;
+      font-size: 17px;
+    }
+
+    .detail-block ul,
+    .detail-block ol {
+      margin: 0;
+      padding-left: 20px;
+      color: #41506a;
+      font-size: 14px;
+    }
+
+    .detail-block li + li { margin-top: 5px; }
+
+    .word-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0;
+    }
+
+    .word {
+      padding: 8px 9px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #f8fbff;
+      font-size: 13px;
+      color: #33415c;
+    }
+
+    .test-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .test-list li {
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fbfdff;
+      color: #34425c;
+      font-size: 13px;
+    }
+
+    .source-line {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .map-box {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .map-node {
+      padding: 9px;
+      border-radius: 6px;
+      background: #f5f8ff;
+      border: 1px solid var(--line);
+      color: #34425c;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .week-title {
+      grid-column: 1 / -1;
+      margin: 12px 0 2px;
+      font-weight: 900;
+      color: #33415c;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .week-title::after {
+      content: "";
+      height: 1px;
+      background: var(--line);
+      flex: 1;
+    }
+
+    .empty {
+      min-height: 190px;
+      border: 1px dashed var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .note {
+      margin-top: 22px;
+      background: #101827;
+      color: #edf4ff;
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .note h2 { margin: 0 0 8px; font-size: 20px; }
+    .note p { margin: 0; color: #c9d5ea; }
+
+    @media print {
+      body { background: white; }
+      .toolbar, .guide, .hero-panel, .note { display: none; }
+      .wrap { width: 100%; padding: 0; }
+      .day-card { box-shadow: none; min-height: 170px; break-inside: avoid; }
+      header { display: block; }
+      .summary { margin-top: 12px; }
+    }
+
+    @media (max-width: 980px) {
+      header { grid-template-columns: 1fr; }
+      .summary { min-width: 0; }
+      .guide { grid-template-columns: repeat(2, 1fr); }
+      .hero-panel-head { grid-template-columns: 1fr; }
+      .nav-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .nav-card { min-height: 150px; }
+      .preview-calendar { grid-template-columns: repeat(3, 1fr); }
+      .flow-strip { grid-template-columns: repeat(2, 1fr); }
+      .study-hub,
+      .focus-panel,
+      .hub-grid,
+      .resource-board { grid-template-columns: 1fr; }
+      .detail-body { grid-template-columns: 1fr; }
+      .detail-block:nth-child(odd) { border-right: 0; }
+      .calendar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .weekday, .empty { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 20px, 1240px); padding-top: 20px; }
+      .summary, .guide, .calendar { grid-template-columns: 1fr; }
+      .nav-grid, .flow-strip { grid-template-columns: 1fr; }
+      .hero-panel { padding: 12px; }
+      .start-card, .nav-card { min-height: auto; }
+      .start-card h2 { font-size: 24px; }
+      .preview-calendar,
+      .core-strip { grid-template-columns: 1fr; }
+      .detail-head { display: block; }
+      .detail-back { margin-top: 12px; }
+      .word-grid,
+      .map-box,
+      .focus-stats,
+      .focus-right { grid-template-columns: 1fr; }
+      .guide-item,
+      .download-item { grid-template-columns: auto 1fr; }
+      .status { grid-column: 2; justify-self: start; }
+      .search { width: 100%; }
+      .day-card { min-height: auto; }
+    }
+  </style>
+  <link rel="stylesheet" href="eagle-calendar-standard.css" />
+<link rel="stylesheet" href="eagle-brand.css" />  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#0b3a78" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>雏鹰计划｜专升本英语45天逆袭日历</h1>
+        <p class="subtitle">今天不用想太多，照着 Day 任务走完这一格就好。</p>
+        <p class="student-note" id="student-note"></p>
+      </div>
+      <div class="top-actions" aria-label="快捷入口">
+        <a class="top-planner" href="eagle-school-planner.html">你身边的备考管家 · 择校系统</a>
+      </div>
+    </header>
+
+    <section class="hero-panel" aria-label="首页导航总控台">
+      <div class="hero-panel-head">
+        <div class="start-card">
+          <div>
+            <div class="today-status">
+              <div class="today-meta">
+                <span class="today-badge" id="today-badge">今天是你学习的第 1 天</span>
+                <a class="mini-detail-link" href="eagle-detailed-calendar.html">45天详细版日历入口</a>
+              </div>
+              <a class="today-task" id="today-task" href="#day-detail">
+                <strong>进入今日任务：名词的数</strong>
+                <span>别着急，先稳住节奏，每日做这四件事，上岸之路已铺就。</span>
+              </a>
+              <div class="core-strip" id="today-core" aria-label="今日核心任务">
+                <div class="core-item" data-step="1">背诵单词<span>新001-040<br>复习无旧词</span></div>
+                <div class="core-item" data-step="2">学习课程<span>今天学：入营摸底</span></div>
+                <div class="core-item" data-step="3">课后习题<span>今天练：词形变化</span></div>
+                <div class="core-item" data-step="4">日常一测<span>5题检测<br>错题自动入档</span></div>
+              </div>
+              <div class="preview-calendar" id="today-preview-calendar" aria-label="近期15天日历预览"></div>
+            </div>
+          </div>
+        </div>
+
+        <nav class="nav-grid" aria-label="核心导航">
+          <article class="nav-card" id="onboarding">
+            <span class="nav-index">01</span>
+            <h3>新手三步走</h3>
+            <ul class="nav-list">
+              <li><a href="daily-tasks/day-01.html">看《雏鹰计划3分钟使用说明视频》</a></li>
+              <li><a href="#resources">领当天资料</a></li>
+              <li><a href="#today-task">完成今日任务</a></li>
+            </ul>
+          </article>
+          <article class="nav-card" id="resources">
+            <span class="nav-index">02</span>
+            <h3>资料库快传区</h3>
+            <ul class="nav-list">
+              <li><a href="eagle-vocab-handbook.html">《2027雏鹰词汇》（PDF下载）</a></li>
+              <li><a href="eagle-lecture-calendar.html">《2027雏鹰讲义》（PDF下载）</a></li>
+              <li><a href="eagle-workbook-breakdown.html">《2027雏鹰习题》（PDF下载）</a></li>
+              <li><a href="eagle-test-pack.html">《2027雏鹰测试》（PDF下载）</a></li>
+            </ul>
+          </article>
+          <a class="nav-card growth-card" href="eagle-growth-track.html">
+            <span class="nav-index">03</span>
+            <h3>学习成长轨迹</h3>
+            <p>小乌龟也好，小蜗牛也罢，只要每天前进了一小步，就超棒的！别着急，我们慢慢来～</p>
+            <span class="growth-cta">进入成长轨迹</span>
+          </a>
+        </nav>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <div class="tabs">
+        <button class="active" data-filter="all">全部</button>
+        <button data-filter="破壳期">破壳期</button>
+        <button data-filter="成长期">成长期</button>
+        <button data-filter="展翅期">展翅期</button>
+        <button data-filter="翱翔期">翱翔期</button>
+      </div>
+      <div class="tools">
+        <input id="search" class="search" type="search" placeholder="搜索：词缀、介词、从句..." />
+        <button onclick="window.print()">打印日历</button>
+      </div>
+    </div>
+
+    <div class="calendar-legend" aria-label="stage legend">
+  <span><i></i>破壳期：打基础</span>
+  <span class="grow"><i></i>成长期：做辨析</span>
+  <span class="fly"><i></i>展翅期：攻从句</span>
+  <span class="sprint"><i></i>翱翔期：冲综合</span>
+</div>
+    <main class="calendar" id="calendar">
+      <div class="weekday">周一</div>
+      <div class="weekday">周二</div>
+      <div class="weekday">周三</div>
+      <div class="weekday">周四</div>
+      <div class="weekday">周五</div>
+      <div class="weekday">周六</div>
+      <div class="weekday">周日</div>
+    </main>
+
+    <section class="detail" id="day-detail" aria-label="每日学习卡详情">
+      <div class="detail-head">
+        <div>
+          <h2 id="detail-title">每日任务已经拆到四个日历</h2>
+          <p id="detail-subtitle">首页只解决“今天学什么”。点击当天卡片进入 Day 总任务页；点击四个任务按钮，可分别进入当天单词、讲义、习题和测试。</p>
+        </div>
+        <button class="detail-back" type="button" onclick="document.getElementById('calendar').scrollIntoView({behavior:'smooth'})">返回日历</button>
+      </div>
+      <div class="detail-body" id="detail-body">
+        <div class="detail-block">
+          <h3>先从 Day1 开始</h3>
+          <ul>
+            <li>首页负责总控：今天背什么、学什么、练什么、测什么。</li>
+            <li>资料库快传区负责细节：单词、讲义、习题、测试都按 Day1-Day45 对齐。</li>
+            <li>学生不需要翻资料，只要点当天卡片即可进入当天四件事。</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h3>设计原则</h3>
+          <ul>
+            <li>讲义主线：45天讲义日历已拆好的每日知识点。</li>
+            <li>练习形式：习题日历与当天讲义知识点一一匹配。</li>
+            <li>每天只做一个核心主题，避免低基础学生被信息压垮。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="note" hidden>
+      <h2>使用方式</h2>
+      <p>这个页面适合做知识库首页的“45天总控日历”。每张卡片继续链接到完整每日学习卡，例如 Day1 进入“词根词缀入门”详细页，里面再放具体单词、讲义页码、习题和每日一测。</p>
+    </section>
+  </div>
+
+  <div class="onboarding-gate" id="onboarding-gate" aria-label="入营开屏测评">
+    <div class="gate-card">
+      <div class="gate-hero">
+        <h2>6个小题，让升本之路先来个“666”</h2>
+        <p>不排名，不吓你。先建档，再诊断，最后生成你的45天英语学习日历。系统会根据你的省份、开始时间和基础情况，安排 Day1 到 Day45 的学习路径。</p>
+      </div>
+      <div class="gate-body">
+        <div class="gate-stepper" aria-label="入营流程">
+          <span id="gate-step-build" class="active">建档</span>
+          <span id="gate-step-diagnose">诊断</span>
+          <span id="gate-step-plan">生成日历</span>
+        </div>
+        <div id="gate-intro-step">
+          <div class="gate-plan">
+            <b>先建立学习档案</b>
+            <span>昵称、手机号、省份和开始日期只用于生成你的学习档案与45天日历；不用一次填得很完美，后面也可以修改。</span>
+          </div>
+          <div class="gate-actions">
+            <button class="gate-btn" id="gate-build-open" type="button">开始建立学习档案</button>
+            <button class="gate-btn secondary" id="gate-later" type="button">稍后再建档，先看任务</button>
+          </div>
+        </div>
+        <div id="gate-profile-step" hidden>
+          <div class="gate-name">
+            <div class="profile-grid">
+              <div class="gate-field">
+                <label for="gate-nickname">先告诉我怎么称呼你</label>
+                <input id="gate-nickname" type="text" maxlength="12" placeholder="比如：小丹、慢慢来同学" />
+              </div>
+              <div class="gate-field">
+                <label for="gate-province">你在哪个省备考</label>
+                <select id="gate-province">
+                  <option value="">请选择省份</option>
+                  <option value="湖北">湖北</option>
+                  <option value="湖南">湖南</option>
+                  <option value="贵州">贵州</option>
+                  <option value="河南">河南</option>
+                  <option value="广东">广东</option>
+                  <option value="山东">山东</option>
+                </select>
+              </div>
+              <div class="gate-field">
+                <label for="gate-phone">手机号码</label>
+                <input id="gate-phone" type="tel" maxlength="11" placeholder="用于学习档案识别" />
+              </div>
+              <div class="gate-field">
+                <label for="gate-start-date">计划开始日期</label>
+                <input id="gate-start-date" type="date" />
+              </div>
+            </div>
+            <p class="gate-help">这一步只是帮你生成自己的45天日历，不会公开排名，也不会给你制造压力。</p>
+            <p class="gate-error" id="gate-profile-error">请先补全昵称、省份、手机号和开始日期，手机号填常用联系方式即可。</p>
+          </div>
+          <div class="gate-actions">
+            <button class="gate-btn" id="gate-start" type="button">开始入营诊断</button>
+            <button class="gate-btn secondary" id="gate-profile-back" type="button">返回上一页</button>
+          </div>
+        </div>
+        <div id="gate-quiz-step" hidden>
+          <div class="gate-progress"><i id="gate-progress-bar"></i></div>
+          <form id="gate-quiz"></form>
+          <div class="gate-actions">
+            <button class="gate-btn" id="gate-submit" type="button" disabled>提交诊断</button>
+            <button class="gate-btn secondary" id="gate-back" type="button">返回改档案</button>
+          </div>
+        </div>
+        <div class="gate-result" id="gate-result">
+          <h3 id="gate-result-title">这是你的入营诊断</h3>
+          <p class="gate-result-intro" id="gate-result-intro"></p>
+          <div class="gate-diagnosis">
+            <div><b id="gate-score">0/6</b><span>入营小测</span></div>
+            <div><b id="gate-level">有点基础</b><span>当前等级</span></div>
+            <div><b id="gate-start-end">Day1</b><span>学习周期</span></div>
+          </div>
+          <div class="gate-report">
+            <div class="gate-report-card">
+              <b>你的基础画像</b>
+              <div id="gate-tags"></div>
+            </div>
+            <div class="gate-report-card">
+              <b>计划时间</b>
+              <span id="gate-plan-start">开始：--/--</span>
+              <span id="gate-plan-end">结营：--/--</span>
+            </div>
+          </div>
+          <p id="gate-advice"></p>
+          <div class="gate-plan">
+            <b>建议</b>
+            <span id="gate-next-plan">从 Day1 正常开始，不跳过前7天打底内容。</span>
+          </div>
+          <div class="gate-actions">
+            <button class="gate-btn" id="gate-enter" type="button">生成我的45天计划</button>
+            <button class="gate-btn secondary" id="gate-again" type="button">再测一次</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const days = [
+      ["破壳期", "入营摸底 + 湖北考纲分析", "新001-040｜复习无旧词", "湖北蓝皮书 p1-p5", "词形变化 + 词汇辨析 + 句子成分｜习题册 p1-p6"],
+      ["破壳期", "名词 1｜种类与复数", "新041-080｜复习D1", "讲义 p2-p7", "选择 + 翻译填空｜习题册 p7-p8"],
+      ["破壳期", "名词 2｜量、格与功能", "新081-120｜复习D2+D1", "讲义 p8-p14", "选择 + 词形补全｜习题册 p9-p10"],
+      ["破壳期", "冠词 1｜不定冠词", "新121-160｜复习D3+D2", "讲义 p15-p22", "冠词填空｜习题册 p11-p12"],
+      ["破壳期", "冠词 2｜定冠词与零冠词", "新161-200｜复习D4+D3+D1", "讲义 p23-p30", "选择 + 固定搭配｜习题册 p13-p14"],
+      ["破壳期", "代词 1｜人称/物主/反身", "新201-240｜复习D5+D4+D2", "讲义 p31-p36", "代词辨析｜习题册 p19"],
+      ["破壳期", "代词 2｜指示与替代", "新241-280｜复习D6+D5+D3", "讲义 p37-p42", "替代词判断｜习题册 p20"],
+      ["破壳期", "代词 3｜不定代词", "新281-320｜复习D7+D6+D4+D1", "讲义 p43-p47", "不定代词 + 翻译填空｜习题册 p21-p22"],
+      ["破壳期", "数词", "新321-360｜复习D8+D7+D5+D2", "讲义 p48-p56", "连词成句 + 翻译填空｜习题册 p15-p18"],
+      ["破壳期", "形容词", "新361-400｜复习D9+D8+D6+D3", "讲义 p57-p63", "词法选择｜习题册 p27-p28"],
+      ["破壳期", "副词", "新401-440｜复习D10+D9+D7+D4", "讲义 p64-p70", "副词辨析｜习题册 p29-p30"],
+      ["破壳期", "比较等级", "新441-480｜复习D11+D10+D8+D5", "讲义 p71-p77", "比较结构｜习题册 p27-p30"],
+      ["破壳期", "形副固定搭配与易混词", "新481-520｜复习D12+D11+D9+D6", "讲义 p78-p84", "词法综合｜习题册 p43-p46"],
+      ["成长期", "介词 1｜基础框架", "新521-560｜复习D13+D12+D10+D7", "讲义 p85-p93", "介词选择｜习题册 p23"],
+      ["成长期", "介词 2｜about 到 after", "新561-600｜复习D14+D13+D11+D8", "讲义 p94-p102", "介词辨析｜习题册 p24"],
+      ["成长期", "介词 3｜against 到 from", "新601-640｜复习D15+D14+D12+D9+D1", "讲义 p103-p111", "介词填空｜习题册 p25"],
+      ["成长期", "介词 4｜in 到 on", "新641-680｜复习D16+D15+D13+D10+D2", "讲义 p112-p119", "介词固定搭配｜习题册 p26"],
+      ["成长期", "介词 5｜over 到 with", "新681-720｜复习D17+D16+D14+D11+D3", "讲义 p120-p127", "介词复盘｜习题册 p23-p26"],
+      ["成长期", "介词 6｜综合辨析", "新721-760｜复习D18+D17+D15+D12+D4", "讲义 p128-p135", "词法综合｜习题册 p43-p46"],
+      ["成长期", "连词", "新761-800｜复习D19+D18+D16+D13+D5", "讲义 p136-p141", "连词成句｜习题册 p39-p42"],
+      ["成长期", "动词分类 1｜实义与系动词", "新801-840｜复习D20+D19+D17+D14+D6", "讲义 p142-p149", "动词辨析｜习题册 p31"],
+      ["成长期", "动词分类 2｜助动词与情态动词", "新841-880｜复习D21+D20+D18+D15+D7", "讲义 p150-p157", "情态动词｜习题册 p32"],
+      ["成长期", "时态 1｜一般体", "新881-920｜复习D22+D21+D19+D16+D8", "讲义 p158-p163", "时态判断｜习题册 p33"],
+      ["成长期", "时态 2｜进行体与完成体", "新921-960｜复习D23+D22+D20+D17+D9", "讲义 p164-p169", "时态综合｜习题册 p34"],
+      ["成长期", "时态 3｜综合辨析", "新961-1000｜复习D24+D23+D21+D18+D10", "讲义 p170-p174", "动词综合｜习题册 p31-p34"],
+      ["成长期", "语态｜被动语态", "新1001-1040｜复习D25+D24+D22+D19+D11", "讲义 p175-p178", "语态转换｜习题册 p43-p46"],
+      ["成长期", "非谓语 1｜不定式", "新1041-1080｜复习D26+D25+D23+D20+D12", "讲义 p179-p184", "非谓语选择｜习题册 p35-p36"],
+      ["成长期", "非谓语 2｜动名词", "新1081-1120｜复习D27+D26+D24+D21+D13", "讲义 p185-p189", "非谓语辨析｜习题册 p37"],
+      ["成长期", "非谓语 3｜分词综合", "新1121-1160｜复习D28+D27+D25+D22+D14", "讲义 p190-p194", "阶段测｜习题册 p38-p46"],
+      ["展翅期", "句子成分 1", "新1161-1200｜复习D29+D28+D26+D23+D15", "讲义 p195-p203", "句子成分｜习题册 p5"],
+      ["展翅期", "句子成分 2｜句子类型", "新1201-1240｜复习D30+D29+D27+D24+D16", "讲义 p204-p211", "句型判断｜习题册 p5-p6"],
+      ["展翅期", "定语从句 1｜概述与关系词", "新1241-1280｜复习D31+D30+D28+D25+D17", "讲义 p212-p219", "从句判断｜习题册 p55-p56"],
+      ["展翅期", "定语从句 2｜综合补充", "新1281-1320｜复习D32+D31+D29+D26+D18", "讲义 p220-p227", "定从综合｜习题册 p57-p58"],
+      ["展翅期", "名词性从句 1｜连接词", "新1321-1360｜复习D33+D32+D30+D27+D19", "讲义 p228-p233", "名从连接词｜习题册 p51-p52"],
+      ["展翅期", "名词性从句 2｜四类从句", "新1361-1400｜复习D34+D33+D31+D28+D20", "讲义 p234-p239", "名从分类｜习题册 p53-p54"],
+      ["展翅期", "状语从句 1｜时间/条件", "新1401-1440｜复习D35+D34+D32+D29+D21", "讲义 p240-p246", "状从基础｜习题册 p59-p60"],
+      ["展翅期", "状语从句 2｜条件/原因/结果", "新1441-1480｜复习D36+D35+D33+D30+D22", "讲义 p247-p252", "状从辨析｜习题册 p61"],
+      ["展翅期", "状语从句 3｜地点/让步/方式/比较", "新1481-1520｜复习D37+D36+D34+D31+D23", "讲义 p253-p258", "状从综合｜习题册 p62"],
+      ["翱翔期", "特殊句式 1｜强调句", "新1521-1560｜复习D38+D37+D35+D32+D24", "讲义 p259-p266", "强调句｜习题册 p71-p74"],
+      ["翱翔期", "特殊句式 2｜倒装句", "新1561-1600｜复习D39+D38+D36+D33+D25", "讲义 p267-p273", "倒装｜习题册 p67-p70"],
+      ["翱翔期", "特殊句式 3｜感叹句/反义疑问句", "新1601-1640｜复习D40+D39+D37+D34+D26", "讲义 p274-p278", "特殊句式｜习题册 p6, p75"],
+      ["翱翔期", "主谓一致 1", "新1641-1680｜复习D41+D40+D38+D35+D27", "讲义 p279-p286", "主谓一致｜习题册 p47-p48"],
+      ["翱翔期", "主谓一致 2", "新1681-1720｜复习D42+D41+D39+D36+D28", "讲义 p287-p293", "一致综合｜习题册 p49-p50"],
+      ["翱翔期", "虚拟语气 1｜if 非真实条件句", "新1721-1760｜复习D43+D42+D40+D37+D29", "讲义 p294-p300", "虚拟语气｜习题册 p63-p66"],
+      ["翱翔期", "虚拟语气 2｜从句虚拟 + 结营复盘", "新1761-1800｜复习D44+D43+D41+D38+D30", "讲义 p301-p307", "综合训练｜习题册 p76-p90"]
+    ];
+
+    const DAY_MS = 24 * 60 * 60 * 1000;
+    const startKey = "eaglePlanStartDate";
+
+    function localDateOnly(date) {
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    }
+
+    function parseLocalDate(value) {
+      if (!value) return localDateOnly(new Date());
+      const [year, month, day] = value.split("-").map(Number);
+      return new Date(year, month - 1, day);
+    }
+
+    function formatDateIso(date) {
+      return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+    }
+
+    function formatDate(date) {
+      return `${String(date.getMonth() + 1).padStart(2, "0")}/${String(date.getDate()).padStart(2, "0")}`;
+    }
+
+    function getStudyStartDate() {
+      const today = localDateOnly(new Date());
+      const profile = getStudentProfile();
+      if (profile && profile.startDate) {
+        localStorage.setItem(startKey, profile.startDate);
+        return parseLocalDate(profile.startDate);
+      }
+      const saved = localStorage.getItem(startKey);
+      if (saved) return parseLocalDate(saved);
+      localStorage.setItem(startKey, formatDateIso(today));
+      return today;
+    }
+
+    function getCurrentStudyDay() {
+      const start = getStudyStartDate();
+      const today = localDateOnly(new Date());
+      const diff = Math.floor((today - start) / DAY_MS) + 1;
+      return Math.min(Math.max(diff, 1), days.length);
+    }
+
+    function shortTopic(topic) {
+      return topic.replace(/：/g, " ").replace(/\s+/g, " ").slice(0, 7);
+    }
+
+    function cleanPractice(practice) {
+      return practice.split("｜")[0].trim();
+    }
+
+    function getStudentProfile() {
+      try {
+        return JSON.parse(localStorage.getItem("eagleStudentProfile") || "null");
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function renderTodayPanel(day) {
+      const item = days[day - 1];
+      if (!item) return;
+      const [phase, topic, morning, study, practice] = item;
+      const dayId = String(day).padStart(2, "0");
+      const start = getStudyStartDate();
+      const practiceName = cleanPractice(practice);
+      const profile = getStudentProfile();
+      const name = profile && profile.nickname ? profile.nickname : "";
+      const progress = Math.min(100, Math.round(day / days.length * 100));
+      const progressText = `进度 ${progress}%｜距离胜利又进一步`;
+      const topProgress = document.getElementById("top-progress");
+      if (topProgress) topProgress.textContent = `${progress}%`;
+      document.getElementById("today-badge").textContent = name ? `${name}，今天是你学习的第 ${day} 天` : `今天是你学习的第 ${day} 天`;
+      const todayScore = document.getElementById("today-score");
+      if (todayScore) todayScore.textContent = progressText;
+      const note = document.getElementById("student-note");
+      if (profile && note) {
+        note.textContent = `入营诊断：${profile.level}｜优先补强：${profile.focus}。今天先照着 Day ${day} 执行就好。`;
+        note.classList.add("show");
+      }
+      const todayTask = document.getElementById("today-task");
+      todayTask.href = `daily-tasks/day-${dayId}.html`;
+      todayTask.style.setProperty("--progress", `${progress}%`);
+      todayTask.innerHTML = `
+        <strong>进入今日任务：${topic}</strong>
+        <span>别着急，先稳住节奏，每日做这四件事，上岸之路已铺就。</span>
+        <div class="task-progress" aria-label="当前进度"><i></i></div>
+        <span class="task-progress-text">${progressText}</span>
+      `;
+      document.getElementById("today-core").innerHTML = `
+        <a class="core-item" data-step="1" href="vocab-days/day-${dayId}.html">背诵单词<span>${morning.replace("｜", "<br>")}</span></a>
+        <a class="core-item" data-step="2" href="lecture-days/day-${dayId}.html">学习课程<span>今天学：${topic}</span></a>
+        <a class="core-item" data-step="3" href="workbook-days/day-${dayId}.html">课后习题<span>今天练：${practiceName}</span></a>
+        <a class="core-item" data-step="4" href="test-days/day-${dayId}.html">日常一测<span>5题检测<br>错题自动入档</span></a>
+      `;
+      const preview = document.getElementById("today-preview-calendar");
+      const windowStart = Math.max(1, Math.min(day - 7, days.length - 14));
+      preview.innerHTML = Array.from({ length: 15 }, (_, offset) => {
+        const previewDay = windowStart + offset;
+        const previewItem = days[previewDay - 1];
+        const date = new Date(start.getTime() + (previewDay - 1) * DAY_MS);
+        const cls = previewDay === day ? "preview-day active" : previewDay < day ? "preview-day done" : "preview-day future";
+        return `<div class="${cls}" data-day="${previewDay}"><b>D${previewDay}</b>${shortTopic(previewItem[1])}<span>${formatDate(date)}</span></div>`;
+      }).join("");
+      preview.querySelectorAll(".preview-day").forEach(card => {
+        card.addEventListener("click", () => {
+          const selected = Number(card.dataset.day);
+          if (selected > day) return;
+          window.location.href = `daily-tasks/day-${String(selected).padStart(2, "0")}.html`;
+        });
+      });
+      const detailLink = document.getElementById("today-detail-link");
+      if (detailLink) {
+        detailLink.onclick = event => {
+          event.preventDefault();
+          window.location.href = `daily-tasks/day-${dayId}.html`;
+        };
+      }
+    }
+
+    const dayDetails = {};
+
+    const calendar = document.getElementById("calendar");
+    const search = document.getElementById("search");
+    const buttons = document.querySelectorAll("[data-filter]");
+    const detailTitle = document.getElementById("detail-title");
+    const detailSubtitle = document.getElementById("detail-subtitle");
+    const detailBody = document.getElementById("detail-body");
+    let active = "all";
+
+    function phaseClass(phase) {
+      if (phase === "成长期") return "grow";
+      if (phase === "展翅期") return "fly";
+      if (phase === "翱翔期") return "sprint";
+      return "";
+    }
+
+    function renderList(items) {
+      return items.map(item => `<li>${item}</li>`).join("");
+    }
+
+    function renderWords(items) {
+      return items.map(item => `<div class="word">${item}</div>`).join("");
+    }
+
+    function openDayDetail(day, shouldScroll = true) {
+      const detail = dayDetails[day];
+      if (!detail) return;
+      detailTitle.textContent = detail.title;
+      detailSubtitle.textContent = detail.subtitle;
+      detailBody.innerHTML = `
+        <div class="detail-block">
+          <h3>词汇任务｜40词</h3>
+          <div class="word-grid">${renderWords(detail.words)}</div>
+          <div class="source-line">新学范围：${detail.vocabRange}；上方展示核心10项，另补同主题扩展30词。复习：${detail.review}。</div>
+        </div>
+        <div class="detail-block">
+          <h3>日间任务｜讲义定位</h3>
+          <ul>${renderList(detail.lecture)}</ul>
+        </div>
+        <div class="detail-block">
+          <h3>结构复盘｜今日知识点</h3>
+          <div class="map-box">${detail.map.map(item => `<div class="map-node">${item}</div>`).join("")}</div>
+          <div class="source-line">要求：把4个节点抄到错题本首页，晚间复盘时补1个易错例句。</div>
+        </div>
+        <div class="detail-block">
+          <h3>晚间任务｜湖北题型练习</h3>
+          <ul>${renderList(detail.practice)}</ul>
+        </div>
+        <div class="detail-block">
+          <h3>每日一测｜5题</h3>
+          <ol class="test-list">${detail.test.map(item => `<li>${item}</li>`).join("")}</ol>
+          <div class="source-line">答案：${detail.answer.join("；")}</div>
+        </div>
+        <div class="detail-block">
+          <h3>错题复盘</h3>
+          <ul>
+            <li>今天错因：□ 概念不清 □ 固定搭配不会 □ 词形变化错误 □ 句子没读懂 □ 粗心</li>
+            <li>把最容易错的1题改写成自己的例句。</li>
+            <li>明天晨读前先复看今日错题。</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h3>今日积分</h3>
+          <ul>
+            <li>晨读完成：20分</li>
+            <li>讲义学习：30分</li>
+            <li>晚间练习：30分</li>
+            <li>错题复盘：20分</li>
+          </ul>
+        </div>
+      `;
+      if (shouldScroll) {
+        document.getElementById("day-detail").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    function render() {
+      calendar.querySelectorAll(".day-card,.week-title,.empty").forEach(el => el.remove());
+      const keyword = search.value.trim().toLowerCase();
+      days.forEach((item, index) => {
+        const day = index + 1;
+        const [phase, topic, morning, study, practice] = item;
+        const practiceName = cleanPractice(practice);
+        const text = item.join(" ").toLowerCase();
+        const visible = (active === "all" || active === phase) && (!keyword || text.includes(keyword) || String(day).includes(keyword));
+        if ((day - 1) % 7 === 0) {
+          const title = document.createElement("div");
+          title.className = "week-title";
+          title.textContent = `第 ${Math.floor((day - 1) / 7) + 1} 周`;
+          calendar.appendChild(title);
+        }
+        const hasDetail = true;
+        const card = document.createElement("article");
+        card.className = "day-card" + (day === currentStudyDay ? " today" : "") + (hasDetail ? "" : " locked") + (visible ? "" : " hidden");
+        card.tabIndex = visible ? 0 : -1;
+        card.setAttribute("role", hasDetail ? "button" : "article");
+        card.setAttribute("aria-label", `进入 Day ${day} 当天资料`);
+        card.innerHTML = `
+          <div class="day-head">
+            <span class="day-no">${day}</span>
+            <span class="phase ${phaseClass(phase)}">${phase}</span>
+          </div>
+          <h2 class="topic">${topic}</h2>
+          <p class="mini"><b>词汇：</b>${morning}</p>
+          <p class="mini"><b>学习：</b>${topic}</p>
+          <p class="mini"><b>练习：</b>${practiceName}</p>
+          <div class="foot"><span>进入当天资料</span><span class="score">100分</span></div>
+        `;
+        if (hasDetail) {
+          card.addEventListener("click", () => {
+            window.location.href = `daily-tasks/day-${String(day).padStart(2, "0")}.html`;
+          });
+          card.addEventListener("keydown", event => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              window.location.href = `daily-tasks/day-${String(day).padStart(2, "0")}.html`;
+            }
+          });
+        }
+        calendar.appendChild(card);
+      });
+    }
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        buttons.forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        active = button.dataset.filter;
+        render();
+      });
+    });
+
+    search.addEventListener("input", render);
+    let currentStudyDay = getCurrentStudyDay();
+    render();
+    renderTodayPanel(currentStudyDay);
+
+    const gateQuestions = [
+      {
+        type: "高频词汇",
+        stem: "benefit 最接近的意思是：",
+        options: ["好处；受益", "压力；负担", "证据；证明"],
+        answer: 0,
+        point: "词汇"
+      },
+      {
+        type: "固定短语",
+        stem: "be interested in 的意思是：",
+        options: ["对……感兴趣", "对……负责", "与……保持距离"],
+        answer: 0,
+        point: "短语"
+      },
+      {
+        type: "名词/冠词基础",
+        stem: "I need ____ hour to finish the work.",
+        options: ["a", "an", "the"],
+        answer: 1,
+        point: "语法"
+      },
+      {
+        type: "动词时态",
+        stem: "She ____ English every morning.",
+        options: ["study", "studies", "studied"],
+        answer: 1,
+        point: "语法"
+      },
+      {
+        type: "句子成分",
+        stem: "在句子 “Tom studies English.” 中，谓语是：",
+        options: ["Tom", "studies", "English"],
+        answer: 1,
+        point: "句子"
+      },
+      {
+        type: "简单长句理解",
+        stem: "The more you read, the better you write. 这句话更接近：",
+        options: ["读得越多，写得越好", "读得越快，写得越少", "写作和阅读没有关系"],
+        answer: 0,
+        point: "句子"
+      }
+    ];
+
+    function diagnoseGate(score, wrongPoints) {
+      let level = "入营摸底";
+      let levelNote = "先别急，适合从 Day1 慢慢来";
+      if (score >= 6) {
+        level = "先飞雏鹰";
+        levelNote = "基础反应很快，也建议从 Day1 开始，把体系完整走一遍";
+      } else if (score === 5) {
+        level = "基础较稳";
+        levelNote = "可以按计划正常推进，重点留意错题边界";
+      } else if (score >= 3) {
+        level = "有点基础";
+        levelNote = "词汇和语法需要系统补一遍";
+      }
+      const hasWrong = point => wrongPoints.includes(point);
+      const tags = {
+        vocab: hasWrong("词汇") ? "词汇：一般" : "词汇：还不错",
+        phrase: hasWrong("短语") ? "短语：偏弱" : "短语：有印象",
+        grammar: hasWrong("语法") ? "语法：待补" : "语法：能反应",
+        sentence: hasWrong("句子") ? "句子：待测" : "句子：能看懂",
+        advice: "学习建议：从 Day1 开始"
+      };
+      const intro = `你的当前基础：${level}。`;
+      const advice = score >= 5
+        ? "你的起点不错，但45天仍然从 Day1 开始。前7天不是重复劳动，而是把词汇、名词、冠词、代词这些底层框架重新压稳。"
+        : score >= 3
+          ? "你不是完全零基础，但词汇短语和基础语法还不够稳。建议从 Day1 正常开始，不跳过前7天打底内容。"
+          : "先别急着给自己贴标签。现在最重要的是每天完成一点点，从 Day1 开始，把词汇和基础语法慢慢接住。";
+      const plan = "从 Day1 正常开始：晨读词汇 → 学习课程 → 课后习题 → 日常一测。";
+      return { level, levelNote, tags, intro, advice, plan };
+    }
+
+    function setupOnboardingGate() {
+      const gate = document.getElementById("onboarding-gate");
+      if (!gate) return;
+      const introStep = document.getElementById("gate-intro-step");
+      const profileStep = document.getElementById("gate-profile-step");
+      const quizStep = document.getElementById("gate-quiz-step");
+      const result = document.getElementById("gate-result");
+      const nameInput = document.getElementById("gate-nickname");
+      const provinceInput = document.getElementById("gate-province");
+      const phoneInput = document.getElementById("gate-phone");
+      const startDateInput = document.getElementById("gate-start-date");
+      const profileError = document.getElementById("gate-profile-error");
+      const quiz = document.getElementById("gate-quiz");
+      const submit = document.getElementById("gate-submit");
+      const progress = document.getElementById("gate-progress-bar");
+      const stepBuild = document.getElementById("gate-step-build");
+      const stepDiagnose = document.getElementById("gate-step-diagnose");
+      const stepPlan = document.getElementById("gate-step-plan");
+      let currentProfileDraft = {};
+
+      function setGateStep(step) {
+        [stepBuild, stepDiagnose, stepPlan].forEach(item => item.classList.remove("active"));
+        if (step === "diagnose") stepDiagnose.classList.add("active");
+        else if (step === "plan") stepPlan.classList.add("active");
+        else stepBuild.classList.add("active");
+      }
+
+      function showGatePanel(panel) {
+        introStep.hidden = panel !== "intro";
+        profileStep.hidden = panel !== "profile";
+        quizStep.hidden = panel !== "quiz";
+        result.classList.toggle("show", panel === "result");
+        if (panel === "quiz") setGateStep("diagnose");
+        else if (panel === "result") setGateStep("plan");
+        else setGateStep("build");
+      }
+
+      function renderGateQuiz() {
+        quiz.innerHTML = gateQuestions.map((question, index) => `
+          <div class="gate-question">
+            <div class="gate-question-head">
+              <span>${index + 1}. ${question.stem}</span>
+              <span class="gate-tag">${question.type}</span>
+            </div>
+            <div class="gate-options">
+              ${question.options.map((option, optionIndex) => `
+                <label class="gate-option">
+                  <input type="radio" name="gate-q${index}" value="${optionIndex}">
+                  <span>${option}</span>
+                </label>
+              `).join("")}
+            </div>
+          </div>
+        `).join("");
+      }
+
+      function updateGateProgress() {
+        const answered = gateQuestions.filter((_, index) => quiz.querySelector(`input[name="gate-q${index}"]:checked`)).length;
+        progress.style.width = `${answered / gateQuestions.length * 100}%`;
+        submit.disabled = answered !== gateQuestions.length;
+      }
+
+      function closeGate(profile) {
+        gate.classList.remove("show");
+        if (profile) {
+          currentStudyDay = getCurrentStudyDay();
+          render();
+          renderTodayPanel(currentStudyDay);
+        }
+      }
+
+      function collectProfileDraft() {
+        const nickname = nameInput.value.trim() || "慢慢来同学";
+        const province = provinceInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const startDate = startDateInput.value;
+        if (!nickname || !province || !/^\d{7,11}$/.test(phone) || !startDate) {
+          profileError.classList.add("show");
+          return null;
+        }
+        profileError.classList.remove("show");
+        return { nickname, province, phone, startDate };
+      }
+
+      function endDateFromStart(startDate) {
+        const start = parseLocalDate(startDate);
+        return new Date(start.getTime() + (days.length - 1) * DAY_MS);
+      }
+
+      document.getElementById("gate-build-open").addEventListener("click", () => {
+        showGatePanel("profile");
+      });
+
+      document.getElementById("gate-later").addEventListener("click", () => {
+        closeGate(null);
+      });
+
+      document.getElementById("gate-start").addEventListener("click", () => {
+        const draft = collectProfileDraft();
+        if (!draft) return;
+        currentProfileDraft = draft;
+        localStorage.setItem("eagleStudentNickname", draft.nickname);
+        renderGateQuiz();
+        updateGateProgress();
+        showGatePanel("quiz");
+      });
+
+      document.getElementById("gate-profile-back").addEventListener("click", () => {
+        showGatePanel("intro");
+      });
+
+      document.getElementById("gate-back").addEventListener("click", () => {
+        showGatePanel("profile");
+      });
+
+      quiz.addEventListener("change", updateGateProgress);
+
+      submit.addEventListener("click", () => {
+        let score = 0;
+        const wrongPoints = [];
+        gateQuestions.forEach((question, index) => {
+          const chosen = Number(quiz.querySelector(`input[name="gate-q${index}"]:checked`).value);
+          if (chosen === question.answer) score += 1;
+          else wrongPoints.push(question.point);
+        });
+        const diagnosis = diagnoseGate(score, wrongPoints);
+        const endDate = endDateFromStart(currentProfileDraft.startDate);
+        const profile = {
+          ...currentProfileDraft,
+          endDate: formatDateIso(endDate),
+          score,
+          total: gateQuestions.length,
+          level: diagnosis.level,
+          levelNote: diagnosis.levelNote,
+          focus: Object.values(diagnosis.tags).filter(item => item.includes("偏弱") || item.includes("待补") || item.includes("一般") || item.includes("待测")).slice(0, 2).join("、") || "按计划稳步推进",
+          tags: diagnosis.tags,
+          advice: diagnosis.advice,
+          finishedAt: new Date().toISOString()
+        };
+        localStorage.setItem("eagleStudentProfile", JSON.stringify(profile));
+        localStorage.setItem(startKey, profile.startDate);
+        document.getElementById("gate-result-title").textContent = `${profile.nickname}，这是你的入营诊断`;
+        document.getElementById("gate-result-intro").textContent = `${diagnosis.intro} ${diagnosis.levelNote}`;
+        document.getElementById("gate-score").textContent = `${score}/${gateQuestions.length}`;
+        document.getElementById("gate-level").textContent = diagnosis.level;
+        document.getElementById("gate-start-end").textContent = `Day1-Day45`;
+        document.getElementById("gate-plan-start").textContent = `开始：${formatDate(parseLocalDate(profile.startDate))}`;
+        document.getElementById("gate-plan-end").textContent = `结营：${formatDate(endDate)}`;
+        document.getElementById("gate-tags").innerHTML = Object.values(diagnosis.tags).map(item => `<span>${item}</span>`).join("");
+        document.getElementById("gate-advice").textContent = diagnosis.advice;
+        document.getElementById("gate-next-plan").textContent = diagnosis.plan;
+        showGatePanel("result");
+      });
+
+      document.getElementById("gate-enter").addEventListener("click", () => {
+        closeGate(getStudentProfile());
+      });
+
+      document.getElementById("gate-again").addEventListener("click", () => {
+        quiz.reset();
+        updateGateProgress();
+        showGatePanel("quiz");
+      });
+
+      const savedName = localStorage.getItem("eagleStudentNickname");
+      if (savedName) nameInput.value = savedName;
+      const savedProfile = getStudentProfile();
+      if (savedProfile) {
+        nameInput.value = savedProfile.nickname || savedName || "";
+        provinceInput.value = savedProfile.province || "";
+        phoneInput.value = savedProfile.phone || "";
+        startDateInput.value = savedProfile.startDate || localStorage.getItem(startKey) || formatDateIso(localDateOnly(new Date()));
+      } else {
+        startDateInput.value = localStorage.getItem(startKey) || formatDateIso(localDateOnly(new Date()));
+      }
+      const openLink = document.getElementById("open-onboarding-link");
+      if (openLink) {
+        openLink.addEventListener("click", event => {
+          event.preventDefault();
+          showGatePanel("intro");
+          gate.classList.add("show");
+        });
+      }
+      const needsProfileUpgrade = !getStudentProfile() || !getStudentProfile().province || !getStudentProfile().phone || !getStudentProfile().startDate;
+      if (location.hash === "#onboarding") {
+        showGatePanel("intro");
+        gate.classList.add("show");
+      } else if (needsProfileUpgrade) {
+        const promptKey = "eagleProfileBuildPromptCount";
+        const shownCount = Number(localStorage.getItem(promptKey) || "0");
+        if (shownCount < 3) {
+          localStorage.setItem(promptKey, String(shownCount + 1));
+          showGatePanel("intro");
+          gate.classList.add("show");
+        }
+      }
+    }
+
+    setupOnboardingGate();
+  </script>
+  <script src="./eagle-access-control.js"></script>
+</body>
+</html>
+

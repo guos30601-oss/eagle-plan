@@ -1,0 +1,17 @@
+{
+  "name": "雏鹰计划｜专升本英语45天逆袭日历",
+  "short_name": "雏鹰计划",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f6f0e3",
+  "theme_color": "#0b3a78",
+  "description": "每天四件事：背词、学课、练题、日测。陪你稳稳走完45天。",
+  "icons": [
+    {
+      "src": "assets/eagle-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

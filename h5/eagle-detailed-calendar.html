@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>雏鹰计划｜45天详细版日历</title>
+  <style>
+    :root { --bg:#f5f7fb; --paper:#fff; --ink:#172033; --muted:#657189; --line:#dfe7f2; --blue:#246bfe; --green:#12a075; --orange:#f59e0b; --violet:#7257e8; --shadow:0 18px 44px rgba(25,45,80,.10); }
+    * { box-sizing:border-box; }
+    body { margin:0; background:radial-gradient(circle at 12% 0%, #eaf1ff 0, transparent 32%), var(--bg); color:var(--ink); font-family:"Microsoft YaHei", Arial, sans-serif; }
+    a { color:inherit; }
+    .wrap { width:min(1320px, calc(100% - 36px)); margin:0 auto; padding:26px 0 54px; }
+    header { display:flex; justify-content:space-between; gap:18px; align-items:flex-end; margin-bottom:16px; }
+    h1 { margin:0 0 8px; font-size:42px; letter-spacing:0; }
+    p { margin:0; color:var(--muted); line-height:1.6; }
+    .back { display:inline-flex; min-height:42px; align-items:center; padding:0 16px; border:1px solid var(--line); border-radius:8px; background:#fff; color:var(--ink); text-decoration:none; font-weight:900; box-shadow:0 8px 18px rgba(25,45,80,.06); }
+    .hero { display:grid; grid-template-columns:1.6fr 1fr; gap:16px; align-items:stretch; margin-bottom:16px; }
+    .hero-main { background:linear-gradient(135deg,#101827,#1d305c 62%,#246bfe); color:#fff; border-radius:12px; padding:24px; box-shadow:var(--shadow); }
+    .hero-main h2 { margin:0 0 10px; font-size:27px; }
+    .hero-main p { color:#d8e4f8; }
+    .hero-side { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .stat { background:#fff; border:1px solid var(--line); border-radius:10px; padding:16px; box-shadow:0 10px 24px rgba(25,45,80,.08); }
+    .stat b { display:block; color:var(--blue); font-size:28px; line-height:1; margin-bottom:8px; }
+    .toolbar { position:sticky; top:0; z-index:5; display:flex; justify-content:space-between; gap:12px; align-items:center; background:rgba(245,247,251,.92); backdrop-filter:blur(12px); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:12px 0; margin-bottom:18px; }
+    .tabs { display:flex; gap:8px; flex-wrap:wrap; }
+    .tabs button { min-height:36px; border:1px solid var(--line); background:#fff; border-radius:999px; padding:0 15px; font-weight:900; color:#33415c; cursor:pointer; }
+    .tabs button.active { background:var(--blue); border-color:var(--blue); color:#fff; }
+    .search { min-height:38px; width:292px; border:1px solid var(--line); border-radius:8px; padding:0 12px; font:inherit; background:#fff; }
+    .phase-section { margin:0 0 22px; padding:18px; background:rgba(255,255,255,.72); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); }
+    .phase-head { display:flex; justify-content:space-between; gap:16px; align-items:flex-end; border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:14px; }
+    .phase-kicker { display:inline-flex; margin-bottom:8px; min-height:28px; align-items:center; border-radius:999px; padding:0 12px; color:#fff; font-weight:900; font-size:13px; }
+    .phase-section.hatch .phase-kicker { background:var(--blue); }
+    .phase-section.grow .phase-kicker { background:var(--green); }
+    .phase-section.fly .phase-kicker { background:var(--orange); }
+    .phase-section.sprint .phase-kicker { background:var(--violet); }
+    .phase-head h2 { margin:0 0 6px; font-size:28px; }
+    .phase-head strong { color:#33415c; background:#f3f6fb; border:1px solid var(--line); border-radius:999px; padding:9px 13px; white-space:nowrap; }
+    .phase-grid { display:grid; grid-template-columns:repeat(5, 1fr); gap:10px; }
+    .day-card { min-height:156px; background:#fff; border:1px solid var(--line); border-radius:8px; padding:12px; box-shadow:0 8px 20px rgba(25,45,80,.06); display:flex; flex-direction:column; gap:5px; position:relative; overflow:hidden; text-decoration:none; color:inherit; transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+    .day-card:hover { transform:translateY(-2px); box-shadow:0 14px 28px rgba(25,45,80,.12); border-color:#b9cdf2; }
+    .day-card::before { content:""; position:absolute; inset:0 0 auto; height:4px; background:var(--blue); }
+    .day-card.grow::before { background:var(--green); }
+    .day-card.fly::before { background:var(--orange); }
+    .day-card.sprint::before { background:var(--violet); }
+    .day-top { display:flex; justify-content:space-between; gap:8px; align-items:center; }
+    .day-no { display:inline-flex; min-width:38px; height:30px; align-items:center; justify-content:center; border-radius:8px; background:#edf4ff; color:var(--blue); font-size:16px; font-weight:900; }
+    .score { color:#00a06a; font-size:12px; }
+    .day-card h3 { margin:2px 0 1px; font-size:15px; line-height:1.25; }
+    .day-card p { margin:0; font-size:12px; line-height:1.36; color:#50607c; }
+    .day-card p b { display:inline-block; min-width:54px; color:#172033; }
+    .open { margin-top:auto; border-top:1px dashed var(--line); padding-top:7px; color:var(--blue); font-weight:900; font-size:12px; }
+    @media(max-width:1120px){ .hero{grid-template-columns:1fr;} .phase-grid{grid-template-columns:repeat(3,1fr);} }
+    @media(max-width:780px){ header{display:block;} .back{margin-top:12px;} .toolbar{display:block;} .search{width:100%; margin-top:10px;} .phase-head{display:block;} .phase-head strong{display:inline-flex; margin-top:10px; white-space:normal;} .phase-grid{grid-template-columns:1fr 1fr;} h1{font-size:32px;} }
+    @media(max-width:520px){ .phase-grid{grid-template-columns:1fr;} .hero-side{grid-template-columns:1fr;} }
+  </style>
+  <link rel="stylesheet" href="eagle-calendar-standard.css" />
+<link rel="stylesheet" href="eagle-brand.css" /></head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>45天详细版日历</h1>
+        <p>按四个阶段查看全程节奏：每天只做背单词、学课程、做习题、日常一测。</p>
+      </div>
+      <a class="back" href="雏鹰计划-45天学习日历精简版.html">返回首页</a>
+    </header>
+    <section class="hero">
+      <div class="hero-main">
+        <h2>不是资料堆，是一条从基础到综合的进阶路线。</h2>
+        <p>首页负责今天，详细版日历负责全程预览。学生看到阶段、看到任务、点当天资料即可执行。</p>
+      </div>
+      <div class="hero-side">
+        <div class="stat"><b>45</b><span>天任务</span></div>
+        <div class="stat"><b>4</b><span>进阶阶段</span></div>
+        <div class="stat"><b>4</b><span>每日动作</span></div>
+        <div class="stat"><b>100</b><span>每日战力值</span></div>
+      </div>
+    </section>
+    <div class="toolbar">
+      <div class="tabs">
+        <button class="active" data-filter="all">全部</button>
+        <button data-filter="破壳期">破壳期</button>
+        <button data-filter="成长期">成长期</button>
+        <button data-filter="展翅期">展翅期</button>
+        <button data-filter="翱翔期">翱翔期</button>
+      </div>
+      <input id="search" class="search" type="search" placeholder="搜索：名词、介词、从句..." />
+    </div>
+    <main><section class="phase-section hatch" data-phase-section="破壳期">
+    <div class="phase-head">
+      <div>
+        <span class="phase-kicker">Day 1-13</span>
+        <h2>破壳期</h2>
+        <p>打基础：词法框架、考试意识、每日执行感先建立起来。</p>
+      </div>
+      <strong>先稳住节奏，不追求难题。</strong>
+    </div>
+    <div class="phase-grid"><a class="day-card hatch" data-phase="破壳期" href="daily-tasks/day-01.html">
+    <div class="day-top"><span class="day-no">D1</span><span class="score">100分</span></div>
+    <h3>入营摸底 + 湖北考纲分析</h3>
+    <p><b>背单词</b>新001-040｜复习无旧词</p>
+    <p><b>学课程</b>湖北蓝皮书 p1-p5</p>
+    <p><b>课后习题</b>词形变化 + 词汇辨析 + 句子成分p6</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card hatch" data-phase="破壳期" href="daily-tasks/day-02.html">
+    <div class="day-top"><span class="day-no">D2</span><span class="score">100分</span></div>
+    <h3>名词 1｜种类与复数</h3>
+    <p><b>背单词</b>新041-080｜复习D1</p>
+    <p><b>学课程</b>p7</p>
+    <p><b>课后习题</b>选择 + 翻译填空p8</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card hatch" data-phase="破壳期" href="daily-tasks/day-03.html">
+    <div class="day-top"><span class="day-no">D3</span><span class="score">100分</span></div>
+    <h3>名词 2｜量、格与功能</h3>
+    <p><b>背单词</b>新081-120｜复习D2+D1</p>
+    <p><b>学课程</b>p14</p>
+    <p><b>课后习题</b>选择 + 词形补全p10</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card hatch" data-phase="破壳期" href="daily-tasks/day-04.html">
+    <div class="day-top"><span class="day-no">D4</span><span class="score">100分</span></div>
+    <h3>冠词 1｜不定冠词</h3>
+    <p><b>背单词</b>新121-160｜复习D3+D2</p>
+    <p><b>学课程</b>p22</p>
+    <p><b>课后习题</b>冠词填空p12</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card hatch" data-phase="破壳期" href="daily-tasks/day-05.html">
+    <div class="day-top"><span class="day-no">D5</span><span class="score">100分</span></div>
+    <h3>冠词 2｜定冠词与零冠词</h3>
+    <p><b>背单词</b>新161-200｜复习D4+D3+D1</p>
+    <p><b>学课程</b>p30</p>
+    <p><b>课后习题</b>选择 + 固定搭配p14</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card hatch" data-phase="破壳期" href="daily-tasks/day-06.html">
+    <div class="day-top"><span class="day-no">D6</span><span class="score">100分</span></div>
+    <h3>代词 1｜人称/物主/反身</h3>
+    <p><b>背单词</b>新201-240｜复习D5+D4+D2</p>
+    <p><b>学课程</b>p36</p>
+    <p><b>课后习题</b>代词辨析</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card hatch" data-phase="破壳期" href="daily-tasks/day-07.html">
+    <div class="day-top"><span class="day-no">D7</span><span class="score">100分</span></div>
+    <h3>代词 2｜指示与替代</h3>
+    <p><b>背单词</b>新241-280｜复习D6+D5+D3</p>
+    <p><b>学课程</b>p42</p>
+    <p><b>课后习题</b>替代词判断</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card hatch" data-phase="破壳期" href="daily-tasks/day-08.html">
+    <div class="day-top"><span class="day-no">D8</span><span class="score">100分</span></div>
+    <h3>代词 3｜不定代词</h3>
+    <p><b>背单词</b>新281-320｜复习D7+D6+D4+D1</p>
+    <p><b>学课程</b>p47</p>
+    <p><b>课后习题</b>不定代词 + 翻译填空p22</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card hatch" data-phase="破壳期" href="daily-tasks/day-09.html">
+    <div class="day-top"><span class="day-no">D9</span><span class="score">100分</span></div>
+    <h3>数词</h3>
+    <p><b>背单词</b>新321-360｜复习D8+D7+D5+D2</p>
+    <p><b>学课程</b>p56</p>
+    <p><b>课后习题</b>连词成句 + 翻译填空p18</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card hatch" data-phase="破壳期" href="daily-tasks/day-10.html">
+    <div class="day-top"><span class="day-no">D10</span><span class="score">100分</span></div>
+    <h3>形容词</h3>
+    <p><b>背单词</b>新361-400｜复习D9+D8+D6+D3</p>
+    <p><b>学课程</b>p63</p>
+    <p><b>课后习题</b>词法选择p28</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card hatch" data-phase="破壳期" href="daily-tasks/day-11.html">
+    <div class="day-top"><span class="day-no">D11</span><span class="score">100分</span></div>
+    <h3>副词</h3>
+    <p><b>背单词</b>新401-440｜复习D10+D9+D7+D4</p>
+    <p><b>学课程</b>p70</p>
+    <p><b>课后习题</b>副词辨析p30</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card hatch" data-phase="破壳期" href="daily-tasks/day-12.html">
+    <div class="day-top"><span class="day-no">D12</span><span class="score">100分</span></div>
+    <h3>比较等级</h3>
+    <p><b>背单词</b>新441-480｜复习D11+D10+D8+D5</p>
+    <p><b>学课程</b>p77</p>
+    <p><b>课后习题</b>比较结构p30</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card hatch" data-phase="破壳期" href="daily-tasks/day-13.html">
+    <div class="day-top"><span class="day-no">D13</span><span class="score">100分</span></div>
+    <h3>形副固定搭配与易混词</h3>
+    <p><b>背单词</b>新481-520｜复习D12+D11+D9+D6</p>
+    <p><b>学课程</b>p84</p>
+    <p><b>课后习题</b>词法综合p46</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a></div>
+  </section>
+<section class="phase-section grow" data-phase-section="成长期">
+    <div class="phase-head">
+      <div>
+        <span class="phase-kicker">Day 14-29</span>
+        <h2>成长期</h2>
+        <p>做辨析：介词、动词、时态、非谓语逐步吃透。</p>
+      </div>
+      <strong>开始从会背，走到会判断。</strong>
+    </div>
+    <div class="phase-grid"><a class="day-card grow" data-phase="成长期" href="daily-tasks/day-14.html">
+    <div class="day-top"><span class="day-no">D14</span><span class="score">100分</span></div>
+    <h3>介词 1｜基础框架</h3>
+    <p><b>背单词</b>新521-560｜复习D13+D12+D10+D7</p>
+    <p><b>学课程</b>p93</p>
+    <p><b>课后习题</b>介词选择</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card grow" data-phase="成长期" href="daily-tasks/day-15.html">
+    <div class="day-top"><span class="day-no">D15</span><span class="score">100分</span></div>
+    <h3>介词 2｜about 到 after</h3>
+    <p><b>背单词</b>新561-600｜复习D14+D13+D11+D8</p>
+    <p><b>学课程</b>p102</p>
+    <p><b>课后习题</b>介词辨析</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card grow" data-phase="成长期" href="daily-tasks/day-16.html">
+    <div class="day-top"><span class="day-no">D16</span><span class="score">100分</span></div>
+    <h3>介词 3｜against 到 from</h3>
+    <p><b>背单词</b>新601-640｜复习D15+D14+D12+D9+D1</p>
+    <p><b>学课程</b>p111</p>
+    <p><b>课后习题</b>介词填空</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card grow" data-phase="成长期" href="daily-tasks/day-17.html">
+    <div class="day-top"><span class="day-no">D17</span><span class="score">100分</span></div>
+    <h3>介词 4｜in 到 on</h3>
+    <p><b>背单词</b>新641-680｜复习D16+D15+D13+D10+D2</p>
+    <p><b>学课程</b>p119</p>
+    <p><b>课后习题</b>介词固定搭配</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card grow" data-phase="成长期" href="daily-tasks/day-18.html">
+    <div class="day-top"><span class="day-no">D18</span><span class="score">100分</span></div>
+    <h3>介词 5｜over 到 with</h3>
+    <p><b>背单词</b>新681-720｜复习D17+D16+D14+D11+D3</p>
+    <p><b>学课程</b>p127</p>
+    <p><b>课后习题</b>介词复盘p26</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card grow" data-phase="成长期" href="daily-tasks/day-19.html">
+    <div class="day-top"><span class="day-no">D19</span><span class="score">100分</span></div>
+    <h3>介词 6｜综合辨析</h3>
+    <p><b>背单词</b>新721-760｜复习D18+D17+D15+D12+D4</p>
+    <p><b>学课程</b>p135</p>
+    <p><b>课后习题</b>词法综合p46</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card grow" data-phase="成长期" href="daily-tasks/day-20.html">
+    <div class="day-top"><span class="day-no">D20</span><span class="score">100分</span></div>
+    <h3>连词</h3>
+    <p><b>背单词</b>新761-800｜复习D19+D18+D16+D13+D5</p>
+    <p><b>学课程</b>p141</p>
+    <p><b>课后习题</b>连词成句p42</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card grow" data-phase="成长期" href="daily-tasks/day-21.html">
+    <div class="day-top"><span class="day-no">D21</span><span class="score">100分</span></div>
+    <h3>动词分类 1｜实义与系动词</h3>
+    <p><b>背单词</b>新801-840｜复习D20+D19+D17+D14+D6</p>
+    <p><b>学课程</b>p149</p>
+    <p><b>课后习题</b>动词辨析</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card grow" data-phase="成长期" href="daily-tasks/day-22.html">
+    <div class="day-top"><span class="day-no">D22</span><span class="score">100分</span></div>
+    <h3>动词分类 2｜助动词与情态动词</h3>
+    <p><b>背单词</b>新841-880｜复习D21+D20+D18+D15+D7</p>
+    <p><b>学课程</b>p157</p>
+    <p><b>课后习题</b>情态动词</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card grow" data-phase="成长期" href="daily-tasks/day-23.html">
+    <div class="day-top"><span class="day-no">D23</span><span class="score">100分</span></div>
+    <h3>时态 1｜一般体</h3>
+    <p><b>背单词</b>新881-920｜复习D22+D21+D19+D16+D8</p>
+    <p><b>学课程</b>p163</p>
+    <p><b>课后习题</b>时态判断</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card grow" data-phase="成长期" href="daily-tasks/day-24.html">
+    <div class="day-top"><span class="day-no">D24</span><span class="score">100分</span></div>
+    <h3>时态 2｜进行体与完成体</h3>
+    <p><b>背单词</b>新921-960｜复习D23+D22+D20+D17+D9</p>
+    <p><b>学课程</b>p169</p>
+    <p><b>课后习题</b>时态综合</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card grow" data-phase="成长期" href="daily-tasks/day-25.html">
+    <div class="day-top"><span class="day-no">D25</span><span class="score">100分</span></div>
+    <h3>时态 3｜综合辨析</h3>
+    <p><b>背单词</b>新961-1000｜复习D24+D23+D21+D18+D10</p>
+    <p><b>学课程</b>p174</p>
+    <p><b>课后习题</b>动词综合p34</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card grow" data-phase="成长期" href="daily-tasks/day-26.html">
+    <div class="day-top"><span class="day-no">D26</span><span class="score">100分</span></div>
+    <h3>语态｜被动语态</h3>
+    <p><b>背单词</b>新1001-1040｜复习D25+D24+D22+D19+D11</p>
+    <p><b>学课程</b>p178</p>
+    <p><b>课后习题</b>语态转换p46</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card grow" data-phase="成长期" href="daily-tasks/day-27.html">
+    <div class="day-top"><span class="day-no">D27</span><span class="score">100分</span></div>
+    <h3>非谓语 1｜不定式</h3>
+    <p><b>背单词</b>新1041-1080｜复习D26+D25+D23+D20+D12</p>
+    <p><b>学课程</b>p184</p>
+    <p><b>课后习题</b>非谓语选择p36</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card grow" data-phase="成长期" href="daily-tasks/day-28.html">
+    <div class="day-top"><span class="day-no">D28</span><span class="score">100分</span></div>
+    <h3>非谓语 2｜动名词</h3>
+    <p><b>背单词</b>新1081-1120｜复习D27+D26+D24+D21+D13</p>
+    <p><b>学课程</b>p189</p>
+    <p><b>课后习题</b>非谓语辨析</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card grow" data-phase="成长期" href="daily-tasks/day-29.html">
+    <div class="day-top"><span class="day-no">D29</span><span class="score">100分</span></div>
+    <h3>非谓语 3｜分词综合</h3>
+    <p><b>背单词</b>新1121-1160｜复习D28+D27+D25+D22+D14</p>
+    <p><b>学课程</b>p194</p>
+    <p><b>课后习题</b>阶段测p46</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a></div>
+  </section>
+<section class="phase-section fly" data-phase-section="展翅期">
+    <div class="phase-head">
+      <div>
+        <span class="phase-kicker">Day 30-38</span>
+        <h2>展翅期</h2>
+        <p>攻从句：句子结构和三大从句进入系统训练。</p>
+      </div>
+      <strong>重点解决长句看不懂。</strong>
+    </div>
+    <div class="phase-grid"><a class="day-card fly" data-phase="展翅期" href="daily-tasks/day-30.html">
+    <div class="day-top"><span class="day-no">D30</span><span class="score">100分</span></div>
+    <h3>句子成分 1</h3>
+    <p><b>背单词</b>新1161-1200｜复习D29+D28+D26+D23+D15</p>
+    <p><b>学课程</b>p203</p>
+    <p><b>课后习题</b>句子成分</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card fly" data-phase="展翅期" href="daily-tasks/day-31.html">
+    <div class="day-top"><span class="day-no">D31</span><span class="score">100分</span></div>
+    <h3>句子成分 2｜句子类型</h3>
+    <p><b>背单词</b>新1201-1240｜复习D30+D29+D27+D24+D16</p>
+    <p><b>学课程</b>p211</p>
+    <p><b>课后习题</b>句型判断p6</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card fly" data-phase="展翅期" href="daily-tasks/day-32.html">
+    <div class="day-top"><span class="day-no">D32</span><span class="score">100分</span></div>
+    <h3>定语从句 1｜概述与关系词</h3>
+    <p><b>背单词</b>新1241-1280｜复习D31+D30+D28+D25+D17</p>
+    <p><b>学课程</b>p219</p>
+    <p><b>课后习题</b>从句判断p56</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card fly" data-phase="展翅期" href="daily-tasks/day-33.html">
+    <div class="day-top"><span class="day-no">D33</span><span class="score">100分</span></div>
+    <h3>定语从句 2｜综合补充</h3>
+    <p><b>背单词</b>新1281-1320｜复习D32+D31+D29+D26+D18</p>
+    <p><b>学课程</b>p227</p>
+    <p><b>课后习题</b>定从综合p58</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card fly" data-phase="展翅期" href="daily-tasks/day-34.html">
+    <div class="day-top"><span class="day-no">D34</span><span class="score">100分</span></div>
+    <h3>名词性从句 1｜连接词</h3>
+    <p><b>背单词</b>新1321-1360｜复习D33+D32+D30+D27+D19</p>
+    <p><b>学课程</b>p233</p>
+    <p><b>课后习题</b>名从连接词p52</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card fly" data-phase="展翅期" href="daily-tasks/day-35.html">
+    <div class="day-top"><span class="day-no">D35</span><span class="score">100分</span></div>
+    <h3>名词性从句 2｜四类从句</h3>
+    <p><b>背单词</b>新1361-1400｜复习D34+D33+D31+D28+D20</p>
+    <p><b>学课程</b>p239</p>
+    <p><b>课后习题</b>名从分类p54</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card fly" data-phase="展翅期" href="daily-tasks/day-36.html">
+    <div class="day-top"><span class="day-no">D36</span><span class="score">100分</span></div>
+    <h3>状语从句 1｜时间/条件</h3>
+    <p><b>背单词</b>新1401-1440｜复习D35+D34+D32+D29+D21</p>
+    <p><b>学课程</b>p246</p>
+    <p><b>课后习题</b>状从基础p60</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card fly" data-phase="展翅期" href="daily-tasks/day-37.html">
+    <div class="day-top"><span class="day-no">D37</span><span class="score">100分</span></div>
+    <h3>状语从句 2｜条件/原因/结果</h3>
+    <p><b>背单词</b>新1441-1480｜复习D36+D35+D33+D30+D22</p>
+    <p><b>学课程</b>p252</p>
+    <p><b>课后习题</b>状从辨析</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card fly" data-phase="展翅期" href="daily-tasks/day-38.html">
+    <div class="day-top"><span class="day-no">D38</span><span class="score">100分</span></div>
+    <h3>状语从句 3｜地点/让步/方式/比较</h3>
+    <p><b>背单词</b>新1481-1520｜复习D37+D36+D34+D31+D23</p>
+    <p><b>学课程</b>p258</p>
+    <p><b>课后习题</b>状从综合</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a></div>
+  </section>
+<section class="phase-section sprint" data-phase-section="翱翔期">
+    <div class="phase-head">
+      <div>
+        <span class="phase-kicker">Day 39-45</span>
+        <h2>翱翔期</h2>
+        <p>冲综合：特殊句式、主谓一致、虚拟语气和结营复盘。</p>
+      </div>
+      <strong>把分散知识收成体系。</strong>
+    </div>
+    <div class="phase-grid"><a class="day-card sprint" data-phase="翱翔期" href="daily-tasks/day-39.html">
+    <div class="day-top"><span class="day-no">D39</span><span class="score">100分</span></div>
+    <h3>特殊句式 1｜强调句</h3>
+    <p><b>背单词</b>新1521-1560｜复习D38+D37+D35+D32+D24</p>
+    <p><b>学课程</b>p266</p>
+    <p><b>课后习题</b>强调句p74</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card sprint" data-phase="翱翔期" href="daily-tasks/day-40.html">
+    <div class="day-top"><span class="day-no">D40</span><span class="score">100分</span></div>
+    <h3>特殊句式 2｜倒装句</h3>
+    <p><b>背单词</b>新1561-1600｜复习D39+D38+D36+D33+D25</p>
+    <p><b>学课程</b>p273</p>
+    <p><b>课后习题</b>倒装p70</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card sprint" data-phase="翱翔期" href="daily-tasks/day-41.html">
+    <div class="day-top"><span class="day-no">D41</span><span class="score">100分</span></div>
+    <h3>特殊句式 3｜感叹句/反义疑问句</h3>
+    <p><b>背单词</b>新1601-1640｜复习D40+D39+D37+D34+D26</p>
+    <p><b>学课程</b>p278</p>
+    <p><b>课后习题</b>特殊句式, p75</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card sprint" data-phase="翱翔期" href="daily-tasks/day-42.html">
+    <div class="day-top"><span class="day-no">D42</span><span class="score">100分</span></div>
+    <h3>主谓一致 1</h3>
+    <p><b>背单词</b>新1641-1680｜复习D41+D40+D38+D35+D27</p>
+    <p><b>学课程</b>p286</p>
+    <p><b>课后习题</b>主谓一致p48</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card sprint" data-phase="翱翔期" href="daily-tasks/day-43.html">
+    <div class="day-top"><span class="day-no">D43</span><span class="score">100分</span></div>
+    <h3>主谓一致 2</h3>
+    <p><b>背单词</b>新1681-1720｜复习D42+D41+D39+D36+D28</p>
+    <p><b>学课程</b>p293</p>
+    <p><b>课后习题</b>一致综合p50</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card sprint" data-phase="翱翔期" href="daily-tasks/day-44.html">
+    <div class="day-top"><span class="day-no">D44</span><span class="score">100分</span></div>
+    <h3>虚拟语气 1｜if 非真实条件句</h3>
+    <p><b>背单词</b>新1721-1760｜复习D43+D42+D40+D37+D29</p>
+    <p><b>学课程</b>p300</p>
+    <p><b>课后习题</b>虚拟语气p66</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a>
+<a class="day-card sprint" data-phase="翱翔期" href="daily-tasks/day-45.html">
+    <div class="day-top"><span class="day-no">D45</span><span class="score">100分</span></div>
+    <h3>虚拟语气 2｜从句虚拟 + 结营复盘</h3>
+    <p><b>背单词</b>新1761-1800｜复习D44+D43+D41+D38+D30</p>
+    <p><b>学课程</b>p307</p>
+    <p><b>课后习题</b>综合训练p90</p>
+    <p><b>日常一测</b>5题，保存分数</p>
+    <span class="open">进入当天资料</span>
+  </a></div>
+  </section></main>
+  </div>
+  <script>
+    const buttons = document.querySelectorAll('[data-filter]');
+    const search = document.getElementById('search');
+    const sections = [...document.querySelectorAll('[data-phase-section]')];
+    let active = 'all';
+    function render(){
+      const key = search.value.trim().toLowerCase();
+      sections.forEach(section => {
+        const phase = section.dataset.phaseSection;
+        const sectionCards = [...section.querySelectorAll('.day-card')];
+        let visibleCount = 0;
+        sectionCards.forEach(card => {
+          const okPhase = active === 'all' || phase === active;
+          const okKey = !key || card.textContent.toLowerCase().includes(key);
+          const visible = okPhase && okKey;
+          card.style.display = visible ? 'flex' : 'none';
+          if (visible) visibleCount += 1;
+        });
+        section.style.display = visibleCount ? 'block' : 'none';
+      });
+    }
+    buttons.forEach(btn => btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      active = btn.dataset.filter;
+      render();
+    }));
+    search.addEventListener('input', render);
+  </script>
+<script src="eagle-progress-helper.js"></script>  <script src="./eagle-access-control.js"></script>
+</body>
+</html>
