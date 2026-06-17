@@ -18,14 +18,13 @@ http://127.0.0.1:18080/login
 http://127.0.0.1:18080/admin/login
 ```
 
-默认超管账号：
+首次部署时，需要先访问安装页创建超管账号：
 
 ```text
-账号：18888888888
-密码：Eagle2026
+http://127.0.0.1:18080/install.php
 ```
 
-第一次正式使用前，建议在后台新增自己的超管账号，再停用或修改默认账号。
+创建完成后再访问 `/admin/login` 登录后台。正式上线后，建议把 `public/install.php` 改名或删除，避免被别人重复初始化。
 
 ## 二、phpStudy 需要启动什么
 
@@ -135,7 +134,8 @@ eagle-backend/learning-content
 3. 创建数据库 `eagle_plan`
 4. 导入 `database/schema.sql`
 5. 修改 `app/config.php` 中的数据库账号密码
-6. 访问 `/admin/login` 登录后台
+6. 首次访问 `/install.php` 创建超管账号
+7. 创建完成后访问 `/admin/login` 登录后台
 
 注意：网站根目录一定要指向 `public`，不要直接指向 `eagle-backend`。
 
@@ -176,4 +176,3 @@ D:\phpstudy_pro\WWW\eagle-backend
 ```text
 18080
 ```
-

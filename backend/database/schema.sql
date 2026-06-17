@@ -42,6 +42,7 @@ create table if not exists study_progress (
   task_workbook tinyint(1) not null default 0,
   task_test tinyint(1) not null default 0,
   checkin_image varchar(255) null,
+  first_opened_at datetime null,
   completed_at datetime null,
   updated_at timestamp default current_timestamp on update current_timestamp,
   unique key uniq_user_day (user_id, day_no),

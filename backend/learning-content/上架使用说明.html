@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>雏鹰计划｜上架使用说明</title>
+  <title>雏鹰计划｜后台版使用说明</title>
   <style>
     body { margin: 0; font-family: "Microsoft YaHei", Arial, sans-serif; background: #f6f0e3; color: #102653; }
     main { width: min(960px, calc(100% - 32px)); margin: 0 auto; padding: 40px 0; }
@@ -17,37 +17,36 @@
 </head>
 <body>
   <main>
-    <h1>雏鹰计划 H5 正式上架版说明</h1>
-    <p>这个文件夹可以直接上传到网站空间。首页是 <a href="index.html">index.html</a>。</p>
+    <h1>雏鹰计划 PHP 后台版说明</h1>
+    <p>正式售卖和体验账号统一从后台登录入口进入，不建议把本文件夹作为裸 H5 静态站单独上传。</p>
     <section>
-      <h2>1. 本地查看</h2>
+      <h2>1. 学生入口</h2>
       <ol>
-        <li>双击打开 <code>index.html</code>，即可进入首页。</li>
-        <li>体验版默认开放 Day1-Day3。</li>
-        <li>点到 Day4 以后，会进入解锁页。</li>
+        <li>学生统一访问 <code>/login</code> 登录。</li>
+        <li>体验版账号开放 Day1-Day3。</li>
+        <li>完整版账号开放 Day1-Day45。</li>
       </ol>
     </section>
     <section>
-      <h2>2. 测试完整版</h2>
+      <h2>2. 后台发放权限</h2>
       <ol>
-        <li>打开 <code>eagle-paywall.html</code>。</li>
-        <li>在解锁码输入框里填：<code>EAGLE299</code>。</li>
-        <li>解锁后，45 天全部页面都可以打开。</li>
+        <li>管理员访问 <code>/admin/login</code>。</li>
+        <li>在后台新增学生账号，选择体验版或完整版。</li>
+        <li>体验版升级时，在后台生成解锁码并发给学生。</li>
       </ol>
     </section>
     <section>
-      <h2>3. 真实上架时怎么接支付</h2>
-      <p>当前包是静态演示版，适合先上测试站、给朋友试用、跑完整链路。正式卖课时，把支付平台的订单结果与解锁码绑定即可。</p>
+      <h2>3. 正式售卖流程</h2>
+      <p>订单支付可以先手动处理：收到体验版或完整版订单后，在后台创建账号或生成解锁码。后续再把支付平台订单结果接入后台。</p>
       <ul>
         <li><strong>0.1元体验版：</strong>购买后仍保持体验权限，开放 Day1-Day3。</li>
         <li><strong>29.9完整版：</strong>购买后发放解锁码，或由后台把用户权限写成完整版。</li>
       </ul>
     </section>
     <section>
-      <h2>4. 手机端像 App 一样使用</h2>
-      <p>上传到 HTTPS 网站后，手机浏览器可添加到桌面。系统已包含 <code>manifest.webmanifest</code> 和 <code>service-worker.js</code>，具备 PWA 基础。</p>
+      <h2>4. 部署提醒</h2>
+      <p>网站根目录必须指向 <code>eagle-backend/public</code>。学习内容由后台通过 <code>/learn/...</code> 访问并控制权限。</p>
     </section>
   </main>
-  <script src="./eagle-access-control.js"></script>
 </body>
 </html>

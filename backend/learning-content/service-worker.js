@@ -1,8 +1,7 @@
-const CACHE_NAME = "eagle-plan-h5-v1";
+const CACHE_NAME = "eagle-plan-backend-v2";
 const CORE = [
   "./",
   "./index.html",
-  "./eagle-paywall.html",
   "./eagle-access-control.js",
   "./manifest.webmanifest",
   "./assets/eagle-icon.svg"

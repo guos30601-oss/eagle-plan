@@ -11,6 +11,7 @@ if (is_post()) {
     foreach (array_filter(array_map('trim', explode(';', $schema))) as $statement) {
         db()->exec($statement);
     }
+    ensure_first_opened_at_column();
 
     $name = trim($_POST['name'] ?? '超管');
     $phone = trim($_POST['phone'] ?? '');
@@ -45,3 +46,14 @@ render_header('安装雏鹰计划后台');
   <button class="btn primary" type="submit">创建超管并初始化数据库</button>
 </form>
 <?php render_footer(); ?>
+
+<?php
+function ensure_first_opened_at_column(): void
+{
+    $stmt = db()->prepare('select count(*) from information_schema.columns where table_schema = database() and table_name = "study_progress" and column_name = "first_opened_at"');
+    $stmt->execute();
+    if ((int) $stmt->fetchColumn() === 0) {
+        db()->exec('alter table study_progress add column first_opened_at datetime null after checkin_image');
+    }
+}
+?>

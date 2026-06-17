@@ -126,9 +126,21 @@ function user_max_day(array $user): int
     return $user['access_type'] === 'full' ? 45 : (int) config_value('trial_days', 3);
 }
 
+function available_day(array $user): int
+{
+    $start = $user['start_date'] ?: date('Y-m-d');
+    $startDate = new DateTimeImmutable($start);
+    $today = new DateTimeImmutable('today');
+    if ($startDate > $today) {
+        return 1;
+    }
+    $diff = $startDate->diff($today)->days + 1;
+    return max(1, min(user_max_day($user), min(45, $diff)));
+}
+
 function can_visit_day(array $user, int $day): bool
 {
-    return $day <= user_max_day($user);
+    return $day <= available_day($user);
 }
 
 function record_login(int $userId): void

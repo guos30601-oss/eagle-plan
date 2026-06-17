@@ -89,7 +89,8 @@ function student_dashboard(): void
 {
     $user = require_user();
     $today = suggested_day($user);
-    $maxDay = user_max_day($user);
+    $entitledDays = user_max_day($user);
+    $availableDay = available_day($user);
     $progress = progress_stats((int) $user['id']);
     $day = str_pad((string) $today, 2, '0', STR_PAD_LEFT);
 
@@ -116,8 +117,8 @@ function student_dashboard(): void
     <section class="grid grid-4">
       <div class="stat"><strong><?= h((string) $progress['completed_days']) ?> / 45</strong><span>完成天数</span></div>
       <div class="stat"><strong><?= h((string) $user['login_count']) ?></strong><span>登录次数</span></div>
-      <div class="stat"><strong><?= h((string) $maxDay) ?></strong><span>当前可学到 Day</span></div>
-      <div class="stat"><strong><?= $user['access_type'] === 'full' ? '45天' : '3天' ?></strong><span>已解锁内容</span></div>
+      <div class="stat"><strong><?= h((string) $availableDay) ?></strong><span>今天已开放到 Day</span></div>
+      <div class="stat"><strong><?= h((string) $entitledDays) ?></strong><span>账号权益天数</span></div>
     </section>
     <section class="card">
       <h2>学习入口</h2>
@@ -179,6 +180,9 @@ function serve_learning_content(string $relative): void
     if ($relative === '') {
         $relative = 'index.html';
     }
+    if ($relative === 'eagle-paywall.html') {
+        redirect_to('/unlock');
+    }
 
     $day = day_from_path($relative);
     if ($day && !can_visit_day($user, $day)) {
@@ -186,7 +190,7 @@ function serve_learning_content(string $relative): void
         ?>
         <section class="card hero">
           <h2>后面的内容先替你收好啦</h2>
-          <p>体验版可以学习 Day1-Day3。解锁完整版后，会直接接着当前进度继续，不会重来。</p>
+          <p>课程会按开营日期逐日开放。体验版最多开放 Day1-Day3，完整版最多开放 Day1-Day45。</p>
           <div class="actions">
             <a class="btn gold" href="/unlock">输入解锁码</a>
             <a class="btn" href="/dashboard">返回我的学习入口</a>
@@ -229,7 +233,15 @@ function serve_learning_content(string $relative): void
     }
 
     $html = file_get_contents($file);
-    $bridge = '<script>window.EAGLE_BACKEND={save:"/progress/save"};</script><script src="/learn/backend-bridge.js"></script>';
+    $bridgeConfig = [
+        'save' => '/progress/save',
+        'accessType' => $user['access_type'],
+        'maxDay' => available_day($user),
+        'entitledDays' => user_max_day($user),
+        'todayDay' => suggested_day($user),
+        'unlockUrl' => '/unlock',
+    ];
+    $bridge = '<script>window.EAGLE_BACKEND=' . json_encode($bridgeConfig, JSON_UNESCAPED_UNICODE) . ';</script><script src="/learn/backend-bridge.js"></script>';
     if (stripos($html, '</body>') !== false) {
         $html = preg_replace('~</body>~i', $bridge . '</body>', $html, 1);
     } else {
@@ -254,6 +266,11 @@ function save_progress(): void
         echo '任务类型不正确。';
         return;
     }
+    if (!can_visit_day($user, $day)) {
+        http_response_code(403);
+        echo '这一天还没有开放。';
+        return;
+    }
     touch_progress((int) $user['id'], $day);
     db()->prepare('update study_progress set ' . $map[$task] . ' = 1 where user_id = ? and day_no = ?')->execute([$user['id'], $day]);
     db()->prepare('update study_progress set completed_at = if(task_vocab=1 and task_lecture=1 and task_workbook=1 and task_test=1, coalesce(completed_at, now()), completed_at) where user_id = ? and day_no = ?')->execute([$user['id'], $day]);
@@ -268,9 +285,7 @@ function touch_progress(int $userId, int $day): void
 
 function suggested_day(array $user): int
 {
-    $start = $user['start_date'] ?: date('Y-m-d');
-    $diff = (new DateTimeImmutable($start))->diff(new DateTimeImmutable('today'))->days + 1;
-    return max(1, min(user_max_day($user), min(45, $diff)));
+    return available_day($user);
 }
 
 function progress_stats(int $userId): array
