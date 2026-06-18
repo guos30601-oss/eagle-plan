@@ -1,3 +1,8 @@
 (function () {
-  // 后台正式版由 PHP 负责账号、权限和进度，这里只保留空壳，避免旧的本地体验版逻辑干扰。
+  // 后台正式版由 PHP 负责账号、权限和进度；清掉旧 H5 版可能遗留的离线缓存。
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations()
+      .then(registrations => registrations.forEach(registration => registration.unregister()))
+      .catch(() => {});
+  }
 })();
