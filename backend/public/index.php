@@ -241,7 +241,13 @@ function serve_learning_content(string $relative): void
         'todayDay' => suggested_day($user),
         'unlockUrl' => '/unlock',
     ];
-    $bridge = '<script>window.EAGLE_BACKEND=' . json_encode($bridgeConfig, JSON_UNESCAPED_UNICODE) . ';</script><script src="/learn/backend-bridge.js"></script>';
+    $bridgeConfigScript = '<script>window.EAGLE_BACKEND=' . json_encode($bridgeConfig, JSON_UNESCAPED_UNICODE) . ';</script>';
+    $bridge = '<script src="/learn/backend-bridge.js"></script>';
+    if (stripos($html, '</head>') !== false) {
+        $html = preg_replace('~</head>~i', $bridgeConfigScript . '</head>', $html, 1);
+    } else {
+        $html = $bridgeConfigScript . $html;
+    }
     if (stripos($html, '</body>') !== false) {
         $html = preg_replace('~</body>~i', $bridge . '</body>', $html, 1);
     } else {

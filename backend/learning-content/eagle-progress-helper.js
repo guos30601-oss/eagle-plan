@@ -21,6 +21,8 @@
   }
 
   function getCurrentDay() {
+    const backendDay = Number(window.EAGLE_BACKEND && (window.EAGLE_BACKEND.todayDay || window.EAGLE_BACKEND.maxDay));
+    if (backendDay) return Math.min(45, Math.max(1, backendDay));
     const profile = getProfile();
     const saved = profile && profile.startDate ? profile.startDate : localStorage.getItem(startKey);
     const start = parseLocalDate(saved);
@@ -30,6 +32,7 @@
   }
 
   function decorateCards(currentDay) {
+    const maxDay = Number(window.EAGLE_BACKEND && window.EAGLE_BACKEND.maxDay) || currentDay;
     document.querySelectorAll(".day, .day-card").forEach(card => {
       const href = card.getAttribute("href") || "";
       const dayFromHref = href.match(/day-(\d{2})\.html/);
@@ -38,8 +41,8 @@
       if (!day || day > 45) return;
       card.classList.toggle("is-done", day < currentDay);
       card.classList.toggle("is-today", day === currentDay);
-      card.classList.toggle("is-locked", day > currentDay);
-      if (day > currentDay) {
+      card.classList.toggle("is-locked", day > maxDay);
+      if (day > maxDay) {
         card.setAttribute("aria-disabled", "true");
         card.addEventListener("click", event => {
           event.preventDefault();

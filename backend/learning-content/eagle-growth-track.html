@@ -376,16 +376,20 @@
         .sort((a,b)=>new Date(a.savedAt || 0)-new Date(b.savedAt || 0));
       const checkins = JSON.parse(localStorage.getItem("eagleXhsCheckins") || "[]");
       const mistakes = JSON.parse(localStorage.getItem("eagleMistakePool") || "[]");
+      const isRecovered = item => ["done","mastered","已攻克","closed"].includes(item.status);
+      const isPending = item => !isRecovered(item);
       const percents = scoreList.map(item => Number(item.percent || 0)).filter(n => !Number.isNaN(n));
       const todayKey = new Date().toISOString().slice(0,10);
       const startDate = profile && profile.startDate ? new Date(profile.startDate) : null;
       const todayDate = new Date(todayKey);
-      const rawDay = startDate && !Number.isNaN(startDate.getTime()) ? Math.floor((todayDate - startDate) / 86400000) + 1 : Math.max(1, checkins.length || 1);
+      const backendDay = Number(window.EAGLE_BACKEND && (window.EAGLE_BACKEND.todayDay || window.EAGLE_BACKEND.maxDay));
+      const rawDay = backendDay || (startDate && !Number.isNaN(startDate.getTime()) ? Math.floor((todayDate - startDate) / 86400000) + 1 : Math.max(1, checkins.length || 1));
       const currentDay = Math.min(45, Math.max(1, rawDay));
+      const availableDay = Math.min(45, Math.max(1, Number(window.EAGLE_BACKEND && window.EAGLE_BACKEND.maxDay) || currentDay));
       const completedDays = Math.min(45, Math.max(checkins.length, scoreList.filter(item => /^Day\s*\d+/i.test(item.dayLabel || "")).length));
       const stageIds = new Set(["entry","stage-01","stage-02","stage-03","final"]);
       const stageDone = scoreList.filter(item => stageIds.has(item.id)).length;
-      const recovered = mistakes.filter(item => item.status === "done" || item.status === "mastered").length;
+      const recovered = mistakes.filter(isRecovered).length;
       const avg = percents.length ? Math.round(percents.reduce((a,b)=>a+b,0)/percents.length) : 0;
       const vocabMastery = Math.min(100, Math.round((currentDay / 45) * 100));
       const level = currentDay <= 13 ? "破壳期小雏鹰" : currentDay <= 28 ? "成长期小雏鹰" : currentDay <= 38 ? "展翅期小雏鹰" : "翱翔期小雏鹰";
@@ -448,7 +452,7 @@
         wrap.querySelectorAll(".mini-day").forEach(btn => {
           btn.addEventListener("click", () => {
             const day = Number(btn.dataset.day);
-            if(day > currentDay){
+            if(day > availableDay){
               alert("后面的任务先替你锁住。今天只管今天这一格。");
               return;
             }
@@ -497,7 +501,7 @@
         const lastThree = recent.slice(-3).map(item => Number(item.percent || 0));
         const scoreUp = lastThree.length >= 2 && lastThree[lastThree.length - 1] >= lastThree[0];
         const latestWrong = Number(recent[recent.length - 1].wrong || recent[recent.length - 1].wrongCount || 0);
-        const weak = mistakes.find(item => item.status !== "done" && item.status !== "mastered");
+        const weak = mistakes.find(isPending);
         const weakText = weak ? (weak.knowledge || weak.qtype || "易错点") : "固定搭配";
         const reviewDay = weak && weak.day ? `Day${weak.day}` : `Day${Math.max(1,currentDay - 1)}`;
         chartInsight.innerHTML = `<b>成长小结</b><span>${scoreUp ? "最近几次日测得分在往上走，说明基础正在变稳。" : "分数有波动也正常，先看完成率和错题回收，别只盯着一条分数线。"}${latestWrong ? ` 目前错题压力还有 ${latestWrong} 题，` : " "}建议明天先回看 ${reviewDay} 的「${weakText}」，再继续下一格。</span>`;
@@ -610,7 +614,7 @@
       function renderWeakTags(){
         const tags = document.getElementById("weakTags");
         const advice = document.getElementById("nextAdvice");
-        const pending = mistakes.filter(item => item.status !== "done" && item.status !== "mastered");
+        const pending = mistakes.filter(isPending);
         const counts = new Map();
         pending.forEach(item => {
           const key = item.knowledge || item.qtype || item.reason || "待复盘";
@@ -631,8 +635,8 @@
 
       function renderRecovery(){
         const box = document.getElementById("recoverySummary");
-        const pending = mistakes.filter(item => item.status !== "done" && item.status !== "mastered").length;
-        const retest = mistakes.filter(item => item.status === "retest" || item.status === "review").length;
+        const pending = mistakes.filter(isPending).length;
+        const retest = mistakes.filter(item => item.status === "retest" || item.status === "review" || item.status === "待复测").length;
         const types = new Map();
         mistakes.forEach(item => {
           const key = item.qtype || item.knowledge || "综合错题";

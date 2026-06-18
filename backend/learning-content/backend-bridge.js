@@ -87,6 +87,58 @@
     document.head.appendChild(style);
   }
 
+  function dayFromScore(item) {
+    const text = `${item.dayLabel || ''} ${item.label || ''} ${item.id || ''}`;
+    const match = text.match(/day[-\s]*(\d+)/i);
+    return match ? Number(match[1]) : currentDay();
+  }
+
+  function syncTestScoreMistakes(value) {
+    let scores = [];
+    try {
+      scores = JSON.parse(value || '[]');
+    } catch (error) {
+      return;
+    }
+    const latest = scores[scores.length - 1];
+    if (!latest || Number(latest.wrong || latest.wrongCount || 0) <= 0) return;
+    const day = dayFromScore(latest);
+    const id = `daily-test-${latest.id || `day-${String(day || 0).padStart(2, '0')}`}`;
+    let mistakes = [];
+    try {
+      mistakes = JSON.parse(localStorage.getItem('eagleMistakePool') || '[]');
+    } catch (error) {}
+    const next = mistakes.filter(item => item.id !== id);
+    next.unshift({
+      id,
+      day,
+      date: latest.dayLabel || (day ? `Day ${day}` : '日测'),
+      source: '每日一测',
+      qtype: latest.label || '日测错题',
+      knowledge: latest.note || '日测待复盘',
+      question: `${latest.wrong || latest.wrongCount} 道题需要回看`,
+      yourAnswer: '',
+      answer: '查看当天测试解析',
+      reason: latest.note || '待复盘',
+      remedy: day ? `回看 Day ${day} 测试解析，订正后标记已攻克。` : '回看当天测试解析，订正后标记已攻克。',
+      status: '待补救',
+      retest: day ? `test-days/day-${String(day).padStart(2, '0')}.html` : 'eagle-test-pack.html',
+      savedAt: latest.savedAt || new Date().toISOString()
+    });
+    localStorage.setItem('eagleMistakePool', JSON.stringify(next.slice(0, 500)));
+  }
+
+  function patchLocalProgressStorage() {
+    if (!window.localStorage || localStorage.__eaglePatched) return;
+    const originalSetItem = localStorage.setItem.bind(localStorage);
+    localStorage.setItem = function (key, value) {
+      const result = originalSetItem(key, value);
+      if (key === 'eagleTestScores') syncTestScoreMistakes(value);
+      return result;
+    };
+    localStorage.__eaglePatched = true;
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     const task = inferTask();
     if (task) {
@@ -103,5 +155,6 @@
 
     injectLockStyles();
     lockUnavailableLinks();
+    patchLocalProgressStorage();
   });
 })();
