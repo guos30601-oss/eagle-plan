@@ -13,5 +13,5 @@ return [
     'content_path' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'learning-content',
     'upload_path' => dirname(__DIR__) . DIRECTORY_SEPARATOR . 'storage' . DIRECTORY_SEPARATOR . 'uploads',
     'trial_days' => 3,
-    'help_name' => "zhangbaoan"
+    'help_name' => "zhangbaoan1"
 ];
